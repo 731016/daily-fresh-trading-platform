@@ -11,6 +11,8 @@
   <title>天天生鲜－注册</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/user_register.js"></script>
 </head>
 <body>
 
@@ -28,37 +30,37 @@
       <a href="login.jsp">登录</a>
     </div>
     <div class="reg_form clearfix">
-      <form action="${pageContext.request.contextPath}/user/register.jsp" method="post" id="reg_form">
+      <form action="${pageContext.request.contextPath}/user/register" method="post" id="reg_form">
         <input type="hidden" name="" value="e">
         <ul>
           <li>
             <label>用户名:</label>
-            <input type="text" name="user_name" id="user_name">
-            <span class="error_tip">提示信息</span>
+            <input type="text" name="account" id="user_name" placeholder="4到16位（字母，数字，下划线，减号）">
+            <span class="error_tip" id="user_info">4到16位（字母，数字，下划线，减号）</span>
           </li>
           <li>
             <label>密码:</label>
-            <input type="password" name="pwd" id="pwd">
-            <span class="error_tip">提示信息</span>
+            <input type="password" name="password" id="pwd" style="white-space: nowrap;" placeholder="最少6位">
+            <span class="error_tip" id="pwd_info" style="white-space: nowrap">最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span>
           </li>
           <li>
             <label>确认密码:</label>
-            <input type="password" name="cpwd" id="cpwd">
-            <span class="error_tip">提示信息</span>
+            <input type="password" id="cpwd">
+            <span class="error_tip" id="cpwd_info">两次密码不相同</span>
           </li>
           <li>
             <label>邮箱:</label>
             <input type="text" name="email" id="email">
-            <span class="error_tip">提示信息</span>
+            <span class="error_tip" id="email_info">邮箱格式不正确</span>
           </li>
 
           <li class="agreement">
             <input type="checkbox" name="allow" id="allow" checked="checked">
             <label>同意”天天生鲜用户使用协议“</label>
-            <span class="error_tip2">提示信息</span>
+            <span class="error_tip" id="allow_info">必须同意此协议！</span>
           </li>
           <li class="reg_sub">
-            <input type="submit" value="注 册">
+            <input type="button" value="注册" id="commit">
           </li>
         </ul>
       </form>
