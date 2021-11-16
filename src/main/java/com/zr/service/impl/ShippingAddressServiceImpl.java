@@ -15,17 +15,29 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
 
     @Override
     public List<ShippingAddress> selectAll() {
-        return null;
+        return mapper.selectList(null);
     }
 
     @Override
     public boolean addAddress(ShippingAddress shippingAddress) {
-        return false;
+        int i = mapper.updateById(shippingAddress);
+        if (i>0){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override
     public boolean delAddress(Integer shippingId) {
-        return false;
+        int i = mapper.deleteById(shippingId);
+        if (i>0){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override
