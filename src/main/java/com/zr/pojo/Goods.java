@@ -15,7 +15,7 @@ public class Goods {
     private String describe;   //商品描述
     private Integer inventory; //商品库存
     private Double price;      //商品价格
-    private Integer goodType;  //商品类型
+    private Integer typeId;    //商品类型
     private Integer sales;     //商品销量
     private String picture;    //商品图片
     private String originPlace;//商品出产地
