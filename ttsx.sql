@@ -1,5 +1,5 @@
 -- 创建用户表user
-drop table if exists user
+drop table if exists user;
 CREATE TABLE user(
 	account VARCHAR(255), # 账号
 	password VARCHAR(255), #密码
@@ -11,7 +11,7 @@ CREATE TABLE user(
 )default charset=utf8;
 
 -- 创建收货地址表 shipping_address
-drop table if exists shipping_address
+drop table if exists shipping_address;
 create table shipping_address(
 	shipping_id int(8), #收货地址编号
 	shipping_name varchar(255), #收件人
@@ -21,7 +21,7 @@ create table shipping_address(
 )default charset=utf8;
 
 -- 创建浏览记录表
-drop table if exists history
+drop table if exists history;
 create table history(
 	history_id int(8), #浏览记录编号
 	account varchar(255), #账号
@@ -30,7 +30,7 @@ create table history(
 
 -- 创建订单表
 
-drop table if EXISTS `order`
+drop table if EXISTS `order`;
 create table `order`(
 	`order` varchar(255), #订单编号
 	account varchar(255), #账号
@@ -41,7 +41,7 @@ create table `order`(
 )default charset=utf8;
 
 -- 创建商品表goods
-drop table if EXISTS goods
+drop table if EXISTS goods;
 create table goods(
 	good_name varchar(255), #商品名称
 	`DESCRIBE` varchar(255), #商品描述
@@ -55,7 +55,7 @@ create table goods(
 )default charset=utf8;
 
 -- 创建购物车表sopping_cart
-drop table if EXISTS sopping_cart
+drop table if EXISTS sopping_cart;
 create table sopping_cart(
 cart_id int(16), #账号
 good_id varchar(255), #商品编号（字符串，隔开）
@@ -63,7 +63,7 @@ good_number int(16) #购物车商品数量
 )default charset=utf8;
 
 -- 创建商品类型表goods_type
-drop table if EXISTS goods_type
+drop table if EXISTS goods_type;
 create table goods_type(
 type_id int(16), #商品类型编号
 type_name varchar(255) #商品类型名称
