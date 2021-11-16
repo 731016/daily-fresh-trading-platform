@@ -13,10 +13,57 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <script src="../js/jquery-3.6.0.min.js"></script>
   <script src="../js/user_register.js"></script>
+  <script src="${pageContext.request.contextPath}/js/coco-message.js"></script>
+  <script>
+    $(function () {
+      function example(n) {
+        let div = document.createElement("div");
+        switch (n) {
+          case 0:
+            cocoMessage.info(1000, "请输入验证码！", function() {
+
+            });
+            break;
+
+          case 1:
+            div.innerText = "验证码校验成功！";
+            cocoMessage.success(div);
+            break;
+
+          case 2:
+            cocoMessage.warning("每秒并发请求200次！,请求上限20w次！", 0);
+            break;
+
+          case 3:
+            // cocoMessage.error("验证码错误！请重新输入！", 1000);
+            cocoMessage.error("注册失败！", 1000);
+            break;
+
+          case 4:
+            var closeMsg = cocoMessage.loading(true);
+            setTimeout(function() {
+              closeMsg();
+            }, 1000);
+            break;
+
+          case 5:
+            cocoMessage.destroyAll();
+            break;
+
+          default:
+            break;
+        }
+      }
+      let msg = $('msg').val();
+      if (msg==2){
+        example(3);
+      }
+    });
+  </script>
 </head>
 <body>
 
-
+<input type="hidden" value="${userState.value}" id="msg">
 <div class="register_con">
   <div class="l_con fl">
     <a href="${pageContext.request.contextPath}/index.jsp" class="reg_logo"><img src="../images/logo.png"></a>

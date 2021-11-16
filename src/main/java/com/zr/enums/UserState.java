@@ -4,8 +4,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 public enum UserState {
 
-    REGISTER("注册成功", 0),
-    LOGIN("登陆成功", 1);
+    REGISTER_SUCCESS("注册成功", 0),
+    LOGIN_SUCCESS("登陆成功", 1),
+    REGISTER_FAIL("注册失败", 2),
+    LOGIN_FAIL("登陆失败", 3);
 
     private String name;
     private int value;
