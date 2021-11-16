@@ -39,6 +39,11 @@
 <!--            <mvc:exclude-mapping path="/product/productInfo"/>-->
             <bean class="com.zr.interceptor.loginInterceptor"/>
         </mvc:interceptor>
+<!--        进入 拦截/登录 页面 设置token -->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/to*"/>
+            <bean class="com.zr.interceptor.TokenInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->

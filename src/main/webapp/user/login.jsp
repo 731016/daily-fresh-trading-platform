@@ -82,10 +82,11 @@
         <div class="login_form fr">
             <div class="login_title clearfix">
                 <h1>用户登录</h1>
-                <a href="register.jsp">立即注册</a>
+                <a href="/user/toRegister">立即注册</a>
             </div>
             <div class="form_input">
                 <input type="hidden" value="${userState.value}" id="msg">
+                <input type="hidden" name="token" value="${sessionScope.token}">
                 <form action="${pageContext.request.contextPath}/user/login" method="post" id="from_login">
                     <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" value="">
                     <div class="user_error">输入错误</div>
