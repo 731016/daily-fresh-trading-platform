@@ -1,26 +1,27 @@
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
 -- Table structure for goods_sku
+-- 表一：货物的结构
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_sku`;
 CREATE TABLE `goods_sku` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `desc` varchar(255) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `unite` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `stock` int(11) DEFAULT NULL,
-  `sales` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
-  `type_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT, # 货物编号
+  `name` varchar(255) DEFAULT NULL, # 货物名称
+  `desc` varchar(255) DEFAULT NULL, # 货物描述
+  `price` decimal(10,2) DEFAULT NULL, # 价位
+  `unite` varchar(255) DEFAULT NULL, # 连接
+  `image` varchar(255) DEFAULT NULL, # 画像
+  `stock` int(11) DEFAULT NULL, # 库存
+  `sales` int(11) DEFAULT NULL, # 销售量
+  `status` int(11) DEFAULT NULL, # 状态
+  `goods_id` int(11) DEFAULT NULL, # 货物编号
+  `type_id` int(11) DEFAULT NULL, # 类型识别码
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods_sku
+-- 添加货物信息
 -- ----------------------------
 INSERT INTO `goods_sku` VALUES ('1', '鲜芒', '水果商品描述', '1.00', '个', 'images/goods/goods003.jpg', '21', '12', '1', '1', '1');
 INSERT INTO `goods_sku` VALUES ('2', '加州提子', '水果商品描述', '1.00', '个', 'images/goods/goods003.jpg', '21', '12', '1', '1', '1');
