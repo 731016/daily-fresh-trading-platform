@@ -11,11 +11,11 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-    @TableId(value = "orderId")
+    @TableId
     private String orderId;    //订单号
     private String account;    //账号
-    private Integer goodId;    //购买商品编号
-    private Integer goodNumber;//购买商品数量
+    private Integer goodsId;    //购买商品编号
+    private Integer goodsNumber;//购买商品数量
     private Date orderDate;    //下单日期
     private Double totalPrice; //总价格
 }

@@ -29,7 +29,7 @@
     </bean>
     <bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig">
         <property name="idType" value="AUTO"/>
-        <property name="tableUnderline" value="false"/>
+        <property name="tableUnderline" value="true"/>
     </bean>
     <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
         <property name="dbConfig" ref="dbConfig"/>

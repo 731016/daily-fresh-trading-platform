@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Goods {
-    @TableId(value = "goodId")
-    private Integer goodId;    //商品编号
-    private String goodName;   //商品名称
-    private String describe;   //商品描述
+    @TableId(value = "goods_id")
+    private Integer goodsId;    //商品编号
+    private String goodsName;   //商品名称
+    private String goodsDescribe;   //商品描述
     private Integer inventory; //商品库存
     private Double price;      //商品价格
     private Integer typeId;    //商品类型

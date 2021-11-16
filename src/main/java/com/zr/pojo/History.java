@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class History {
-    @TableId(value = "historyId")
+    @TableId
     private Integer historyId;  //浏览记录编号
     private String account;     //用户账号
-    private Integer goodId;     //商品编号
+    private Integer goodsId;     //商品编号
 }

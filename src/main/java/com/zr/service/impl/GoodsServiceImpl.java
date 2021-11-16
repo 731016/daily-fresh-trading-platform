@@ -27,7 +27,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> selectSortSalesByType(Integer typeId, Integer goodsNum) {
         QueryWrapper<Goods> wrapper = new QueryWrapper<>();
-        wrapper.eq("typeId", typeId).orderByDesc("sales");
+        wrapper.eq("type_id", typeId).orderByDesc("sales");
         List<Goods> goods = mapper.selectList(wrapper);
         if (goods.size() <= goodsNum) {
             return goods;

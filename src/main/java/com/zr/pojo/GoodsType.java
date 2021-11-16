@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoodsType {
-    @TableId(value = "typeId")
+    @TableId(value = "type_id")
     private Integer typeId;  //商品类型编号
     private String typeName; //商品类型名称
+    private String typeImg;  //商品类型图片
 }

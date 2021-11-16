@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    @TableId(value = "account")
+    @TableId
     private String account;    //账号
     private String password;   //密码
     private String username;   //用户名

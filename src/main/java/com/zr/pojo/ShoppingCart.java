@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShoppingCart {
-    @TableId(value = "cartId")
+    @TableId
     private Integer cartId;    //购物车编号
     private String account;    //账号
-    private String goodId;     //商品id（用逗号隔开的字符串）
-    private Integer goodNumber;//商品数量
+    private String goodsId;     //商品id（用逗号隔开的字符串）
+    private Integer goodsNumber;//商品数量
 }
