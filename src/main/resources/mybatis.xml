@@ -3,9 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--类的别名，简化类名省略包名-->
+    <typeAliases>
+        <package name="com.zr.pojo"/>
+    </typeAliases>
+
     <!--分页插件-->
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
         </plugin>
     </plugins>
+
+    <mappers>
+        <mapper resource="mapper/GoodsMapper.xml"/>
+        <mapper resource="mapper/GoodsTypeMapper.xml"/>
+        <mapper resource="mapper/HistoryMapper.xml"/>
+        <mapper resource="mapper/OrderMapper.xml"/>
+        <mapper resource="mapper/ShippingAddressMapper.xml"/>
+        <mapper resource="mapper/ShoppingCartMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
 </configuration>
