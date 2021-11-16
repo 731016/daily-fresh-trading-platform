@@ -13,7 +13,7 @@
 
 
 ## 天天生鲜-买家用例图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1115/222210_03bfa327_8254421.png "买家.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1116/094243_2126675f_8254421.png "111.png")
 
 ## 天天生鲜-ER图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1115/230406_6a0a3de5_8254421.png "er.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1116/094257_6053b6eb_8254421.png "QQ截图20211116093814.png")
