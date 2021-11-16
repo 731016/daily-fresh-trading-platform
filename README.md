@@ -9,7 +9,7 @@
 3. 需要用到的图片存储在 [img](https://gitee.com/LovelyHzz/daily-fresh-trading-platform/tree/master/img) 目录下
 
 ## 天天生鲜数据库设计图
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1115/200208_ddad369f_8254421.png "天天生鲜数据库设计图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1116/093354_5861ae92_8254421.png "QQ截图20211116093114.png")
 
 
 ## 天天生鲜-买家用例图
