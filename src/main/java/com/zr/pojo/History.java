@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class History {
-    private Integer historyId;
-    private String account;
-    private Integer goodId;
+    private Integer historyId;  //浏览记录编号
+    private String account;     //用户账号
+    private Integer goodId;     //商品编号
 }

@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>天天生鲜－首页</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="js/slide.js"></script>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/slide.js"></script>
 </head>
 <body>
 <!--头部  开始-->
@@ -17,21 +17,21 @@
     <div class="fr">
       <div class="login_info fl">Tom
         欢迎您：<em>""</em>
-        <a href="login.jsp" class="zhuxiao">注销</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl">
-        <a href="login.jsp">登录</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
         <span>|</span>
-        <a href="register.jsp">注册</a>
+        <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
       </div>
 
       <div class="user_link fl">
         <span>|</span>
-        <a href="customer.jsp">用户中心</a>
+        <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
         <span>|</span>
-        <a href="order.jsp">我的订单</a>
+        <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
     </form>
   </div>
   <div class="guest_cart fr">
-    <a href="shop.jsp" class="cart_name fl">我的购物车</a>
+    <a href="user/shop.jsp" class="cart_name fl">我的购物车</a>
     <div class="goods_count fl" id="show_count">3</div>
   </div>
 </div>
@@ -100,41 +100,41 @@
     <h3 class="fl" id="model01">新鲜水果</h3>
     <div class="subtitle fl">
       <span>|</span>
-      <a href="shop_message.jsp"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a>
+      <a href="good/shop_message.jsp"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a>
 
-      <a href="shop_message.jsp">千里山 海南金煌芒果 1.75kg装</a>
+      <a href="good/shop_message.jsp">千里山 海南金煌芒果 1.75kg装</a>
 
-      <a href="shop_message.jsp">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a>
+      <a href="good/shop_message.jsp">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a>
 
-      <a href="shop_message.jsp">华圣 高原红富士苹果 6个装 1.2kg</a>
+      <a href="good/shop_message.jsp">华圣 高原红富士苹果 6个装 1.2kg</a>
     </div>
-    <a href="readmoreshop.jsp" class="goods_more fr" id="fruit_more">查看更多 &gt;</a>
+    <a href="good/readmoreshop.jsp" class="goods_more fr" id="fruit_more">查看更多 &gt;</a>
   </div>
 
   <div class="goods_con clearfix">
     <div class="goods_banner fl"><img src="images/所有商品/banner01.jpg"></div>
     <ul class="goods_list fl">
       <li>
-        <h4><a href="shop_message.jsp"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/57ab290aN34f76b37.jpg"></a>
+        <h4><a href="good/shop_message.jsp"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/57ab290aN34f76b37.jpg"></a>
         <div class="prize">¥ 33.90</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/5b4871e6N072f0d74.jpg"></a>
+        <h4><a href="good/shop_message.jsp">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/5b4871e6N072f0d74.jpg"></a>
         <div class="prize">¥ 98.00</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">中科农业 水果礼盒 水果提货券 礼券 238型 水果提货卡券</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/5b18c158N35a55d7a.jpg"></a>
+        <h4><a href="good/shop_message.jsp">中科农业 水果礼盒 水果提货券 礼券 238型 水果提货卡券</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/5b18c158N35a55d7a.jpg"></a>
         <div class="prize">¥ 238.00</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">维叶新鲜水果香蕉约17-23条天宝水果生鲜青蕉 香蕉17-2</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/5b514c51N8170488f.jpg"></a>
+        <h4><a href="good/shop_message.jsp">维叶新鲜水果香蕉约17-23条天宝水果生鲜青蕉 香蕉17-2</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/5b514c51N8170488f.jpg"></a>
         <div class="prize">¥ 29.90</div>
       </li>
     </ul>
@@ -146,41 +146,41 @@
     <h3 class="fl" id="model02">海鲜水产</h3>
     <div class="subtitle fl">
       <span>|</span>
-      <a href="shop_message.jsp">大洋世家 原装进口冷冻阿根廷红虾 L1</a>
+      <a href="good/shop_message.jsp">大洋世家 原装进口冷冻阿根廷红虾 L1</a>
 
-      <a href="shop_message.jsp">Ωmega 原装进口熟冻新西兰全壳青口贝</a>
+      <a href="good/shop_message.jsp">Ωmega 原装进口熟冻新西兰全壳青口贝</a>
 
-      <a href="shop_message.jsp">三都港 冷冻无公害黄花鱼 700g 2条</a>
+      <a href="good/shop_message.jsp">三都港 冷冻无公害黄花鱼 700g 2条</a>
 
-      <a href="shop_message.jsp">阳澄联合 阳澄湖大闸蟹礼券1988型公4.0两 母3.0两 </a>
+      <a href="good/shop_message.jsp">阳澄联合 阳澄湖大闸蟹礼券1988型公4.0两 母3.0两 </a>
     </div>
-    <a href="readmoreshop.jsp" class="goods_more fr">查看更多 &gt;</a>
+    <a href="good/readmoreshop.jsp" class="goods_more fr">查看更多 &gt;</a>
   </div>
 
   <div class="goods_con clearfix">
     <div class="goods_banner fl"><img src="images/所有商品/banner02.jpg"></div>
     <ul class="goods_list fl">
       <li>
-        <h4><a href="shop_message.jsp">阳澄联合 阳澄湖大闸蟹礼券1988型公4.0两 母3.0两 </a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/5b2c5716N1a1c07b1.jpg"></a>
+        <h4><a href="good/shop_message.jsp">阳澄联合 阳澄湖大闸蟹礼券1988型公4.0两 母3.0两 </a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/5b2c5716N1a1c07b1.jpg"></a>
         <div class="prize">¥ 199.00</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">Ocean Gala 冷冻阿拉斯加黄金鲽鱼 1kg 2-3条</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/5addb366Nb137c891.jpg"></a>
+        <h4><a href="good/shop_message.jsp">Ocean Gala 冷冻阿拉斯加黄金鲽鱼 1kg 2-3条</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/5addb366Nb137c891.jpg"></a>
         <div class="prize">¥ 35.90</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">大洋世家 原装进口冷冻阿根廷红虾 L1</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/577f85a7N39f40c35.jpg"></a>
+        <h4><a href="good/shop_message.jsp">大洋世家 原装进口冷冻阿根廷红虾 L1</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/577f85a7N39f40c35.jpg"></a>
         <div class="prize">¥ 138.00</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">Ωmega 原装进口熟冻新西兰全壳青口贝</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/57c4e212N9e09772f.jpg"></a>
+        <h4><a href="good/shop_message.jsp">Ωmega 原装进口熟冻新西兰全壳青口贝</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/57c4e212N9e09772f.jpg"></a>
         <div class="prize">¥ 49.90</div>
       </li>
     </ul>
@@ -192,30 +192,30 @@
     <h3 class="fl" id="model03">猪牛羊肉</h3>
     <div class="subtitle fl">
       <span>|</span>
-      <a href="shop_message.jsp">精气神 猪肉馅(70%瘦肉) 400g/</a>
+      <a href="good/shop_message.jsp">精气神 猪肉馅(70%瘦肉) 400g/</a>
 
-      <a href="shop_message.jsp">恒都 羔羊排 1.2kg/袋 烧烤食材</a>
+      <a href="good/shop_message.jsp">恒都 羔羊排 1.2kg/袋 烧烤食材</a>
 
-      <a href="shop_message.jsp">恒都 菲力西冷牛排套餐 1.5kg/袋</a>
+      <a href="good/shop_message.jsp">恒都 菲力西冷牛排套餐 1.5kg/袋</a>
 
-      <a href="shop_message.jsp">领券199减100【周黑鸭_锁鲜】卤鸭脖320g鸭锁骨240</a>
+      <a href="good/shop_message.jsp">领券199减100【周黑鸭_锁鲜】卤鸭脖320g鸭锁骨240</a>
 
 
     </div>
-    <a href="readmoreshop.jsp" class="goods_more fr">查看更多 &gt;</a>
+    <a href="good/readmoreshop.jsp" class="goods_more fr">查看更多 &gt;</a>
   </div>
 
   <div class="goods_con clearfix">
     <div class="goods_banner fl"><img src="images/所有商品/banner03.jpg"></div>
     <ul class="goods_list fl">
       <li>
-        <h4><a href="shop_message.jsp">领券199减100【周黑鸭_锁鲜】卤鸭脖320g鸭锁骨240</a></h4>
-        <a href="shop_message.jsp"><img src="images/所有商品/5ac2ee43N56cf06b0.jpg"></a>
+        <h4><a href="good/shop_message.jsp">领券199减100【周黑鸭_锁鲜】卤鸭脖320g鸭锁骨240</a></h4>
+        <a href="good/shop_message.jsp"><img src="images/所有商品/5ac2ee43N56cf06b0.jpg"></a>
         <div class="prize">¥ 118.90</div>
       </li>
 
       <li>
-        <h4><a href="shop_message.jsp">如意三宝 10片/1540g 澳洲进口原切牛排套餐 菲力4片</a></h4>
+        <h4><a href="good/shop_message.jsp">如意三宝 10片/1540g 澳洲进口原切牛排套餐 菲力4片</a></h4>
         <a href="shop_message.html"><img src="images/所有商品/59ba49beNfa4afb17.jpg"></a>
         <div class="prize">¥ 265.00</div>
       </li>

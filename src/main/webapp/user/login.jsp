@@ -10,15 +10,15 @@
 <head>
   <meta charset="UTF-8">
   <title>天天生鲜－登录</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/login.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/reset.css">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+  <script src="../js/login.js"></script>
 </head>
 <body>
 
 <div class="login_top clearfix">
-  <a href="index.jsp" class="login_logo"><img src="images/logo.png"></a>
+  <a href="../index.jsp" class="login_logo"><img src="../images/logo.png"></a>
 </div>
 
 <div class="login_form_bg">
@@ -37,7 +37,7 @@
           <input type="password" name="pwd" id="pwd" class="pass_input" placeholder="请输入密码" value="">
           <div class="pwd_error" style="display: none;">输入错误</div>
 
-          <img src="images/error.png" alt="captcha" class="captcha">
+          <img src="../images/error.png" alt="captcha" class="captcha">
           <input id="id_captcha_0" name="captcha_0" type="hidden" value="">
           <input autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="id_captcha_1" name="captcha_1" type="text" placeholder="请输入验证码">
 

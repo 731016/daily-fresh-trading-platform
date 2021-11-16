@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,7 +14,7 @@ public class Order {
     private String account;
     private Integer goodId;
     private Integer goodNumber;
-    private  Data orderDate;
+    private Date orderDate;
     private Double totalPrice;
 
 }

@@ -9,15 +9,15 @@
 <head>
   <meta charset="utf-8" />
   <title>天天生鲜－注册</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="../css/reset.css">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
 
 
 <div class="register_con">
   <div class="l_con fl">
-    <a href="index.jsp" class="reg_logo"><img src="images/logo.png"></a>
+    <a href="../index.jsp" class="reg_logo"><img src="../images/logo.png"></a>
     <div class="reg_slogan">足不出户  ·  新鲜每一天</div>
     <div class="reg_banner"></div>
   </div>

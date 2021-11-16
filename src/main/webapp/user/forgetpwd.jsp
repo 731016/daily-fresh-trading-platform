@@ -10,8 +10,8 @@
 <head>
   <meta charset="UTF-8">
   <title>天天生鲜－忘记密码</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 </head>
 <body>
 
@@ -45,7 +45,7 @@
 </div>
 
 <div class="search_bar clearfix">
-  <a href="index.jsp" class="logo fl"><img src="images/logo.png"></a>
+  <a href="../index.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
   <div class="search_con fr">
     <form method="get" action="" target="_blank">
@@ -77,7 +77,7 @@
                 </li>
                 <li class="n_yanzheng">
                   <label>验证码:</label>
-                  <img src="images/error.png" alt="captcha" class="captcha">
+                  <img src="../images/error.png" alt="captcha" class="captcha">
                   <input id="id_captcha_0" name="captcha_0" type="hidden" value="">
                   <input autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="id_captcha_1" name="captcha_1" type="text">
 

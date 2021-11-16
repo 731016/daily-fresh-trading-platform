@@ -10,9 +10,9 @@
 <head>
   <meta charset="utf-8" />
   <title>天天生鲜－购物车</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/reset.css">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -48,7 +48,7 @@
 </div>
 
 <div class="search_bar clearfix">
-  <a href="index.jsp" class="logo fl"><img src="images/logo.png"></a>
+  <a href="../index.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
   <div class="search_con fr">
     <form method="get" action="" target="_blank">
@@ -71,7 +71,7 @@
 
 <ul class="cart_list_td clearfix" id="232">
   <li class="col01"><input type="checkbox" name="" checked=""></li>
-  <li class="col02"><img src="images/所有商品/5b4871e6N072f0d74.jpg"></li>
+  <li class="col02"><img src="../images/所有商品/5b4871e6N072f0d74.jpg"></li>
   <li class="col03">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k<br><em>98.00元/1.0kg</em></li>
   <li class="col04">1.0kg</li>
   <li class="col05">98.00元</li>
@@ -90,7 +90,7 @@
 
 <ul class="cart_list_td clearfix" id="233">
   <li class="col01"><input type="checkbox" name="" checked=""></li>
-  <li class="col02"><img src="images/所有商品/5b18c158N35a55d7a.jpg"></li>
+  <li class="col02"><img src="../images/所有商品/5b18c158N35a55d7a.jpg"></li>
   <li class="col03">中科农业 水果礼盒 水果提货券 礼券 238型 水果提货卡券<br><em>238.00元/5.0kg</em></li>
   <li class="col04">5.0kg</li>
   <li class="col05">238.00元</li>
@@ -110,7 +110,7 @@
 
 <ul class="cart_list_td clearfix" id="234">
   <li class="col01"><input type="checkbox" name="" checked=""></li>
-  <li class="col02"><img src="images/所有商品/5b514c51N8170488f.jpg"></li>
+  <li class="col02"><img src="../images/所有商品/5b514c51N8170488f.jpg"></li>
   <li class="col03">维叶新鲜水果香蕉约17-23条天宝水果生鲜青蕉 香蕉17-2<br><em>29.90元/750g</em></li>
   <li class="col04">750g</li>
   <li class="col05">29.90元</li>
@@ -150,4 +150,4 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="js/shop.js"></script>
+<script type="text/javascript" src="../js/shop.js"></script>

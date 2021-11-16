@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoodsType {
-    private Integer typeId;
-    private String typeName;
+    private Integer typeId;  //商品类型编号
+    private String typeName; //商品类型名称
 }

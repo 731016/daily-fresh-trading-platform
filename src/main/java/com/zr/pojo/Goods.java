@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Goods {
-    private Integer goodId;
-    private String goodName;
-    private String describe;
-    private Integer inventory;
-    private Double price;
-    private Integer goodType;
-    private Integer sales;
-    private String picture;
-    private String originPlace;
-    private Double unit;
+    private Integer goodId;    //商品编号
+    private String goodName;   //商品名称
+    private String describe;   //商品描述
+    private Integer inventory; //商品库存
+    private Double price;      //商品价格
+    private Integer goodType;  //商品类型
+    private Integer sales;     //商品销量
+    private String picture;    //商品图片
+    private String originPlace;//商品出产地
+    private Double unit;       //商品单位
 }

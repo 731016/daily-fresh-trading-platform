@@ -11,20 +11,21 @@
   <meta charset="utf-8"/>
 
   <title>天天生鲜－商品详情</title>
-  <link rel="stylesheet" type="text/css" href="css/reset.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
   <style>
-    .tab_content dl dd ul{
+    .tab_content dl dd ul {
       margin: 0px;
       padding: 20px 0px 0px;
       list-style: none;
       overflow: hidden;
       color: #666666;
-      font-family: tahoma, arial, &#39,Microsoft YaHei&#39, &#39,Hiragino Sans GB&#39, u5b8bu4f53, sans-serif;
+      font-family: tahoma, arial, & #39, Microsoft YaHei & #39, & #39, Hiragino Sans GB & #39, u5b8bu4f53, sans-serif;
     }
-    .tab_content dl dd ul li{
+
+    .tab_content dl dd ul li {
       margin: 0px 0px 5px;
       padding: 0px 0px 0px 42px;
       white-space: nowrap;
@@ -40,34 +41,35 @@
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
-    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a></div>
+    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a>
+    </div>
     <div class="fr">
 
       <div class="login_info fl" style="display: block">
         欢迎您：<em>joyous</em>
-        <a href="login.jsp" class="zhuxiao">注销</a>
+        <a href="../user/login.jsp" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl" style="display:none">
-        <a href="login.jsp">登录</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
         <span>|</span>
-        <a href="register.jsp">注册</a>
+        <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
       </div>
 
 
       <div class="user_link fl">
         <span>|</span>
-        <a href="customer.jsp">用户中心</a>
+        <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
         <span>|</span>
-        <a href="order.jsp">我的订单</a>
+        <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
     </div>
   </div>
 </div>
 
 <div class="search_bar clearfix">
-  <a href="shop_message.jsp" class="logo fl"><img src="images/logo.png"></a>
+  <a href="shop_message.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="search_con fl">
     <form method="get" action="" target="_blank">
       <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
@@ -95,7 +97,7 @@
       </ul>
     </div>
     <ul class="navlist fl">
-      <li><a href="index.jsp">首页</a></li>
+      <li><a href="../index.jsp">首页</a></li>
       <li class="interval">|</li>
       <li><a href="#">手机生鲜</a></li>
       <li class="interval">|</li>
@@ -105,7 +107,7 @@
 </div>
 
 <div class="breadcrumb">
-  <a href="index.jsp">全部分类</a>
+  <a href="../index.jsp">全部分类</a>
   <span>&gt;</span>
   <a href="#">新鲜水果</a>
   <span>&gt;</span>
@@ -113,7 +115,7 @@
 </div>
 
 <div class="goods_detail_con clearfix">
-  <div class="goods_detail_pic fl"><img src="images/所有商品/57ab290aN34f76b37.jpg"></div>
+  <div class="goods_detail_pic fl"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></div>
 
   <div class="goods_detail_list fr">
     <h3> 越南进口红心火龙果 3个装 大果 单果约450~500g </h3>
@@ -144,13 +146,13 @@
       <h3>新品推荐</h3>
       <ul>
         <li>
-          <a href=""><img src="images/所有商品/57ab290aN34f76b37.jpg"></a>
+          <a href=""><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>
           <h4><a href="shop_message.html"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a></h4>
           <div class="prize">￥33.90</div>
         </li>
 
         <li>
-          <a href=""><img src="images/所有商品/5b4871e6N072f0d74.jpg"></a>
+          <a href=""><img src="../images/所有商品/5b4871e6N072f0d74.jpg"></a>
           <h4><a href="shop_message.html">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a></h4>
           <div class="prize">￥98.00</div>
         </li>
@@ -202,8 +204,7 @@
   <p>CopyRight © 2019 武汉软帝信息科技有限责任公司</p>
 </div>
 
-
 <div class="add_jump"></div>
-<script type="text/javascript" src="js/shop_message.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/shop_message.js"></script>
 </body>
 </html>
