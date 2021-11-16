@@ -24,28 +24,28 @@
     <div class="fr">
       <div class="login_info fl">
         欢迎您：<em>""</em>
-        <a href="login.jsp" class="zhuxiao">注销</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl">
-        <a href="login.jsp">登录</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
         <span>|</span>
-        <a href="register.jsp">注册</a>
+        <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
       </div>
 
       <div class="user_link fl">
         <span>|</span>
-        <a href="customer.jsp">用户中心</a>
+        <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
         <span>|</span>
-        <a href="order.jsp">我的订单</a>
+        <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
     </div>
   </div>
 </div>
 
 <div class="search_bar clearfix">
-  <a href="../index.jsp" class="logo fl"><img src="../images/logo.png"></a>
+  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
   <div class="search_con fr">
     <form method="get" action="" target="_blank">

@@ -10,8 +10,8 @@
 <head>
   <meta charset="utf-8"/>
   <title>天天生鲜－我的订单</title>
-  <link rel="stylesheet" type="text/css" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 </head>
 <body>
 
@@ -23,21 +23,21 @@
     <div class="fr">
       <div class="login_info fl" style="display: block">
         欢迎您：<em>Tom</em>
-        <a href="login.jsp" class="zhuxiao">注销</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl" style="display:none">
-        <a href="login.jsp">登录</a>
+        <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
         <span>|</span>
-        <a href="register.jsp">注册</a>
+        <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
       </div>
 
       <div class="user_link fl">
         <span>|</span>
-        <a href="customer.jsp">用户中心</a>
+        <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
         <span>|</span>
-        <a href="order.jsp">我的订单</a>
+        <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
 
 <!--内容  开始-->
 <div class="search_bar clearfix">
-  <a href="../index.jsp" class="logo fl"><img src="../images/logo.png"></a>
+  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
   <div class="search_con fr">
     <form method="get" action="http://ttsx.newzn.cn/search/" target="_blank">
@@ -60,9 +60,9 @@
     <h3>用户中心</h3>
     <ul>
 
-      <li><a href="customer.jsp">· 个人信息</a></li>
-      <li><a href="order.jsp" class="active">· 全部订单</a></li>
-      <li><a href="address.jsp">· 收货地址</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/customer.jsp">· 个人信息</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/order.jsp" class="active">· 全部订单</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/address.jsp">· 收货地址</a></li>
 
     </ul>
   </div>

@@ -10,15 +10,15 @@
 <head>
   <meta charset="UTF-8">
   <title>天天生鲜－登录</title>
-  <link rel="stylesheet" type="text/css" href="../css/reset.css">
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
-  <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-  <script src="../js/login.js"></script>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/login.js"></script>
 </head>
 <body>
 
 <div class="login_top clearfix">
-  <a href="../index.jsp" class="login_logo"><img src="../images/logo.png"></a>
+  <a href="${pageContext.request.contextPath}/index.jsp" class="login_logo"><img src="../images/logo.png"></a>
 </div>
 
 <div class="login_form_bg">
