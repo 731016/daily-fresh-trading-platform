@@ -1,5 +1,6 @@
 package com.zr.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private String account;
-    private String password;
-    private String username;
-    private String email;
-    private String phone;
-    private Integer shippingId;
+    @TableId(value = "account")
+    private String account;    //账号
+    private String password;   //密码
+    private String username;   //用户名
+    private String email;      //邮箱
+    private String phone;      //手机号
+    private Integer shippingId;//收货地址id
 }

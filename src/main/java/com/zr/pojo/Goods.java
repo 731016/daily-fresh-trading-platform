@@ -1,5 +1,6 @@
 package com.zr.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Goods {
+    @TableId(value = "goodId")
     private Integer goodId;    //商品编号
     private String goodName;   //商品名称
     private String describe;   //商品描述
