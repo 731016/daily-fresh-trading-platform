@@ -59,12 +59,12 @@ public class UserRegisterTokenController {
         Boolean register = userService.register(user);
         if (register) {
             // 设置 用户状态 - 注册成功
-            request.setAttribute("userState", UserState.getUserStateByValue(0));
+            request.getSession().setAttribute("userState", UserState.getUserStateByValue(0));
 
             return "/user/login";
         }
         // 注册失败
-        request.setAttribute("userState", UserState.getUserStateByValue(2));
+        request.getSession().setAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
     }
 }

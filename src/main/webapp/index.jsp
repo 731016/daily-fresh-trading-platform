@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <title>天天生鲜－首页</title>
@@ -73,7 +74,7 @@
       <c:choose>
         <c:when test="${sessionScope.login != null}">
           <div class="login_info fl" style="display: block">
-            欢迎您：<em>${login}</em>
+            欢迎您：<em>${sessionScope.login}</em>
             <a href="${pageContext.request.contextPath}/user/exit" class="zhuxiao">注销</a>
           </div>
         </c:when>

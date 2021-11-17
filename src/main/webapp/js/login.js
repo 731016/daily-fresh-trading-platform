@@ -137,7 +137,7 @@ $(function () {
         userpwd();
         captcha();
         if (error_name || error_pwd || error_captcha) {
-            log(' 验证失败-不提交')
+            console.log(' 验证失败-不提交')
             draw(show_num);
             return false;
         } else {

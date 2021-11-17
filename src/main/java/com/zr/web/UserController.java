@@ -55,12 +55,12 @@ public class UserController {
     public String login(HttpServletRequest request, @RequestParam("account") String account, @RequestParam("pwd") String pwd) {
         Boolean login = userService.login(account, pwd);
         if (login) {
-            request.setAttribute("userState", UserState.getUserStateByValue(1));
+            request.getSession().setAttribute("userState", UserState.getUserStateByValue(1));
             // 设置已登录的用户账号 session
-            request.setAttribute("login", account);
+            request.getSession().setAttribute("login", account);
             return "/index";
         }
-        request.setAttribute("userState", UserState.getUserStateByValue(3));
+        request.getSession().setAttribute("userState", UserState.getUserStateByValue(3));
         return "/user/login";
     }
 
