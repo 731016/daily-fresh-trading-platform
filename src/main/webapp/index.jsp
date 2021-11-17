@@ -12,19 +12,20 @@
           dataType: "json",
           type: "post",
           url: "${pageContext.request.contextPath}/shop/goodsTypeRedis",
-          success: function (goodTypes) {
-              $.each(goodTypes, function (i, t) {
+          success: function (result) {
+              let goodsType = JSON.parse(result.resultListJson);
+              $.each(goodsType, function (i, t) {
                   let $div = $("<div class='list_model' id='" + "goods_list" + i + "'></div>");
                   $div.append("<div class=\"list_title clearfix\">\n" +
-                      "      <h3 class='fl' id='model"+i+"'>" + t.typeName + "</h3>\n" +
+                      "      <h3 class='fl' id='model" + i + "'>" + t.typeName + "</h3>\n" +
                       "      <div class=\"subtitle fl\">\n" +
                       "        <span>|</span>\n" +
                       "      </div>\n" +
-                      "      <a href=\"good/readmoreshop.jsp\" class=\"goods_more fr\">查看更多 &gt;</a>\n" +
+                      "      <a href=\"${pageContext.request.contextPath}/allPage?typeId=" + t.typeId + "\" class=\"goods_more fr\">查看更多 &gt;</a>\n" +
                       "    </div>");
 
                   $div.append("<div name=\"goods_list\" class=\"goods_con clearfix\">\n" +
-                      "      <div class=\"goods_banner fl\"><img src=\"images/所有商品/" + t.typeImg + "\"></div>\n" +
+                      "      <div class=\"goods_banner fl\"><img src=\"images/allGoods/" + t.typeImg + "\"></div>\n" +
                       "      <ul class=\"goods_list fl\">\n" +
                       "      </ul>\n" +
                       "    </div>");
@@ -43,13 +44,13 @@
               type: "post",
               url: "${pageContext.request.contextPath}/shop/goodsShow/" + typeId,
               contentType: "application/json; charset=utf-8",
-              success: function (goods) {
-                  $.each(goods, function (i, g) {
+              success: function (result) {
+                  $.each(result.resultListObject, function (i, g) {
                       let $div = $('#goods_list' + index + ' div[class="subtitle fl"]');
-                      $div.append('<a href="${pageContext.request.contextPath}/good/shop_message.jsp">' + g.goodName + '</a>');
+                      $div.append('<a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a>');
                       $('#goods_list' + index + ' ul').append('<li>\n' +
-                          '          <h4><a href="${pageContext.request.contextPath}/good/shop_message.jsp">' + g.goodName + '</a></h4>\n' +
-                          '          <a href="${pageContext.request.contextPath}/good/shop_message.jsp"><img src="images/allGoods/' + g.picture + '"></a>\n' +
+                          '          <h4><a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a></h4>\n' +
+                          '          <a href="${pageContext.request.contextPath}/shop/shop_message.jsp"><img src="images/allGoods/' + g.picture + '"></a>\n' +
                           '          <div class="prize">¥ ' + g.price + '</div>\n' +
                           '        </li>');
                   })

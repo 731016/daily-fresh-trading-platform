@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -45,7 +46,7 @@
 <!--头部结束-->
 
 <div class="search_bar clearfix">
-  <a href="../index.jsp" class="logo fl"><img src="../images/logo.png"></a>
+  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="search_con fl">
     <form method="get" action="" target="_blank">
       <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
@@ -53,7 +54,7 @@
     </form>
   </div>
   <div class="guest_cart fr">
-    <a href="../user/shop.jsp" class="cart_name fl">我的购物车</a>
+    <a href="${pageContext.request.contextPath}/user/shop.jsp" class="cart_name fl">我的购物车</a>
     <div class="goods_count fl" id="show_count">3</div>
   </div>
 </div>
@@ -73,7 +74,7 @@
       </ul>
     </div>
     <ul class="navlist fl">
-      <li><a href="../index.jsp">首页</a></li>
+      <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
       <li class="interval">|</li>
       <li><a href="#">手机生鲜</a></li>
       <li class="interval">|</li>
