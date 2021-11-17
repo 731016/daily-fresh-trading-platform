@@ -32,13 +32,14 @@
 
     <!--  配置拦截器  -->
     <mvc:interceptors>
-<!--        <mvc:interceptor>-->
+        <mvc:interceptor>
             <!--     拦截指定范围的请求path="/文件名/**" 拦截所有请求path="/**"       -->
-<!--            <mvc:mapping path="/**"/>-->
+            <mvc:mapping path="/**"/>
             <!--     指定范围内的请求不被拦截       -->
-<!--            <mvc:exclude-mapping path="/product/productInfo"/>-->
-<!--            <bean class="com.zr.interceptor.loginInterceptor"/>-->
-<!--        </mvc:interceptor>-->
+            <mvc:exclude-mapping path="/user/toRegister"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.zr.interceptor.loginInterceptor"/>
+        </mvc:interceptor>
 <!--        进入 拦截/登录 页面 设置token -->
         <mvc:interceptor>
             <mvc:mapping path="/user/toRegister"/>

@@ -92,7 +92,7 @@
                     <input type="hidden" value="${userState.value}" id="msg">
 <%--                    <input type="hidden" name="token" value="${sessionScope.token}">--%>
 
-                    <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" value="">
+                    <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" value="${cookie.get("rememberAccount")}">
                     <div class="user_error">输入错误</div>
                     <input type="password" name="pwd" id="password" class="pass_input" placeholder="请输入密码" value="">
                     <div class="pwd_error" style="display: none;">输入错误</div>
@@ -105,9 +105,9 @@
                     <div class="yanzheng_error">请输入验证码</div>
 
                     <div class="more_input clearfix">
-                        <input type="checkbox" name="" id="" checked="checked">
+                        <input type="checkbox" name="rememberAccount" id="" checked="checked" value="remember">
                         <label>记住用户名</label>
-                        <a href="forgetpwd.jsp">忘记密码</a>
+                        <a href="/user/forgetpwd">忘记密码</a>
                     </div>
                     <input type="button" name="" value="登录" class="input_submit" id="commit">
                 </form>

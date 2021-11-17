@@ -3,6 +3,7 @@ package com.zr.web;
 import com.zr.enums.UserState;
 import com.zr.result.Result;
 import com.zr.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerAdapter;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
@@ -52,12 +55,22 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user/login")
-    public String login(HttpServletRequest request, @RequestParam("account") String account, @RequestParam("pwd") String pwd) {
+    public String login(HttpServletRequest request,
+                        HttpServletResponse response,
+                        @RequestParam("account") String account,
+                        @RequestParam("pwd") String pwd,
+                        @RequestParam(value = "rememberAccount",required = false) String rememberAccount
+    ) {
         Boolean login = userService.login(account, pwd);
         if (login) {
             request.getSession().setAttribute("userState", UserState.getUserStateByValue(1));
             // 设置已登录的用户账号 session
             request.getSession().setAttribute("login", account);
+            // 记住密码复选项 被选中
+            if (StringUtils.equals(rememberAccount, "remember")) {
+                Cookie cookie = new Cookie("rememberAccount", account);
+                response.addCookie(cookie);
+            }
             return "/index";
         }
         request.getSession().setAttribute("userState", UserState.getUserStateByValue(3));
