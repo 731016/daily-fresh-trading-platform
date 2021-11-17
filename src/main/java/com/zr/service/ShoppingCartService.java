@@ -9,7 +9,7 @@ public interface ShoppingCartService {
     List<ShoppingCart> selectAllByAccount(String account);
 
     //查询购物车商品数量
-    Integer selectCount();
+    Integer selectCountByAccount(String account);
 
     //添加购物车
     boolean addCart(ShoppingCart shoppingCart);

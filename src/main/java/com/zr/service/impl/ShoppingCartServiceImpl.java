@@ -22,8 +22,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public Integer selectCount() {
-        int i = Math.toIntExact(mapper.selectCount(null));
+    public Integer selectCountByAccount(String account) {
+        QueryWrapper<ShoppingCart> wrapper=new QueryWrapper<>();
+        wrapper.eq("account", account);
+        int i = Math.toIntExact(mapper.selectCount(wrapper));
         return i;
     }
 
@@ -35,6 +37,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         //如果查找不为空，则进行修改操作；为空则进行添加操作
         if (shoppingCart1 != null) {
             shoppingCart.setGoodsNumber(shoppingCart1.getGoodsNumber() + shoppingCart.getGoodsNumber());
+            shoppingCart.setCartId(shoppingCart1.getCartId());
             i = mapper.updateById(shoppingCart);
         } else {
             i = mapper.insert(shoppingCart);
@@ -59,8 +62,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart selectOne(ShoppingCart shoppingCart) {
+        shoppingCart.setAccount("admin");
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
-        wrapper.eq("account", shoppingCart.getAccount()).eq("goodsId", shoppingCart.getGoodsId());
+        wrapper.eq("account", shoppingCart.getAccount()).eq("goods_id", shoppingCart.getGoodsId());
         return mapper.selectOne(wrapper);
     }
 
