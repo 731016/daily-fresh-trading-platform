@@ -12,4 +12,11 @@ public interface UserService {
      * 用户登录查询
      */
     Boolean login(String account,String password);
+
+    /**
+     * 查询此用户是否存在
+     * @param account
+     * @return
+     */
+    Boolean registerAccExist(String account);
 }

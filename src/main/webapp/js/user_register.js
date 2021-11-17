@@ -18,9 +18,26 @@ $(function () {
                 console.log('验证失败')
                 $('#user_info').css('display', 'block');
             } else {
-                console.log('用户名验证成功')
-                flag = true;
-                $('#user_info').css('display', 'none');
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    data: {"account": $('#user_name').val()},
+                    url: '/user/register_accountExist',
+                    success: function (data) {
+                        if (data.msg == "用户名已存在"){
+                            flag = false;
+                            $('#user_info').text(data.msg);
+                            $('#user_info').css('display', 'block');
+                        }else{
+                            flag = true;
+                            $('#user_info').text(data.msg);
+                            $('#user_info').css('display', 'block').css('color','green');
+                        }
+                    },
+                    error: function (err) {
+                        $('body').html(err.responseText);
+                    }
+                });
             }
         });
 

@@ -7,7 +7,8 @@ public enum UserState {
     REGISTER_SUCCESS("注册成功", 0),
     LOGIN_SUCCESS("登陆成功", 1),
     REGISTER_FAIL("注册失败", 2),
-    LOGIN_FAIL("登陆失败", 3);
+    LOGIN_FAIL("登陆失败", 3),
+    REGISTER_FAIL_ACCOUNT_EXIST("用户已注册",4);
 
     private String name;
     private int value;
