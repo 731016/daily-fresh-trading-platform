@@ -9,7 +9,6 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script>
       let pageNum = 1;
-      let goodsId=0;
 
       function selectPage() {
           $.ajax({
@@ -27,7 +26,7 @@
                           '        <div class="operate">\n' +
                           '          <span class="prize">￥' + g.price + '</span>\n' +
                           '          <span class="unit">' + g.price + '/' + g.unit + 'kg</span>\n' +
-                          '          <a href="javascript:;" class="add_goods" title="加入购物车"></a>\n' +
+                          '          <a href="javascript:;" class="add_goods" onclick="addShoppingCart(' + g.goodsId + ')" title="加入购物车"></a>\n' +
                           '        </div>\n' +
                           '      </li>')
                   })
@@ -83,9 +82,21 @@
           })
       }
 
-      function addShoppingCart(){
+      function addShoppingCart(goodsId) {
           $.ajax({
-
+              dataType: "json",
+              type: "post",
+              url: "${pageContext.request.contextPath}/user/addShoppingCart/" + goodsId,
+              success: function (cartCount) {
+                  if (cartCount != null) {
+                      $("#show_count").html(cartCount);
+                  }else {
+                      $("#show_count").html("0");
+                  }
+              },
+              error: function (e) {
+                  $("body").html(e.responseText);
+              }
           })
       }
 

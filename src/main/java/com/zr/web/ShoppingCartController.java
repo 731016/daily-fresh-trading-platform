@@ -5,7 +5,6 @@ import com.zr.service.GoodsService;
 import com.zr.service.ShoppingCartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,9 +19,10 @@ public class ShoppingCartController {
     @Resource
     private ShoppingCartService cartService;
 
-    @PostMapping("/addShoppingCart")
+    @PostMapping("/addShoppingCart/{goodsId}")
     @ResponseBody
-    public String addShoppingCart(@RequestBody ShoppingCart shoppingCart) {
+    public String addShoppingCart(Integer goodsId) {
+        ShoppingCart shoppingCart = new ShoppingCart(null,null,goodsId,1);
         boolean b = cartService.addCart(shoppingCart);
         if (b) {
             Integer cartCount = cartService.selectCount();

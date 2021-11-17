@@ -10,65 +10,64 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/slide.js"></script>
   <script>
       $(function () {
-
-      })
-      $.ajax({
-          dataType: "json",
-          type: "post",
-          url: "${pageContext.request.contextPath}/shop/goodsTypeRedis",
-          success: function (result) {
-              let goodsType = JSON.parse(result.resultListJson);
-              $.each(goodsType, function (i, t) {
-                  let $div = $("<div class='list_model' id='" + "goods_list" + i + "'></div>");
-                  $div.append("<div class=\"list_title clearfix\">\n" +
-                      "      <h3 class='fl' id='model" + i + "'>" + t.typeName + "</h3>\n" +
-                      "      <div class=\"subtitle fl\">\n" +
-                      "        <span>|</span>\n" +
-                      "      </div>\n" +
-                      "      <a href=\"${pageContext.request.contextPath}/shop/toAllGoods?typeId=" + t.typeId + "\" class=\"goods_more fr\">查看更多 &gt;</a>\n" +
-                      "    </div>");
-
-                  $div.append("<div name=\"goods_list\" class=\"goods_con clearfix\">\n" +
-                      "      <div class=\"goods_banner fl\"><img src=\"images/allGoods/" + t.typeImg + "\"></div>\n" +
-                      "      <ul class=\"goods_list fl\">\n" +
-                      "      </ul>\n" +
-                      "    </div>");
-                  $("#goods_info").append($div);
-                  //导航栏设置
-                  $("#title_goodsType").append('<li><a href="#model' + i + '" class="' + t.typeClass + '">' + t.typeName + '</a></li>');
-
-                  goodsList(t.typeId, i);
-
-              })
-
-          },
-          error: function (e) {
-              $("body").html(e.responseText);
-          }
-      })
-
-      function goodsList(typeId, index) {
           $.ajax({
               dataType: "json",
               type: "post",
-              url: "${pageContext.request.contextPath}/shop/goodsShow/" + typeId,
-              contentType: "application/json; charset=utf-8",
+              url: "${pageContext.request.contextPath}/shop/goodsTypeRedis",
               success: function (result) {
-                  $.each(result.resultListObject, function (i, g) {
-                      let $div = $('#goods_list' + index + ' div[class="subtitle fl"]');
-                      $div.append('<a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a>');
-                      $('#goods_list' + index + ' ul').append('<li>\n' +
-                          '          <h4><a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a></h4>\n' +
-                          '          <a href="${pageContext.request.contextPath}/shop/shop_message.jsp"><img src="images/allGoods/' + g.picture + '"></a>\n' +
-                          '          <div class="prize">¥ ' + g.price + '</div>\n' +
-                          '        </li>');
+                  let goodsType = JSON.parse(result.resultListJson);
+                  $.each(goodsType, function (i, t) {
+                      let $div = $("<div class='list_model' id='" + "goods_list" + i + "'></div>");
+                      $div.append("<div class=\"list_title clearfix\">\n" +
+                          "      <h3 class='fl' id='model" + i + "'>" + t.typeName + "</h3>\n" +
+                          "      <div class=\"subtitle fl\">\n" +
+                          "        <span>|</span>\n" +
+                          "      </div>\n" +
+                          "      <a href=\"${pageContext.request.contextPath}/shop/toAllGoods?typeId=" + t.typeId + "\" class=\"goods_more fr\">查看更多 &gt;</a>\n" +
+                          "    </div>");
+
+                      $div.append("<div name=\"goods_list\" class=\"goods_con clearfix\">\n" +
+                          "      <div class=\"goods_banner fl\"><img src=\"images/allGoods/" + t.typeImg + "\"></div>\n" +
+                          "      <ul class=\"goods_list fl\">\n" +
+                          "      </ul>\n" +
+                          "    </div>");
+                      $("#goods_info").append($div);
+                      //导航栏设置
+                      $("#title_goodsType").append('<li><a href="#model' + i + '" class="' + t.typeClass + '">' + t.typeName + '</a></li>');
+
+                      goodsList(t.typeId, i);
+
                   })
+
               },
               error: function (e) {
                   $("body").html(e.responseText);
               }
           })
-      }
+
+          function goodsList(typeId, index) {
+              $.ajax({
+                  dataType: "json",
+                  type: "post",
+                  url: "${pageContext.request.contextPath}/shop/goodsShow/" + typeId,
+                  contentType: "application/json; charset=utf-8",
+                  success: function (result) {
+                      $.each(result.resultListObject, function (i, g) {
+                          let $div = $('#goods_list' + index + ' div[class="subtitle fl"]');
+                          $div.append('<a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a>');
+                          $('#goods_list' + index + ' ul').append('<li>\n' +
+                              '          <h4><a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a></h4>\n' +
+                              '          <a href="${pageContext.request.contextPath}/shop/shop_message.jsp"><img src="images/allGoods/' + g.picture + '"></a>\n' +
+                              '          <div class="prize">¥ ' + g.price + '</div>\n' +
+                              '        </li>');
+                      })
+                  },
+                  error: function (e) {
+                      $("body").html(e.responseText);
+                  }
+              })
+          }
+      })
   </script>
 </head>
 <body>
