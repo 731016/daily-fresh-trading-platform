@@ -16,9 +16,11 @@ public class TokenInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         if (uri.contains("/toLogin")) {
             response.sendRedirect("/user/login.jsp");
+            return false;
         }
         if (uri.contains("/toRegister")) {
             response.sendRedirect("/user/register.jsp");
+            return false;
         }
         return true;
     }

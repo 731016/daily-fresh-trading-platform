@@ -9,5 +9,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-
+    /**
+     * 插入用户
+     * @param user
+     * @return
+     */
+    Integer userInsert(User user);
 }

@@ -75,9 +75,9 @@
         <a href="${pageContext.request.contextPath}/user/login.jsp" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl">
-        <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
+        <a href="${pageContext.request.contextPath}/user/toLogin">登录</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
+        <a href="${pageContext.request.contextPath}/user/toRegister">注册</a>
       </div>
 
       <div class="user_link fl">

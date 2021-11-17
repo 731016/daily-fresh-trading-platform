@@ -23,7 +23,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean register(User user) {
         // 对密码进行 md5加密
-        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        user.setPwd(DigestUtils.md5Hex(user.getPwd()));
+//        int insert = mapper.userInsert(user);
         int insert = mapper.insert(user);
         if (insert > 0) {
             return true;

@@ -16,4 +16,5 @@ public class User {
     private String email;      //邮箱
     private String phone;      //手机号
     private Integer shippingId;//收货地址id
+    private Integer state; //账户状态
 }

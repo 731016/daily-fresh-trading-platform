@@ -64,8 +64,7 @@
 </head>
 <body>
 
-<input type="hidden" value="${userState.value}" id="msg">
-<input type="hidden" name="token" value="${sessionScope.token}">
+
 
 <div class="register_con">
     <div class="l_con fl">
@@ -81,7 +80,11 @@
         </div>
         <div class="reg_form clearfix">
             <form action="${pageContext.request.contextPath}/user/register" method="post" id="reg_form">
-                <input type="hidden" name="" value="e">
+
+                <input type="hidden" value="${userState.value}" id="msg">
+                <input type="hidden" name="token" value="${sessionScope.token}">
+
+<%--                <input type="hidden" name="" value="e">--%>
                 <ul>
                     <li>
                         <label>用户名:</label>

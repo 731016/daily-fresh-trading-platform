@@ -3,4 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zr.mapper.UserMapper">
+    <insert id="userInsert" parameterType="com.zr.pojo.User">
+        insert into user values(#{account},#{pwd},#{username},#{email},#{phone},#{shippingId},#{state})
+    </insert>
 </mapper>
