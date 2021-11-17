@@ -72,7 +72,7 @@
     <div class="fr">
       <div class="login_info fl">Tom
         欢迎您：<em>""</em>
-        <a href="${pageContext.request.contextPath}/user/login.jsp" class="zhuxiao">注销</a>
+        <a href="${pageContext.request.contextPath}/user/exit" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl">
         <a href="${pageContext.request.contextPath}/user/toLogin">登录</a>
