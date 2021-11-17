@@ -60,7 +60,7 @@ drop table if EXISTS sopping_cart;
 create table sopping_cart(
 cart_id int auto_increment primary key, #购物车编号
 account varchar(50), #账号
-goods_id varchar(255), #商品编号（字符串，隔开）
+goods_id int, #商品编号
 goods_number int #购物车商品数量
 )default charset=utf8;
 
@@ -69,7 +69,8 @@ drop table if EXISTS goods_type;
 create table goods_type(
 type_id int auto_increment primary key, #商品类型编号
 type_name varchar(50), #商品类型名称
-type_img varchar(50) #商品类型图片
+type_img varchar(50), #商品类型图片
+type_class varchar(50) #商品类型样式
 )default charset=utf8;
 
 
@@ -131,9 +132,10 @@ insert into goods values(default,"一品奶黄包","  350g （10只）",500,1234
 
 
 -- 商品类型数据
-insert into goods_type values(default,'新鲜水果','banner01.jpg');
-insert into goods_type values(default,'海鲜水产','banner02.jpg');
-insert into goods_type values(default,'猪牛羊肉','banner03.jpg');
-insert into goods_type values(default,'禽类蛋品','banner04.jpg');
-insert into goods_type values(default,'新鲜蔬菜','banner05.jpg');
-insert into goods_type values(default,'速冻食品','banner06.jpg');
+insert into goods_type values(default,'新鲜水果','banner01.jpg','fruit');
+insert into goods_type values(default,'海鲜水产','banner02.jpg','seafood');
+insert into goods_type values(default,'猪牛羊肉','banner03.jpg','meet');
+insert into goods_type values(default,'禽类蛋品','banner04.jpg','egg');
+insert into goods_type values(default,'新鲜蔬菜','banner05.jpg','vegetables');
+insert into goods_type values(default,'速冻食品','banner06.jpg','ice');
+
