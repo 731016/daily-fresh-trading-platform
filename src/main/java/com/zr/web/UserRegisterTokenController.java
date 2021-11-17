@@ -50,21 +50,21 @@ public class UserRegisterTokenController {
     /**
      * 用户注册
      *
-     * @param model
+     * @param request
      * @param user
      * @return
      */
     @RequestMapping("/user/register")
-    public String register(Model model, @ModelAttribute("user") User user) {
+    public String register(HttpServletRequest request, @ModelAttribute("user") User user) {
         Boolean register = userService.register(user);
         if (register) {
             // 设置 用户状态 - 注册成功
-            model.addAttribute("userState", UserState.getUserStateByValue(0));
+            request.setAttribute("userState", UserState.getUserStateByValue(0));
 
             return "/user/login";
         }
         // 注册失败
-        model.addAttribute("userState", UserState.getUserStateByValue(2));
+        request.setAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
     }
 }

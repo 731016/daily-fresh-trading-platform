@@ -47,12 +47,12 @@
 
       <div class="login_info fl" style="display: block">
         欢迎您：<em>joyous</em>
-        <a href="../user/login.jsp" class="zhuxiao">注销</a>
+        <a href="${pageContext.request.contextPath}/user/exit" class="zhuxiao">注销</a>
       </div>
       <div class="login_btn fl" style="display:none">
-        <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
+        <a href="${pageContext.request.contextPath}/user/toLogin">登录</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
+        <a href="${pageContext.request.contextPath}/user/toRegister">注册</a>
       </div>
 
 

@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class UserLoginAndAccountExistController {
+public class UserController {
 
     @Resource
     private UserService userService;
@@ -61,6 +61,12 @@ public class UserLoginAndAccountExistController {
             return "/index";
         }
         request.setAttribute("userState", UserState.getUserStateByValue(3));
+        return "/user/login";
+    }
+
+    @RequestMapping("/user/exit")
+    public String exit(HttpServletRequest request) {
+        request.getSession().invalidate();
         return "/user/login";
     }
 }
