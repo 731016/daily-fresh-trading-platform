@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
     public Boolean login(String account, String password) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         // 账户和密码查询，密码加密后比对
-        wrapper.eq(account, DigestUtils.md5Hex(password));
+        wrapper.eq("account",account);
+        wrapper.eq("pwd", DigestUtils.md5Hex(password));
         User user = mapper.selectOne(wrapper);
         // 查询出来的对象为空
         if (user == null) {

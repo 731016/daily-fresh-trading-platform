@@ -28,7 +28,7 @@
                 let div = document.createElement("div");
                 switch (n) {
                     case 0:
-                        cocoMessage.info(1000, "请输入验证码！", function() {
+                        cocoMessage.info(1000, "请输入验证码！", function () {
 
                         });
                         break;
@@ -49,7 +49,7 @@
 
                     case 4:
                         var closeMsg = cocoMessage.loading(true);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             closeMsg();
                         }, 1000);
                         break;
@@ -62,8 +62,10 @@
                         break;
                 }
             }
-            let msg = $('msg').val();
-            if (msg==3){
+
+            let msg = $('#msg').val();
+            if (msg == 3) {
+                console.log("登陆失败")
                 example(3);
             }
         });
@@ -86,10 +88,10 @@
             </div>
             <div class="form_input">
 
-                <input type="hidden" value="${userState.value}" id="msg">
-                <input type="hidden" name="token" value="${sessionScope.token}">
-
                 <form action="${pageContext.request.contextPath}/user/login" method="post" id="from_login">
+                    <input type="hidden" value="${userState.value}" id="msg">
+<%--                    <input type="hidden" name="token" value="${sessionScope.token}">--%>
+
                     <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" value="">
                     <div class="user_error">输入错误</div>
                     <input type="password" name="pwd" id="password" class="pass_input" placeholder="请输入密码" value="">
@@ -107,7 +109,7 @@
                         <label>记住用户名</label>
                         <a href="forgetpwd.jsp">忘记密码</a>
                     </div>
-                    <input type="submit" name="" value="登录" class="input_submit">
+                    <input type="button" name="" value="登录" class="input_submit" id="commit">
                 </form>
             </div>
         </div>

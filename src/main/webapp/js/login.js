@@ -61,17 +61,16 @@ $(function () {
         return "rgb(" + r + "," + g + "," + b + ")";
     }
 
-    $("#canvas").on('click', function() {
+    $("#canvas").on('click', function () {
         draw(show_num);
     });
 
-    $("#id_captcha_1").attr("placeholder", "请输入验证码");
-
     $('#username').blur(function () {
+        console.log('进入密码失去焦点事件')
         username();
     });
 
-    $('#pwd').blur(function () {
+    $('#password').blur(function () {
         userpwd();
     });
 
@@ -90,24 +89,26 @@ $(function () {
             $('#username').next().html("用户名错误");
             $('#username').next().show();
         } else {
+            console.log('用户名正确')
             error_name = false;
             $('#username').next().hide();
         }
     }
 
     function userpwd() {
-        let len = $('#pwd').val().length;
+        let len = $('#password').val().length;
         if (len == 0) {
             error_pwd = true;
-            $('#pwd').next().html("请输入密码");
-            $('#pwd').next().show();
-        } else if (len < 8) {
+            $('#password').next().html("请输入密码");
+            $('#password').next().show();
+        } else if (len < 6) {
             error_pwd = true;
-            $('#pwd').next().html("密码错误");
-            $('#pwd').next().show();
+            $('#password').next().html("密码错误");
+            $('#password').next().show();
         } else {
+            console.log('密码正确')
             error_pwd = false;
-            $('#pwd').next().hide();
+            $('#password').next().hide();
         }
     }
 
@@ -124,15 +125,24 @@ $(function () {
             $(".yanzheng_error").html("验证码错误");
             $(".yanzheng_error").show();
             draw(show_num);
-        } else if (val == num){
+        } else if (val == num) {
+            console.log('验证码正确')
             error_captcha = false;
             $(".yanzheng_error").hide();
         }
     }
 
-    $('#from_login').submit(function () {
-        if (error_name && error_pwd && error_captcha) {
+    $('#commit').click(function () {
+        username();
+        userpwd();
+        captcha();
+        if (error_name || error_pwd || error_captcha) {
+            log(' 验证失败-不提交')
+            draw(show_num);
             return false;
+        } else {
+            console.log('提交')
+            $("#from_login").submit();
         }
     });
 

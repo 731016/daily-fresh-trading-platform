@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class UserRegAndLogController {
+public class UserRegisterTokenController {
     @Resource
     private UserService userService;
 
@@ -66,28 +66,5 @@ public class UserRegAndLogController {
         // 注册失败
         model.addAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
-    }
-
-
-
-    /**
-     * 用户登录
-     *
-     * @param model
-     * @param account
-     * @param pwd
-     * @return
-     */
-    @RequestMapping("/user/login")
-    public String login(Model model, @RequestParam("account") String account, @RequestParam("pwd") String pwd) {
-        Boolean login = userService.login(account, pwd);
-        if (login) {
-            model.addAttribute("userState", UserState.getUserStateByValue(1));
-            // 设置已登录的用户账号 session
-            model.addAttribute("login", account);
-            return "/index";
-        }
-        model.addAttribute("userState", UserState.getUserStateByValue(3));
-        return "/user/login";
     }
 }

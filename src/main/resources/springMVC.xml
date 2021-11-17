@@ -44,10 +44,10 @@
             <mvc:mapping path="/user/toRegister"/>
             <bean class="com.zr.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/user/toLogin"/>
-            <bean class="com.zr.interceptor.TokenInterceptor"/>
-        </mvc:interceptor>
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/user/toLogin"/>-->
+<!--            <bean class="com.zr.interceptor.TokenInterceptor"/>-->
+<!--        </mvc:interceptor>-->
     </mvc:interceptors>
 
     <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->

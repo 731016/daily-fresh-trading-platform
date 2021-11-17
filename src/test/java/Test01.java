@@ -1,6 +1,7 @@
 import com.zr.enums.UserState;
 import com.zr.mapper.UserMapper;
 import com.zr.pojo.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Test;
 import org.junit.experimental.theories.suppliers.TestedOn;
 import org.junit.runner.RunWith;
@@ -26,5 +27,12 @@ public class Test01 {
         user.setAccount("zhangsan");
         user.setPwd("aaaaa");
         mapper.insert(user);
+    }
+    @Test
+    public void test2() {
+        System.out.println(DigestUtils.md5Hex("abc123"));
+        System.out.println(DigestUtils.md5Hex("abc123456"));
+        System.out.println(DigestUtils.md5Hex("abc12345"));
+//        e99a18c428cb38d5f260853678922e03
     }
 }
