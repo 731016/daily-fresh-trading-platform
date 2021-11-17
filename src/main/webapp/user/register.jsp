@@ -91,7 +91,7 @@
                     <li>
                         <label>密码:</label>
                         <input type="password" name="pwd" id="pwd" style="white-space: nowrap;" placeholder="最少6位">
-                        <span class="error_tip" id="pwd_info" style="white-space: nowrap">最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span>
+                        <span class="error_tip" id="pwd_info" style="white-space: nowrap">密码至少包含 数字和英文，长度6-20</span>
                     </li>
                     <li>
                         <label>确认密码:</label>

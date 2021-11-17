@@ -21,6 +21,7 @@ public class UserRegAndLogController {
 
     /**
      * 处理token 对比，在所有handle方法之前执行
+     *
      * @param request
      */
     @ModelAttribute
@@ -84,6 +85,8 @@ public class UserRegAndLogController {
         Boolean login = userService.login(account, pwd);
         if (login) {
             model.addAttribute("userState", UserState.getUserStateByValue(1));
+            // 设置已登录的用户账号 session
+            model.addAttribute("login", account);
             return "/index";
         }
         model.addAttribute("userState", UserState.getUserStateByValue(3));
