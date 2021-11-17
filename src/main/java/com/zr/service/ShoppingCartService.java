@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ShoppingCartService {
     //查询购物车
-    List<ShoppingCart> selectAll();
+    List<ShoppingCart> selectAllByAccount(String account);
 
     //查询购物车商品数量
     Integer selectCount();
@@ -16,4 +16,7 @@ public interface ShoppingCartService {
 
     //删除购物车
     boolean delCart(Integer shoppingId);
+
+    //查询购物车单个商品
+    ShoppingCart selectOne(ShoppingCart shoppingCart);
 }

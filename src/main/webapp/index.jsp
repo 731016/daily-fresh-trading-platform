@@ -9,6 +9,9 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/slide.js"></script>
   <script>
+      $(function () {
+
+      })
       $.ajax({
           dataType: "json",
           type: "post",
@@ -22,7 +25,7 @@
                       "      <div class=\"subtitle fl\">\n" +
                       "        <span>|</span>\n" +
                       "      </div>\n" +
-                      "      <a href=\"${pageContext.request.contextPath}/allPage?typeId=" + t.typeId + "\" class=\"goods_more fr\">查看更多 &gt;</a>\n" +
+                      "      <a href=\"${pageContext.request.contextPath}/shop/toAllGoods?typeId=" + t.typeId + "\" class=\"goods_more fr\">查看更多 &gt;</a>\n" +
                       "    </div>");
 
                   $div.append("<div name=\"goods_list\" class=\"goods_con clearfix\">\n" +
@@ -31,8 +34,13 @@
                       "      </ul>\n" +
                       "    </div>");
                   $("#goods_info").append($div);
+                  //导航栏设置
+                  $("#title_goodsType").append('<li><a href="#model' + i + '" class="' + t.typeClass + '">' + t.typeName + '</a></li>');
+
                   goodsList(t.typeId, i);
+
               })
+
           },
           error: function (e) {
               $("body").html(e.responseText);
@@ -129,13 +137,7 @@
 </div>
 
 <div class="center_con clearfix">
-  <ul class="subnav fl" id="">
-    <li><a href="#model0" class="fruit">新鲜水果</a></li>
-    <li><a href="#model1" class="seafood">海鲜水产</a></li>
-    <li><a href="#model2" class="meet">猪牛羊肉</a></li>
-    <li><a href="#model3" class="egg">禽类蛋品</a></li>
-    <li><a href="#model4" class="vegetables">新鲜蔬菜</a></li>
-    <li><a href="#model5" class="ice">速冻食品</a></li>
+  <ul class="subnav fl" id="title_goodsType">
   </ul>
   <div class="slide fl">
     <ul class="slide_pics">

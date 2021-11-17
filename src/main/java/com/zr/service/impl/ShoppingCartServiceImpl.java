@@ -1,12 +1,12 @@
 package com.zr.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zr.mapper.ShoppingCartMapper;
 import com.zr.pojo.ShoppingCart;
 import com.zr.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.sql.Wrapper;
 import java.util.List;
 
 @Service
@@ -15,9 +15,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartMapper mapper;
 
     @Override
-    public List<ShoppingCart> selectAll() {
-
-       return mapper.selectList(null);
+    public List<ShoppingCart> selectAllByAccount(String account) {
+        QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
+        wrapper.eq("account", account);
+        return mapper.selectList(wrapper);
     }
 
     @Override
@@ -28,24 +29,39 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public boolean addCart(ShoppingCart shoppingCart) {
-        int i =  mapper.updateById(shoppingCart);
-        if (i>0){
+        int i = 0;
+        //根据传入的购物车对象的账号查找当前账号是否有该商品在购物车里
+        ShoppingCart shoppingCart1 = selectOne(shoppingCart);
+        //如果查找不为空，则进行修改操作；为空则进行添加操作
+        if (shoppingCart1 != null) {
+            shoppingCart.setGoodsNumber(shoppingCart1.getGoodsNumber() + shoppingCart.getGoodsNumber());
+            i = mapper.updateById(shoppingCart);
+        } else {
+            i = mapper.insert(shoppingCart);
+        }
+        if (i > 0) {
             return true;
-        }else {
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delCart(Integer shoppingId) {
+        int i = mapper.deleteById(shoppingId);
+        if (i > 0) {
+            return true;
+        } else {
             return false;
         }
 
     }
 
     @Override
-    public boolean delCart(Integer shoppingId) {
-        int i = mapper.deleteById(shoppingId);
-        if (i>0){
-            return true;
-        }else {
-            return false;
-        }
-
+    public ShoppingCart selectOne(ShoppingCart shoppingCart) {
+        QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
+        wrapper.eq("account", shoppingCart.getAccount()).eq("goodsId", shoppingCart.getGoodsId());
+        return mapper.selectOne(wrapper);
     }
 
 }

@@ -13,4 +13,5 @@ public class GoodsType {
     private Integer typeId;  //商品类型编号
     private String typeName; //商品类型名称
     private String typeImg;  //商品类型图片
+    private String typeClass;//商品类型样式
 }

@@ -35,5 +35,10 @@ public class GoodsServiceImpl implements GoodsService {
         return goods.subList(0, goodsNum);
     }
 
+    @Override
+    public Goods selectOne(Integer goodsId) {
+        return mapper.selectById(goodsId);
+    }
+
 
 }

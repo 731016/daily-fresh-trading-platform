@@ -5,7 +5,6 @@ import com.zr.mapper.UserMapper;
 import com.zr.pojo.User;
 import com.zr.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

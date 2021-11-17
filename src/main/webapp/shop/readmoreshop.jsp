@@ -7,13 +7,108 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script>
+      let pageNum = 1;
+      let goodsId=0;
+
+      function selectPage() {
+          $.ajax({
+              dataType: "json",
+              type: "post",
+              url: "${pageContext.request.contextPath}/shop/allGoods/${typeId}/" + pageNum,
+              success: function (result) {
+                  $("#ul_allGoods li").remove();
+                  //遍历显示
+                  $.each(result.resultPageInfoObject.list, function (i, g) {
+
+                      $("#ul_allGoods").append('<li>\n' +
+                          '        <a href="shop_message.html"><img src="../images/allGoods/' + g.picture + '"></a>\n' +
+                          '        <h4><a href="http://ttsx.newzn.cn/goods/detail/45"> ' + g.goodsName + ' </a></h4>\n' +
+                          '        <div class="operate">\n' +
+                          '          <span class="prize">￥' + g.price + '</span>\n' +
+                          '          <span class="unit">' + g.price + '/' + g.unit + 'kg</span>\n' +
+                          '          <a href="javascript:;" class="add_goods" title="加入购物车"></a>\n' +
+                          '        </div>\n' +
+                          '      </li>')
+                  })
+                  //生成页码，当前页面页码为红色
+                  $("#pageNum button").remove();
+                  $("#pageNum").append('<button class="active" id="firstPage">首页</button>');
+                  $("#pageNum").append('<button class="active" id="previousPage">上一页</button>');
+                  $.each(result.resultPageInfoObject.navigatepageNums, function (i, num) {
+                      let n = 1;
+                      if (num == result.resultPageInfoObject.pageNum) {
+                          $("#pageNum").append('<button class="active" style="color: red">' + num + '</button>');
+                      } else {
+                          $("#pageNum").append('<button class="active">' + num + '</button>');
+                      }
+                      n++;
+                  });
+                  $("#pageNum").append('<button class="active" id="nextPage">下一页</button>');
+                  $("#pageNum").append('<button class="active" id="lastPage">尾页</button>');
+
+                  //绑定按钮点击事件
+                  $("#firstPage").click(function () {
+                      pageNum = 1;
+                      selectPage();
+                  })
+                  $("#previousPage").click(function () {
+                      pageNum--;
+                      selectPage();
+                  })
+                  $("#nextPage").click(function () {
+                      pageNum++;
+                      selectPage();
+                  })
+                  $("#lastPage").click(function () {
+                      pageNum = result.resultPageInfoObject.pages;
+                      selectPage(pageNum);
+                  })
+
+                  //设置隐藏点击按钮
+                  if (result.resultPageInfoObject.hasPreviousPage) {
+                      $("#previousPage").css("visibility", "visible");
+                  } else {
+                      $("#previousPage").css("visibility", "hidden");
+                  }
+                  if (result.resultPageInfoObject.hasNextPage) {
+                      $("#nextPage").css("visibility", "visible");
+                  } else {
+                      $("#nextPage").css("visibility", "hidden");
+                  }
+              },
+              error: function (e) {
+                  $("body").html(e.responseText);
+              }
+          })
+      }
+
+      function addShoppingCart(){
+          $.ajax({
+
+          })
+      }
+
+      $(function () {
+          selectPage();
+
+          $(".add_goods").click(function () {
+              $.get("/cart/updatecart/add/1/" + $(this).next().html() + "/1", function (data) {
+                  if (data.data != 0) {
+                      $("#show_count").html(data.data);
+                  }
+              });
+          });
+      })
+  </script>
 </head>
 <body>
 <!--头部开始-->
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
-    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a></div>
+    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a>
+    </div>
     <div class="fr">
       <c:choose>
         <c:when test="${sessionScope.login != null}">
@@ -54,7 +149,7 @@
   </div>
   <div class="guest_cart fr">
     <a href="${pageContext.request.contextPath}/user/shop.jsp" class="cart_name fl">我的购物车</a>
-    <div class="goods_count fl" id="show_count">3</div>
+    <div class="goods_count fl" id="show_count"></div>
   </div>
 </div>
 
@@ -64,12 +159,10 @@
       <h1>全部商品分类</h1>
       <span></span>
       <ul class="subnav">
-        <li><a href="#" class="fruit">新鲜水果</a></li>
-        <li><a href="#" class="seafood">海鲜水产</a></li>
-        <li><a href="#" class="meet">猪牛羊肉</a></li>
-        <li><a href="#" class="egg">禽类蛋品</a></li>
-        <li><a href="#" class="vegetables">新鲜蔬菜</a></li>
-        <li><a href="#" class="ice">速冻食品</a></li>
+        <c:forEach items="${goodsType}" var="t">
+          <li><a href="${pageContext.request.contextPath}/shop/toAllGoods?typeId=${t.typeId}"
+                 class="${t.typeClass}">${t.typeName}</a></li>
+        </c:forEach>
       </ul>
     </div>
     <ul class="navlist fl">
@@ -85,7 +178,11 @@
 <div class="breadcrumb">
   <a href="../index.jsp">全部分类</a>
   <span>&gt;</span>
-  <span>新鲜水果</span>
+  <c:forEach items="${goodsType}" var="t">
+    <c:if test="${t.typeId==typeId}">
+      <span>${t.typeName}</span>
+    </c:if>
+  </c:forEach>
 </div>
 
 <div class="main_wrap clearfix">
@@ -93,19 +190,14 @@
     <div class="new_goods">
       <h3>新品推荐</h3>
       <ul>
-        <li>
-          <a href="shop_message.jsp"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>
-          <h4><a href="shop_message.jsp"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a></h4>
-          <div class="prize">￥33.90</div>
-        </li>
-
-        <li>
-          <a href="shop_message.jsp"><img src="../images/所有商品/5b4871e6N072f0d74.jpg"></a>
-          <h4><a href="shop_message.jsp">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a></h4>
-          <div class="prize">￥98.00</div>
-        </li>
-
-
+        <c:forEach items="${goods}" var="g">
+          <li>
+            <a href="${pageContext.request.contextPath}/shop/shop_message.jsp"><img
+                    src="../images/allGoods/${g.picture}"></a>
+            <h4><a href="${pageContext.request.contextPath}/shop/shop_message.jsp"> ${g.goodsName} </a></h4>
+            <div class="prize">￥${g.price}</div>
+          </li>
+        </c:forEach>
       </ul>
     </div>
   </div>
@@ -119,88 +211,11 @@
 
     </div>
 
-    <ul class="goods_type_list clearfix">
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>
-        <h4><a href="http://ttsx.newzn.cn/goods/detail/45"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a></h4>
-        <div class="operate">
-          <span class="prize">￥33.90</span>
-          <span class="unit">33.90/1.94kg</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span name="spanid" style="display: none">45</span>
-        </div>
-      </li>
-
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/5b4871e6N072f0d74.jpg"></a>
-        <h4><a href="shop_message.html">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a></h4>
-        <div class="operate">
-          <span class="prize">￥98.00</span>
-          <span class="unit">98.00/1.0kg</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span name="spanid" style="display: none">44</span>
-        </div>
-      </li>
-
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/5b18c158N35a55d7a.jpg"></a>
-        <h4><a href="shop_message.html">中科农业 水果礼盒 水果提货券 礼券 238型 水果提货卡券</a></h4>
-        <div class="operate">
-          <span class="prize">￥238.00</span>
-          <span class="unit">238.00/5.0kg</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span name="spanid" style="display: none">37</span>
-        </div>
-      </li>
-
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/5b514c51N8170488f.jpg"></a>
-        <h4><a href="shop_message.html">维叶新鲜水果香蕉约17-23条天宝水果生鲜青蕉 香蕉17-2</a></h4>
-        <div class="operate">
-          <span class="prize">￥29.90</span>
-          <span class="unit">29.90/750g</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span name="spanid" style="display: none">33</span>
-        </div>
-      </li>
-
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/59251bebNea0fc46f.jpg"></a>
-        <h4><a href="http://ttsx.newzn.cn/goods/detail/3">Zespri佳沛 新西兰绿奇异果 12个</a></h4>
-        <div class="operate">
-          <span class="prize">￥39.70</span>
-          <span class="unit">39.70/500g</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span name="spanid" style="display: none">3</span>
-        </div>
-      </li>
-
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/58ec98efN3db99134.jpg"></a>
-        <h4><a href="http://ttsx.newzn.cn/goods/detail/2">华圣 高原红富士苹果 6个装 1.2kg</a></h4>
-        <div class="operate">
-          <span class="prize">￥19.90</span>
-          <span class="unit">19.90/500g</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span name="spanid" style="display: none">2</span>
-        </div>
-      </li>
-
-      <li>
-        <a href="shop_message.html"><img src="../images/所有商品/58e62d46Ndcc0a865.jpg"></a>
-        <h4><a href="shop_message.html">千里山 海南金煌芒果 1.75kg装</a></h4>
-        <div class="operate">
-          <span class="prize">￥38.90</span>
-          <span class="unit">38.90/500g</span>
-          <a href="javascript:;" class="add_goods" title="加入购物车"></a>
-          <span id="spanid" style="display: none">1</span>
-        </div>
-      </li>
-
-
+    <ul class="goods_type_list clearfix" id="ul_allGoods">
     </ul>
-    <div class="pagenation">
-      <a class="active">1</a>
+
+    <div class="pagenation" id="pageNum">
+
     </div>
   </div>
 </div>
@@ -219,17 +234,5 @@
   <p>CopyRight © 2019 武汉软帝信息科技有限责任公司</p>
 </div>
 <!--底部 结束-->
-
-<script>
-    $(".add_goods").click(function () {
-
-        $.get("/cart/updatecart/add/1/"+$(this).next().html()+"/1",function (data) {
-            if (data.data != 0){
-                $("#show_count").html(data.data);
-            }
-        });
-
-    });
-</script>
 </body>
 </html>

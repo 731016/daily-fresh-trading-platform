@@ -12,4 +12,7 @@ public interface GoodsService {
 
     //查询该类型销量排名前多少的商品
     List<Goods> selectSortSalesByType(Integer typeId, Integer goodsNum);
+
+    //查询单个商品
+    Goods selectOne(Integer goodsId);
 }
