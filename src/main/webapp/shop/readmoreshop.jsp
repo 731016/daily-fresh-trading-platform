@@ -22,15 +22,21 @@
     <div class="welcome fl">欢迎来到天天生鲜!</div>
     <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a></div>
     <div class="fr">
-      <div class="login_info fl">Tom
-        欢迎您：<em>""</em>
-        <a href="${pageContext.request.contextPath}/user/exit" class="zhuxiao">注销</a>
-      </div>
-      <div class="login_btn fl">
-        <a href="${pageContext.request.contextPath}/user/toLogin">登录</a>
-        <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/toRegister">注册</a>
-      </div>
+      <c:choose>
+        <c:when test="${sessionScope.login != null}">
+          <div class="login_info fl" style="display: block">
+            欢迎您：<em>${login}</em>
+            <a href="${pageContext.request.contextPath}/user/exit" class="zhuxiao">注销</a>
+          </div>
+        </c:when>
+        <c:otherwise>
+          <div class="login_btn fl" style="display:block">
+            <a href="${pageContext.request.contextPath}/user/toLogin">登录</a>
+            <span>|</span>
+            <a href="${pageContext.request.contextPath}/user/toRegister">注册</a>
+          </div>
+        </c:otherwise>
+      </c:choose>
 
       <div class="user_link fl">
         <span>|</span>
