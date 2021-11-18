@@ -6,6 +6,8 @@
   <title>天天生鲜－用户中心</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/address.js"></script>
 </head>
 <body>
 
@@ -57,7 +59,7 @@
     <ul>
       <li><a href="${pageContext.request.contextPath}/user/customer.jsp">· 个人信息</a></li>
       <li><a href="${pageContext.request.contextPath}/user/order.jsp">· 全部订单</a></li>
-      <li><a href="#" class="active">· 收货地址</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/address" class="active">· 收货地址</a></li>
 
     </ul>
   </div>
@@ -76,26 +78,25 @@
     </div>
     <h3 class="common_title2">编辑地址</h3>
     <div class="site_con">
-      <form action="" method="post">
-        <input type="hidden" name="" value="">
+      <form action="/user/toedit" method="post" id="userinfo_form">
         <div class="form_group">
           <label>收件人：</label>
-          <input type="text" name="uname" value="">
+          <input type="text" name="shippingName" id="shippingName" value="">
         </div>
         <div class="form_group form_group2">
           <label>详细地址：</label>
-          <textarea class="site_area" name="uaddr"></textarea>
+          <textarea class="site_area" name="shippingAddress" id="shippingAddress"></textarea>
         </div>
         <div class="form_group">
           <label>邮编：</label>
-          <input type="text" name="uyoub" value="">
+          <input type="text" name="zip" id="zip" value="">
         </div>
         <div class="form_group">
           <label>手机：</label>
-          <input type="text" name="utel" value="">
+          <input type="phone" name="phone" id="phone" value="">
         </div>
 
-        <input type="submit" value="提交" class="info_submit">
+        <input type="button" value="提交" class="info_submit" id="commit">
       </form>
     </div>
   </div>

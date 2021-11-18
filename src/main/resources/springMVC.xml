@@ -45,11 +45,12 @@
             <mvc:mapping path="/user/toRegister"/>
             <bean class="com.zr.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
+        <!--            进入忘记密码页面之前-->
         <mvc:interceptor>
-<!--            进入忘记密码页面之前-->
             <mvc:mapping path="/user/toforgetpwd"/>
             <bean class="com.zr.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
+
         <!--        <mvc:interceptor>-->
         <!--            <mvc:mapping path="/user/toLogin"/>-->
         <!--            <bean class="com.zr.interceptor.TokenInterceptor"/>-->
