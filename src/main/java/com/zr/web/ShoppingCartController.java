@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/user")
@@ -22,13 +23,17 @@ public class ShoppingCartController {
 
     @PostMapping("/addShoppingCart/{goodsId}")
     @ResponseBody
-    public String addShoppingCart(@PathVariable("goodsId")Integer goodsId) {
-        ShoppingCart shoppingCart = new ShoppingCart(null, "admin", goodsId, 1);
+    public String addShoppingCart(HttpServletRequest request, @PathVariable("goodsId")Integer goodsId) {
+//        String login = request.getSession().getAttribute("login").toString();
+        ShoppingCart shoppingCart = new ShoppingCart(null, "login", goodsId, 1);
         boolean b = cartService.addCart(shoppingCart);
         if (b) {
-            Integer cartCount = cartService.selectCountByAccount("admin");
+            Integer cartCount = cartService.selectCountByAccount("login");
             return cartCount.toString();
         }
         return "";
     }
+
+//    @PostMapping("/addShoppingCart/{goodsId}/{goods}")
+//    @ResponseBody
 }

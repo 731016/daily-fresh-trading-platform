@@ -36,9 +36,7 @@
                       $("#title_goodsType").append('<li><a href="#model' + i + '" class="' + t.typeClass + '">' + t.typeName + '</a></li>');
 
                       goodsList(t.typeId, i);
-
                   })
-
               },
               error: function (e) {
                   $("body").html(e.responseText);
@@ -54,10 +52,10 @@
                   success: function (result) {
                       $.each(result.resultListObject, function (i, g) {
                           let $div = $('#goods_list' + index + ' div[class="subtitle fl"]');
-                          $div.append('<a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a>');
+                          $div.append('<a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' + g.goodsName + '</a>');
                           $('#goods_list' + index + ' ul').append('<li>\n' +
-                              '          <h4><a href="${pageContext.request.contextPath}/shop/shop_message.jsp">' + g.goodsName + '</a></h4>\n' +
-                              '          <a href="${pageContext.request.contextPath}/shop/shop_message.jsp"><img src="images/allGoods/' + g.picture + '"></a>\n' +
+                              '          <h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' + g.goodsName + '</a></h4>\n' +
+                              '          <a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"><img src="images/allGoods/' + g.picture + '"></a>\n' +
                               '          <div class="prize">¥ ' + g.price + '</div>\n' +
                               '        </li>');
                       })

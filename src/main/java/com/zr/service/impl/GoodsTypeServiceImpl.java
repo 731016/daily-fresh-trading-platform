@@ -24,8 +24,20 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
         if (strType == null || strType.isBlank()) {
             List<GoodsType> goodsTypes = mapper.selectList(null);
             strType = JSON.toJSONString(goodsTypes);
-            redisTemplate.opsForValue().set("goodsType",strType);
+            redisTemplate.opsForValue().set("goodsType", strType);
         }
         return strType;
     }
+
+    /**
+     * 查询单个商品类型
+     *
+     * @param typeId
+     * @return
+     */
+    @Override
+    public GoodsType selectOne(Integer typeId) {
+        return mapper.selectById(typeId);
+    }
+
 }

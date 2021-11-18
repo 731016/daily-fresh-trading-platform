@@ -29,9 +29,62 @@
       float: left;
     }
   </style>
+
+  <script>
+      function example(n, msg) {
+          let div = document.createElement("div");
+          switch (n) {
+              case 0:
+                  cocoMessage.info(1000, "请输入验证码！", function () {
+
+                  });
+                  break;
+
+              case 1:
+                  div.innerText = "验证码校验成功！";
+                  cocoMessage.success(div);
+                  break;
+
+              case 2:
+                  cocoMessage.warning("每秒并发请求200次！,请求上限20w次！", 0);
+                  break;
+
+              case 3:
+                  // cocoMessage.error("验证码错误！请重新输入！", 1000);
+                  cocoMessage.error(msg, 1000);
+                  break;
+
+              case 4:
+                  var closeMsg = cocoMessage.loading(true);
+                  setTimeout(function () {
+                      closeMsg();
+                  }, 1000);
+                  break;
+
+              case 5:
+                  cocoMessage.destroyAll();
+                  break;
+
+              default:
+                  break;
+          }
+      }
+
+      $(function () {
+          let msg = $('#msg').val();
+          if (msg == 8) {
+              console.log("下单失败")
+              example(8, "下单失败");
+          }
+          $("#buy_btn").click(function () {
+              let goodsNumber = $("#shuliang").val();
+              location.href = "${pageContext.request.contextPath}/order/addOrder/${goodsId}/" + goodsNumber;
+          })
+      })
+  </script>
 </head>
 <body>
-
+<input type="hidden" value="${userState.value}" id="msg">
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
@@ -101,22 +154,22 @@
 </div>
 
 <div class="breadcrumb">
-  <a href="../index.jsp">全部分类</a>
+  <a href="${pageContext.request.contextPath}/index.jsp">全部分类</a>
   <span>&gt;</span>
-  <a href="#">新鲜水果</a>
+  <a href="${pageContext.request.contextPath}/shop/toAllGoods?typeId=${typeId}">新鲜水果</a>
   <span>&gt;</span>
   <span>商品详情</span>
 </div>
 
 <div class="goods_detail_con clearfix">
-  <div class="goods_detail_pic fl"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></div>
+  <div class="goods_detail_pic fl"><img src="${pageContext.request.contextPath}/images/allGoods/${goods.picture}"></div>
 
   <div class="goods_detail_list fr">
-    <h3> 越南进口红心火龙果 3个装 大果 单果约450~500g </h3>
-    <p>越南直采 精选大果】果肉更足，享受饱满的甜蜜诱惑！红果富含花青素，天然抗氧化营养库！泰国金枕榴莲火爆促销中，点我直达，萨瓦迪卡。</p>
+    <h3> ${goods.goodsName} </h3>
+    <p>${goods.goodsDescribe}</p>
     <div class="prize_bar">
-      <span class="show_pirze">¥<em id="danjia">33.90</em></span>
-      <span class="show_unit">单  位：1.94kg</span>
+      <span class="show_pirze">¥<em id="danjia">${goods.price}</em></span>
+      <span class="show_unit">单  位：${goods.unit}kg</span>
     </div>
     <div class="goods_num clearfix">
       <div class="num_name fl">数 量：</div>
@@ -126,9 +179,9 @@
         <a href="javascript:;" class="minus fr" id="jianhao">-</a>
       </div>
     </div>
-    <div class="total">总价：<em id="zongjia">33.90</em>元</div>
+    <div class="total">总价：<em id="zongjia">${goods.price}</em>元</div>
     <div class="operate_btn">
-      <a href="javascript:;" class="buy_btn" id="buy_btn">立即购买</a>
+      <button type="button" class="buy_btn" id="buy_btn">立即购买</button>
       <a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
     </div>
   </div>
@@ -139,17 +192,16 @@
     <div class="new_goods">
       <h3>新品推荐</h3>
       <ul>
-        <li>
-          <a href=""><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>
-          <h4><a href="shop_message.html"> 越南进口红心火龙果 3个装 大果 单果约450~500g </a></h4>
-          <div class="prize">￥33.90</div>
-        </li>
-
-        <li>
-          <a href=""><img src="../images/所有商品/5b4871e6N072f0d74.jpg"></a>
-          <h4><a href="shop_message.html">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k</a></h4>
-          <div class="prize">￥98.00</div>
-        </li>
+        <c:forEach items="${hotGoods}" var="g">
+          <li>
+            <a href="${pageContext.request.contextPath}/shop/goodsDetailed/${g.typeId}/${g.goodsId}"><img
+                    src="${pageContext.request.contextPath}/images/allGoods/${g.picture}"></a>
+            <h4>
+              <a href="${pageContext.request.contextPath}/shop/goodsDetailed/${g.typeId}/${g.goodsId}"> ${g.goodsName} </a>
+            </h4>
+            <div class="prize">￥${g.price}</div>
+          </li>
+        </c:forEach>
       </ul>
     </div>
   </div>
@@ -164,19 +216,12 @@
       <dl>
         <dt>商品详情：</dt>
         <dd>
-          <ul id="parameter-brand" class="p-parameter-list">
-            <li title="京东生鲜">品牌：&nbsp;<span style="color: #5e69ad;">京东生鲜</span></li>
-          </ul>
           <ul class="parameter2 p-parameter-list">
-            <li>商品名称：京东生鲜越南进口 红心火龙果3个装 单果约500g</li>
-            <li title="3048509">商品编号：3048509</li>
-            <li title="1.94kg">商品毛重：1.94kg</li>
-            <li title="越南">商品产地：越南</li>
-            <li title="1kg-2kg">重量：1kg-2kg</li>
-            <li title="进口">国产/进口：进口</li>
-            <li title="红心火龙果">分类：红心火龙果</li>
-            <li title="简装">包装：简装</li>
-            <li title="越南">原产地：越南</li>
+            <li title="${goods.goodsName}">商品名称：${goods.goodsName}</li>
+            <li title="${goods.goodsId}">商品编号：${goods.goodsId}</li>
+            <li title="${goods.unit}kg">商品毛重：${goods.unit}kg</li>
+            <li title="${goods.originPlace}">商品产地：${goods.originPlace}</li>
+            <li title="${goodsType.typeName}">分类：${goodsType.typeName}</li>
           </ul>
         </dd>
       </dl>

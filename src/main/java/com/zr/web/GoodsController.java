@@ -23,7 +23,11 @@ public class GoodsController {
     @Resource
     private GoodsTypeService typeService;
 
-    //主页面异步获取商品类别
+    /**
+     * 主页面异步获取商品类别
+     *
+     * @return
+     */
     @PostMapping("/goodsTypeRedis")
     @ResponseBody
     public Result<Goods> goodsTypeRedis() {
@@ -32,7 +36,12 @@ public class GoodsController {
         return result;
     }
 
-    //主页面异步获取对应商品类别的销量前四的商品信息
+    /**
+     * 主页面异步获取对应商品类别的销量前四的商品信息
+     *
+     * @param typeId
+     * @return
+     */
     @PostMapping("/goodsShow/{typeId}")
     @ResponseBody
     public Result<Goods> goodsShow(@PathVariable("typeId") Integer typeId) {
@@ -41,7 +50,13 @@ public class GoodsController {
         return result;
     }
 
-    //对应类别的所有商品信息
+    /**
+     * 对应类别的所有商品信息
+     *
+     * @param pageNum
+     * @param typeId
+     * @return
+     */
     @PostMapping("/allGoods/{typeId}/{pageNum}")
     @ResponseBody
     public Result<Goods> allGoods(@PathVariable("pageNum") Integer pageNum, @PathVariable("typeId") Integer typeId) {
@@ -52,15 +67,40 @@ public class GoodsController {
         return result;
     }
 
-    //所有商品信息中转页面
+    /**
+     * 所有商品信息中转页面
+     *
+     * @param typeId
+     * @param model
+     * @return
+     */
     @GetMapping("/toAllGoods")
     public String toAllGoods(Integer typeId, Model model) {
-        List<Goods> goods = service.selectSortSalesByType(typeId, 2);
+        List<Goods> hotGoods = service.selectSortSalesByType(typeId, 2);
         String s = typeService.selectAllRedis();
         List<GoodsType> goodsTypes = JSON.parseArray(s, GoodsType.class);
         model.addAttribute("goodsType", goodsTypes);
-        model.addAttribute("goods", goods);
+        model.addAttribute("hotGoods", hotGoods);
         model.addAttribute("typeId", typeId);
         return "/shop/readmoreshop";
+    }
+
+    /**
+     * 商品详情页面
+     *
+     * @param typeId
+     * @param goodsId
+     * @param model
+     * @return
+     */
+    @GetMapping("/goodsDetailed/{typeId}/{goodsId}")
+    public String goodsDetailed(@PathVariable("typeId") Integer typeId, @PathVariable("goodsId") Integer goodsId, Model model) {
+        Goods goods = service.selectOne(goodsId);
+        List<Goods> hotGoods = service.selectSortSalesByType(typeId, 2);
+        GoodsType goodsType = typeService.selectOne(typeId);
+        model.addAttribute("goodsType", goodsType);
+        model.addAttribute("goods", goods);
+        model.addAttribute("hotGoods", hotGoods);
+        return "/shop/shop_message";
     }
 }
