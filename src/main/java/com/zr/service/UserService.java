@@ -33,4 +33,8 @@ public interface UserService {
      * @return
      */
     Boolean resetPwd(User user);
+    /**
+     * 更新收货地址编号
+     */
+    Integer userUpdate(String account,Integer shippingId);
 }

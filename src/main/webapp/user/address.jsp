@@ -59,7 +59,7 @@
     <ul>
       <li><a href="${pageContext.request.contextPath}/user/customer.jsp">· 个人信息</a></li>
       <li><a href="${pageContext.request.contextPath}/user/order.jsp">· 全部订单</a></li>
-      <li><a href="${pageContext.request.contextPath}/user/address" class="active">· 收货地址</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/toeditaddress" class="active">· 收货地址</a></li>
 
     </ul>
   </div>
@@ -72,13 +72,18 @@
       <dl>
         <dt>当前地址：</dt>
 
-        <dd></dd>
+        <dd>
+          ${sessionScope.address.shippingAddress}
+        </dd>
 
       </dl>
     </div>
     <h3 class="common_title2">编辑地址</h3>
     <div class="site_con">
-      <form action="/user/toedit" method="post" id="userinfo_form">
+      <form action="/user/editaddress" method="post" id="userinfo_form">
+
+        <input type="hidden" name="token" value="${sessionScope.token}">
+
         <div class="form_group">
           <label>收件人：</label>
           <input type="text" name="shippingName" id="shippingName" value="">
@@ -95,6 +100,7 @@
           <label>手机：</label>
           <input type="phone" name="phone" id="phone" value="">
         </div>
+        <span id="msg" style="font-size: 12px;color: #ff0000"></span><br>
 
         <input type="button" value="提交" class="info_submit" id="commit">
       </form>
@@ -118,4 +124,41 @@
 </div>
 <!--底部 结束-->
 </body>
+<script type="text/javascript">
+//收获地址表单提交判空脚本
+//绑定点击事件
+  $("#commit").click(function () {
+    //获取收件人 详细地址 邮编 手机号
+    var shippingName = $("#shippingName").val();
+    var shippingAddress = $("#shippingAddress").val();
+    var zip = $("#zip").val();
+    var phone = $("#phone").val();
+    //定义一个判断为空的方法
+    function isEmpty(str) {
+      if (str == null || str.trim() == ""){
+        return true;
+      }else {
+        return false;
+      }
+    }
+    if (isEmpty(shippingName)) {
+      $("#msg").html("收件人不可为空");
+      return;
+    }
+    if (isEmpty(shippingAddress)) {
+      $("#msg").html("地址不可为空");
+      return;
+    }
+    if (isEmpty(zip)) {
+      $("#msg").html("邮编不可为空");
+      return;
+    }
+    if (isEmpty(phone)) {
+      $("#msg").html("电话不可为空");
+      return;
+    }
+//提交表单
+    $("#userinfo_form").submit();
+  })
+</script>
 </html>

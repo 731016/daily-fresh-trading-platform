@@ -8,6 +8,12 @@ public interface ShippingAddressService {
     //查询收货地址
     List<ShippingAddress> selectAll();
 
+    /**
+     * 查询单个收货地址
+     * @return
+     */
+    ShippingAddress selectOne(String shippingName);
+
     //添加收货地址
     boolean addAddress(ShippingAddress shippingAddress);
 

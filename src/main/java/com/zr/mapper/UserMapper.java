@@ -15,4 +15,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     Integer userInsert(User user);
+
+
 }

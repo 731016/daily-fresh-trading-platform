@@ -1,5 +1,6 @@
 package com.zr.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zr.mapper.ShippingAddressMapper;
 import com.zr.pojo.ShippingAddress;
 import com.zr.service.ShippingAddressService;
@@ -20,7 +21,7 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
 
     @Override
     public boolean addAddress(ShippingAddress shippingAddress) {
-        int i = mapper.updateById(shippingAddress);
+        int i = mapper.insert(shippingAddress);
         if (i>0){
             return true;
         }else {
@@ -45,4 +46,10 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
         return false;
     }
 
+    @Override
+    public ShippingAddress selectOne(String shippingName) {
+        QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
+        wrapper.eq("shippingName",shippingName);
+        return mapper.selectOne(wrapper);
+    }
 }

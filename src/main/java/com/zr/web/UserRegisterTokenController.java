@@ -2,8 +2,10 @@ package com.zr.web;
 
 import com.alibaba.fastjson.JSON;
 import com.zr.enums.UserState;
+import com.zr.pojo.ShippingAddress;
 import com.zr.pojo.User;
 import com.zr.result.Result;
+import com.zr.service.ShippingAddressService;
 import com.zr.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +21,8 @@ import java.io.IOException;
 public class UserRegisterTokenController {
     @Resource
     private UserService userService;
+    @Resource
+    private ShippingAddressService shippingAddressService;
 
     /**
      * 处理token 对比，在所有handle方法之前执行
@@ -70,6 +74,26 @@ public class UserRegisterTokenController {
         // 注册失败
         request.getSession().setAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
+    }
+    @RequestMapping("/user/editaddress")
+    public String editAddress(HttpServletRequest request,@ModelAttribute("shippingAddress")ShippingAddress shippingAddress){
+        System.out.println("进入地址提交");
+        boolean addressFlag = shippingAddressService.addAddress(shippingAddress);
+        // 先添加地址表
+        if(addressFlag){
+            // 返回地址实体类
+            ShippingAddress address = shippingAddressService.selectOne(shippingAddress.getShippingName());
+            // 收货地址id
+            Integer shippingId = address.getShippingId();
+            // 用户名
+            String account = String.valueOf(request.getSession().getAttribute("login"));
+            Integer update = userService.userUpdate(account, shippingId);
+            if(update>0){
+                // 设置session
+                request.getSession().setAttribute("address",address);
+            }
+        }
+        return "/user/address";
     }
 
 }

@@ -26,6 +26,10 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.sendRedirect("/user/forgetpwd.jsp");
             return false;
         }
+        if (uri.contains("/toeditaddress")){
+            response.sendRedirect("/user/address.jsp");
+            return false;
+        }
         return true;
     }
 

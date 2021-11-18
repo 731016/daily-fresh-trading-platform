@@ -99,4 +99,16 @@ public class UserServiceImpl implements UserService {
         mapper.updateById(user);
         return true;
     }
+
+    /**
+     * 更新收货地址编号
+     *
+     */
+    @Override
+    public Integer userUpdate(String account,Integer shippingId) {
+        User user = new User();
+        user.setAccount(account);
+        user.setShippingId(shippingId);
+        return mapper.updateById(user);
+    }
 }
