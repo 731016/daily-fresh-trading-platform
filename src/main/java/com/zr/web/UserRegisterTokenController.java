@@ -10,6 +10,9 @@ import com.zr.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,31 +70,33 @@ public class UserRegisterTokenController {
         Boolean register = userService.register(user);
         if (register) {
             // 设置 用户状态 - 注册成功
-            request.getSession().setAttribute("userState", UserState.getUserStateByValue(0));
+            request.setAttribute("userState", UserState.getUserStateByValue(0));
 
             return "/user/login";
         }
         // 注册失败
-        request.getSession().setAttribute("userState", UserState.getUserStateByValue(2));
+        request.setAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
     }
+
     @RequestMapping("/user/editaddress")
-    public String editAddress(HttpServletRequest request,@ModelAttribute("shippingAddress")ShippingAddress shippingAddress){
+    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
+    public String editAddress(HttpServletRequest request, @ModelAttribute("shippingAddress") ShippingAddress shippingAddress) {
         System.out.println("进入地址提交");
-        boolean addressFlag = shippingAddressService.addAddress(shippingAddress);
+        ShippingAddress alterAddress = shippingAddressService.addAddress(shippingAddress);
         // 先添加地址表
-        if(addressFlag){
-            // 返回地址实体类
-            ShippingAddress address = shippingAddressService.selectOne(shippingAddress.getShippingName());
+        if (alterAddress != null) {
             // 收货地址id
-            Integer shippingId = address.getShippingId();
+            Integer shippingId = alterAddress.getShippingId();
             // 用户名
             String account = String.valueOf(request.getSession().getAttribute("login"));
             Integer update = userService.userUpdate(account, shippingId);
-            if(update>0){
+            if (update > 0) {
                 // 设置session
-                request.getSession().setAttribute("address",address);
+                request.getSession().setAttribute("address", alterAddress.getShippingAddress());
             }
+        } else {
+            request.setAttribute("userState", UserState.getUserStateByValue(8));
         }
         return "/user/address";
     }

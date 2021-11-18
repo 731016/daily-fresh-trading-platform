@@ -5,6 +5,9 @@ import com.zr.mapper.ShippingAddressMapper;
 import com.zr.pojo.ShippingAddress;
 import com.zr.service.ShippingAddressService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,22 +23,20 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
-    public boolean addAddress(ShippingAddress shippingAddress) {
-        int i = mapper.insert(shippingAddress);
-        if (i>0){
-            return true;
-        }else {
-            return false;
-        }
+    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
+    public ShippingAddress addAddress(ShippingAddress shippingAddress) {
+        ShippingAddress address = mapper.insertAddress(shippingAddress);
+        System.out.println(address);
+        return address;
 
     }
 
     @Override
     public boolean delAddress(Integer shippingId) {
         int i = mapper.deleteById(shippingId);
-        if (i>0){
+        if (i > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
 
@@ -49,7 +50,7 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     @Override
     public ShippingAddress selectOne(String shippingName) {
         QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
-        wrapper.eq("shippingName",shippingName);
+        wrapper.eq("shipping_name", shippingName);
         return mapper.selectOne(wrapper);
     }
 }

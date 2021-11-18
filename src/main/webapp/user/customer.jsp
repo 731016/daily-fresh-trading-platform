@@ -59,7 +59,7 @@
     <ul>
       <li><a href="#" class="active">· 个人信息</a></li>
       <li><a href="${pageContext.request.contextPath}/user/order.jsp">· 全部订单</a></li>
-      <li><a href="${pageContext.request.contextPath}/user/address">· 收货地址</a></li>
+      <li><a href="${pageContext.request.contextPath}/user/toeditaddress">· 收货地址</a></li>
     </ul>
   </div>
 

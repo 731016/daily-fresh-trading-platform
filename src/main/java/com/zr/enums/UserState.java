@@ -12,7 +12,8 @@ public enum UserState {
     USER_RESET_FAIL("密码修改失败",5),
     USER_PWD_REPEAT("要修改的密码与原密码相同",6),
     USER_ACCOUNT_NOEXIST("用户名不存在",7),
-    ORDER_ADD_FAIL("下单失败",8);
+    ORDER_ADD_FAIL("下单失败",9),
+    ADD_ADDRESS_FAIL("地址添加不完整，添加失败",8);
 
     private String name;
     private int value;

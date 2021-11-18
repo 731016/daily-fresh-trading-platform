@@ -3,6 +3,7 @@ package com.zr.interceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 public class loginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals("rememberAccount")) {
+                request.getSession().setAttribute("rememberAccount", cookie.getName());
+            }
+        }
 //        Object login = request.getSession().getAttribute("login");
 //        if (login != null) {
 //            response.sendRedirect("/index.jsp");

@@ -67,11 +67,11 @@ public class UserController {
         if (login) {
             request.setAttribute("userState", UserState.getUserStateByValue(1));
             // 设置已登录的用户账号 session
-            request.setAttribute("login", account);
+            request.getSession().setAttribute("login", account);
             // 查询用户
             User user = userService.queryUser(account);
             // 存储session
-            request.setAttribute("user", user);
+            request.getSession().setAttribute("user", user);
             // 记住密码复选项 被选中
             if (StringUtils.equals(rememberAccount, "remember")) {
                 Cookie cookie = new Cookie("rememberAccount", account);
@@ -79,7 +79,7 @@ public class UserController {
             }
             return "/index";
         }
-        request.getSession().setAttribute("userState", UserState.getUserStateByValue(3));
+        request.setAttribute("userState", UserState.getUserStateByValue(3));
         return "/user/login";
     }
 

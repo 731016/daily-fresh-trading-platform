@@ -92,7 +92,7 @@
                     <input type="hidden" value="${userState.value}" id="msg">
 <%--                    <input type="hidden" name="token" value="${sessionScope.token}">--%>
 
-                    <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" <%--value="${cookie.get("rememberAccount")}"--%>>
+                    <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" value="${sessionScope.rememberAccount}">
                     <div class="user_error">输入错误</div>
                     <input type="password" name="pwd" id="password" class="pass_input" placeholder="请输入密码" value="">
                     <div class="pwd_error" style="display: none;">输入错误</div>

@@ -15,7 +15,7 @@ public interface ShippingAddressService {
     ShippingAddress selectOne(String shippingName);
 
     //添加收货地址
-    boolean addAddress(ShippingAddress shippingAddress);
+    ShippingAddress addAddress(ShippingAddress shippingAddress);
 
     //删除收货地址
     boolean delAddress(Integer shippingId);
