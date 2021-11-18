@@ -5,6 +5,7 @@ import com.zr.mapper.UserMapper;
 import com.zr.pojo.User;
 import com.zr.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
     public Boolean login(String account, String password) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         // 账户和密码查询，密码加密后比对
-        wrapper.eq("account",account);
+        wrapper.eq("account", account);
         wrapper.eq("pwd", DigestUtils.md5Hex(password));
         User user = mapper.selectOne(wrapper);
         // 查询出来的对象为空
@@ -82,5 +83,20 @@ public class UserServiceImpl implements UserService {
     public User queryUser(String account) {
         User user = mapper.selectById(account);
         return user;
+    }
+
+    /**
+     * 重置密码
+     *
+     * @param user
+     * @return
+     */
+    @Override
+    public Boolean resetPwd(User user) {
+        String newPwd = DigestUtils.md5Hex(user.getPwd());
+        //重新设置密码
+        user.setPwd(newPwd);
+        mapper.updateById(user);
+        return true;
     }
 }

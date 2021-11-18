@@ -7,7 +7,64 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/coco-message.js"></script>
   <script src="${pageContext.request.contextPath}/js/forgetpwd.js"></script>
+  <script>
+    $(function () {
+      function example(n, msg) {
+        let div = document.createElement("div");
+        switch (n) {
+          case 0:
+            cocoMessage.info(1000, "请输入验证码！", function () {
+
+            });
+            break;
+
+          case 1:
+            div.innerText = "验证码校验成功！";
+            cocoMessage.success(div);
+            break;
+
+          case 2:
+            cocoMessage.warning("每秒并发请求200次！,请求上限20w次！", 0);
+            break;
+
+          case 3:
+            // cocoMessage.error("验证码错误！请重新输入！", 1000);
+            cocoMessage.error(msg, 1000);
+            break;
+
+          case 4:
+            var closeMsg = cocoMessage.loading(true);
+            setTimeout(function () {
+              closeMsg();
+            }, 1000);
+            break;
+
+          case 5:
+            cocoMessage.destroyAll();
+            break;
+
+          default:
+            break;
+        }
+      }
+
+      let msg = $('#msg').val();
+      if (msg == 5) {
+        console.log("密码修改失败")
+        example(3,"密码修改失败");
+      }
+      if (msg ==6){
+        console.log("要修改的密码与原密码相同")
+        example(3,"要修改的密码与原密码相同");
+      }
+      if (msg == 7){
+        console.log("要修改的密码与原密码相同")
+        example(3,"用户名不存在");
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -69,8 +126,9 @@
       <div class="n_sub_con">
         <div class="n_r_con">
           <div class="n_reg_form clearfix">
-            <form id="reg_form" action="/user/forgetpwd" method="post">
+            <form id="reg_form" method="post" action="/user/forgetpwd">
               <input type="hidden" name="token" value="${sessionScope.token}">
+              <input type="hidden" value="${userState.value}" id="msg">
               <ul>
                 <li>
                   <label>用户名:</label>
@@ -84,7 +142,7 @@
                 </li>
                 <li>
                   <label>确认密码:</label>
-                  <input type="password" name="cpwd" id="cpwd">
+                  <input type="password" id="cpwd">
                   <span class="n_error_tip" id="cpwd_info">两次密码不一致</span>
                 </li>
                 <li class="n_reg_sub">

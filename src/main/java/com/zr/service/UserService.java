@@ -26,4 +26,11 @@ public interface UserService {
      * @return
      */
     User queryUser(String account);
+
+    /**
+     * 重置密码
+     * @param user
+     * @return
+     */
+    Boolean resetPwd(User user);
 }

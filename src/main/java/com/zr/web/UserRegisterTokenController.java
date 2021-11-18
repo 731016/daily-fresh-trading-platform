@@ -1,15 +1,19 @@
 package com.zr.web;
 
+import com.alibaba.fastjson.JSON;
 import com.zr.enums.UserState;
 import com.zr.pojo.User;
 import com.zr.result.Result;
 import com.zr.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Controller
 public class UserRegisterTokenController {
@@ -67,4 +71,5 @@ public class UserRegisterTokenController {
         request.getSession().setAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
     }
+
 }

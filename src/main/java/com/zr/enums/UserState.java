@@ -8,7 +8,10 @@ public enum UserState {
     LOGIN_SUCCESS("登陆成功", 1),
     REGISTER_FAIL("注册失败", 2),
     LOGIN_FAIL("登陆失败", 3),
-    REGISTER_FAIL_ACCOUNT_EXIST("用户已注册",4);
+    REGISTER_FAIL_ACCOUNT_EXIST("用户已注册",4),
+    USER_RESET_FAIL("密码修改失败",5),
+    USER_PWD_REPEAT("要修改的密码与原密码相同",6),
+    USER_ACCOUNT_NOEXIST("用户名不存在",7);
 
     private String name;
     private int value;
