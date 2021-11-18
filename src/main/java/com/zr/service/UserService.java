@@ -19,4 +19,11 @@ public interface UserService {
      * @return
      */
     Boolean registerAccExist(String account);
+
+    /**
+     * 查询用户
+     * @param account
+     * @return
+     */
+    User queryUser(String account);
 }

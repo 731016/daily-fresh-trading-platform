@@ -1,6 +1,7 @@
 package com.zr.web;
 
 import com.zr.enums.UserState;
+import com.zr.pojo.User;
 import com.zr.result.Result;
 import com.zr.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -66,6 +67,10 @@ public class UserController {
             request.getSession().setAttribute("userState", UserState.getUserStateByValue(1));
             // 设置已登录的用户账号 session
             request.getSession().setAttribute("login", account);
+            // 查询用户
+            User user = userService.queryUser(account);
+            // 存储session
+            request.getSession().setAttribute("user",user);
             // 记住密码复选项 被选中
             if (StringUtils.equals(rememberAccount, "remember")) {
                 Cookie cookie = new Cookie("rememberAccount", account);

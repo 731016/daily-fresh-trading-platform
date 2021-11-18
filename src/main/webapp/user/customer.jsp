@@ -67,8 +67,8 @@
     <div class="info_con clearfix">
       <h3 class="common_title2">基本信息</h3>
       <ul class="user_info_list">
-        <li><span>用户名：</span>Tom</li>
-        <li><span>邮　箱：</span>12345678@qq.com</li>
+        <li><span>用户名：</span>${user.username}</li>
+        <li><span>邮　箱：</span>${user.email}</li>
       </ul>
     </div>
 

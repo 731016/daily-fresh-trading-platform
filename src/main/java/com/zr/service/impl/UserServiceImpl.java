@@ -71,4 +71,16 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    /**
+     * 查询用户
+     *
+     * @param account
+     * @return
+     */
+    @Override
+    public User queryUser(String account) {
+        User user = mapper.selectById(account);
+        return user;
+    }
 }
