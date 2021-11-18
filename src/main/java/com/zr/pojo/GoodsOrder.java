@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class GoodsOrder {
     @TableId
     private String orderId;    //订单号
     private String account;    //账号

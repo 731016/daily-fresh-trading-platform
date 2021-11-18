@@ -1,7 +1,7 @@
 package com.zr.web;
 
 import com.zr.enums.UserState;
-import com.zr.pojo.Order;
+import com.zr.pojo.GoodsOrder;
 import com.zr.service.GoodsService;
 import com.zr.service.OrderService;
 import org.springframework.stereotype.Controller;
@@ -31,12 +31,12 @@ public class OrderController {
                            Model model,
                            @PathVariable Integer goodsId,
                            @PathVariable Integer goodsNumber) {
-        String login = request.getSession().getAttribute("login").toString();
+//        String login = request.getSession().getAttribute("login").toString();
         Date date = new Date();
         String orderId = UUID.randomUUID().toString().replace("-", "");
         Double price = goodsService.selectOne(goodsId).getPrice();
         Double totalPrice = price * goodsNumber;
-        Order order = new Order(orderId, "login", goodsId, goodsNumber, date, totalPrice);
+        GoodsOrder order = new GoodsOrder(orderId, "login", goodsId, goodsNumber, date, totalPrice);
         boolean b = orderService.addOrder(order);
         if(b){
            return "/user/order";

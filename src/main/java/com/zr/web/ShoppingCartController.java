@@ -34,6 +34,15 @@ public class ShoppingCartController {
         return "";
     }
 
-//    @PostMapping("/addShoppingCart/{goodsId}/{goods}")
-//    @ResponseBody
+    @PostMapping("/addShoppingCart/{goodsId}/{goodsNumber}")
+    @ResponseBody
+    public String addShoppingCart(HttpServletRequest request, @PathVariable("goodsId")Integer goodsId,@PathVariable("goodsNumber")Integer goodsNumber){
+        ShoppingCart shoppingCart = new ShoppingCart(null, "login", goodsId, goodsNumber);
+        boolean b = cartService.addCart(shoppingCart);
+        if (b) {
+            Integer cartCount = cartService.selectCountByAccount("login");
+            return cartCount.toString();
+        }
+        return "";
+    }
 }

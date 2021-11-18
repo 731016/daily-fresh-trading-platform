@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zr.mapper.OrderMapper;
 import com.zr.pojo.Goods;
-import com.zr.pojo.Order;
+import com.zr.pojo.GoodsOrder;
 import com.zr.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +19,17 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public PageInfo<Order> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
+    public PageInfo<GoodsOrder> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
 
         PageHelper.startPage(num, pageSize);
-        List<Order> productList = mapper.selectList(null);
-        PageInfo<Order> pageInfo = new PageInfo<>(productList, 3);
+        List<GoodsOrder> productList = mapper.selectList(null);
+        PageInfo<GoodsOrder> pageInfo = new PageInfo<>(productList, 3);
         return pageInfo;
     }
 
     @Override
-    public boolean addOrder(Order order) {
-        int i = mapper.updateById(order);
+    public boolean addOrder(GoodsOrder goodsOrder) {
+        int i = mapper.insert(goodsOrder);
         if (i>0){
             return true;
         }else {
