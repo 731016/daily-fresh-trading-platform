@@ -65,13 +65,13 @@ public class UserController {
     ) {
         Boolean login = userService.login(account, pwd);
         if (login) {
-            request.getSession().setAttribute("userState", UserState.getUserStateByValue(1));
+            request.setAttribute("userState", UserState.getUserStateByValue(1));
             // 设置已登录的用户账号 session
-            request.getSession().setAttribute("login", account);
+            request.setAttribute("login", account);
             // 查询用户
             User user = userService.queryUser(account);
             // 存储session
-            request.getSession().setAttribute("user", user);
+            request.setAttribute("user", user);
             // 记住密码复选项 被选中
             if (StringUtils.equals(rememberAccount, "remember")) {
                 Cookie cookie = new Cookie("rememberAccount", account);
