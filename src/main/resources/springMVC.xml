@@ -22,33 +22,38 @@
     <!--  开启SpringMVC框架的注解支持  -->
     <mvc:annotation-driven/>
 
-<!--      不拦截指定路径静态资源  -->
-<!--        <mvc:resources mapping="/js/**" location="/js"/>-->
-<!--        <mvc:resources mapping="/css/**" location="/bootstrap-4.6.0-dist"/>-->
-<!--        <mvc:resources mapping="/js/**" location="/bootstrap-4.6.0-dist"/>-->
+    <!--      不拦截指定路径静态资源  -->
+    <!--        <mvc:resources mapping="/js/**" location="/js"/>-->
+    <!--        <mvc:resources mapping="/css/**" location="/bootstrap-4.6.0-dist"/>-->
+    <!--        <mvc:resources mapping="/js/**" location="/bootstrap-4.6.0-dist"/>-->
 
     <!--  使用默认的servlet  -->
     <mvc:default-servlet-handler/>
 
     <!--  配置拦截器  -->
     <mvc:interceptors>
-<!--        <mvc:interceptor>-->
-            <!--     拦截指定范围的请求path="/文件名/**" 拦截所有请求path="/**"       -->
-<!--            <mvc:mapping path="/**"/>-->
-            <!--     指定范围内的请求不被拦截       -->
-<!--            <mvc:exclude-mapping path="/user/toRegister"/>-->
-<!--            <mvc:exclude-mapping path="/user/login"/>-->
-<!--            <bean class="com.zr.interceptor.loginInterceptor"/>-->
-<!--        </mvc:interceptor>-->
-<!--        进入 拦截/登录 页面 设置token -->
+        <!--        <mvc:interceptor>-->
+        <!--     拦截指定范围的请求path="/文件名/**" 拦截所有请求path="/**"       -->
+        <!--            <mvc:mapping path="/**"/>-->
+        <!--     指定范围内的请求不被拦截       -->
+        <!--            <mvc:exclude-mapping path="/user/toRegister"/>-->
+        <!--            <mvc:exclude-mapping path="/user/login"/>-->
+        <!--            <bean class="com.zr.interceptor.loginInterceptor"/>-->
+        <!--        </mvc:interceptor>-->
+        <!--        进入 拦截/登录 页面 设置token -->
         <mvc:interceptor>
             <mvc:mapping path="/user/toRegister"/>
             <bean class="com.zr.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
-<!--        <mvc:interceptor>-->
-<!--            <mvc:mapping path="/user/toLogin"/>-->
-<!--            <bean class="com.zr.interceptor.TokenInterceptor"/>-->
-<!--        </mvc:interceptor>-->
+        <mvc:interceptor>
+<!--            进入忘记密码页面之前-->
+            <mvc:mapping path="/user/toforgetpwd"/>
+            <bean class="com.zr.interceptor.TokenInterceptor"/>
+        </mvc:interceptor>
+        <!--        <mvc:interceptor>-->
+        <!--            <mvc:mapping path="/user/toLogin"/>-->
+        <!--            <bean class="com.zr.interceptor.TokenInterceptor"/>-->
+        <!--        </mvc:interceptor>-->
     </mvc:interceptors>
 
     <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->

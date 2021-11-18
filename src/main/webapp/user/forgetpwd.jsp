@@ -6,6 +6,8 @@
   <title>天天生鲜－忘记密码</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/forgetpwd.js"></script>
 </head>
 <body>
 
@@ -67,43 +69,26 @@
       <div class="n_sub_con">
         <div class="n_r_con">
           <div class="n_reg_form clearfix">
-            <form id="reg_form">
-              <input type="hidden" name="" value="">
+            <form id="reg_form" action="/user/forgetpwd" method="post">
+              <input type="hidden" name="token" value="${sessionScope.token}">
               <ul>
                 <li>
                   <label>用户名:</label>
-                  <input type="text" name="user_name" id="user_name">
-                  <span class="n_error_tip">提示信息</span>
-                </li>
-                <li class="n_yanzheng">
-                  <label>验证码:</label>
-                  <img src="../images/error.png" alt="captcha" class="captcha">
-                  <input id="id_captcha_0" name="captcha_0" type="hidden" value="">
-                  <input autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="id_captcha_1" name="captcha_1" type="text">
-
-                  <span class="n_error_tip" style="height:0;line-height:10px">提示信息</span>
-                  <a class="n_but_con">
-                    <span class="n_but1">获取邮箱</span>
-                    <span class="n_but2">验证码</span>
-                  </a>
-                </li>
-                <li>
-                  <label>邮箱验证:</label>
-                  <input type="text" name="email" id="email">
-                  <span class="n_error_tip">提示信息</span>
+                  <input type="text" name="account" id="user_name">
+                  <span class="n_error_tip" id="user_info">4到16位（字母，数字，下划线，减号）</span>
                 </li>
                 <li>
                   <label>密码:</label>
                   <input type="password" name="pwd" id="pwd">
-                  <span class="n_error_tip">提示信息</span>
+                  <span class="n_error_tip" id="pwd_info">密码至少包含 数字和英文，长度6-20</span>
                 </li>
                 <li>
                   <label>确认密码:</label>
                   <input type="password" name="cpwd" id="cpwd">
-                  <span class="n_error_tip">提示信息</span>
+                  <span class="n_error_tip" id="cpwd_info">两次密码不一致</span>
                 </li>
                 <li class="n_reg_sub">
-                  <input type="submit" value="提 交">
+                  <input type="button" value="提 交" id="commit">
                 </li>
               </ul>
               <p style="font-size: 16px;margin-bottom:20px">注意事项：如邮箱无法使用、请使用新邮箱发送账号密码至123456@163.com、审核通过后会及时邮件回复并更新您的邮箱信息</p>

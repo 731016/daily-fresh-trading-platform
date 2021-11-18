@@ -107,7 +107,7 @@
                     <div class="more_input clearfix">
                         <input type="checkbox" name="rememberAccount" id="" checked="checked" value="remember">
                         <label>记住用户名</label>
-                        <a href="/user/forgetpwd">忘记密码</a>
+                        <a href="/user/toforgetpwd">忘记密码</a>
                     </div>
                     <input type="button" name="" value="登录" class="input_submit" id="commit">
                 </form>

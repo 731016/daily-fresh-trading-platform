@@ -59,7 +59,7 @@ public class UserController {
                         HttpServletResponse response,
                         @RequestParam("account") String account,
                         @RequestParam("pwd") String pwd,
-                        @RequestParam(value = "rememberAccount",required = false) String rememberAccount
+                        @RequestParam(value = "rememberAccount", required = false) String rememberAccount
     ) {
         Boolean login = userService.login(account, pwd);
         if (login) {
@@ -77,8 +77,29 @@ public class UserController {
         return "/user/login";
     }
 
+    /**
+     * 用户注销
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("/user/exit")
     public String exit(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "/user/login";
+    }
+
+
+
+    /**
+     * 忘记密码，修改密码
+     * @param request
+     * @return
+     */
+    @RequestMapping("/user/forgetpwd")
+    public String forgetpwd(HttpServletRequest request) {
+
+        // 修改密码后，自动退出登录
         request.getSession().invalidate();
         return "/user/login";
     }
