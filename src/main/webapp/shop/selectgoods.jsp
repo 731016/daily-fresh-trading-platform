@@ -14,14 +14,14 @@
           $.ajax({
               dataType: "json",
               type: "post",
-              url: "${pageContext.request.contextPath}/shop/allGoods/${goodsName}/" + pageNum,
+              url: "${pageContext.request.contextPath}/shop/selectGoods/${goodsName}/" + pageNum,
               success: function (result) {
                   $("#ul_allGoods li").remove();
                   //遍历显示
                   $.each(result.resultPageInfoObject.list, function (i, g) {
                       $("#ul_allGoods").append('<li>\n' +
-                          '        <a href="shop_message.html"><img src="../images/allGoods/' + g.picture + '"></a>\n' +
-                          '        <h4><a href="http://ttsx.newzn.cn/goods/detail/45"> ' + g.goodsName + ' </a></h4>\n' +
+                          '        <a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"><img src="../images/allGoods/' + g.picture + '"></a>\n' +
+                          '        <h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"> ' + g.goodsName + ' </a></h4>\n' +
                           '        <div class="operate">\n' +
                           '          <span class="prize">￥' + g.price + '</span>\n' +
                           '          <span class="unit">' + g.price + '/' + g.unit + 'kg</span>\n' +
@@ -154,8 +154,8 @@
 <div class="search_bar clearfix">
   <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="../images/logo.png"></a>
   <div class="search_con fl">
-    <form method="get" action="" target="_blank">
-      <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+    <form method="post" action="${pageContext.request.contextPath}/shop/toSelectGoods" target="_blank">
+      <input type="text" class="input_text fl" name="goodsName" placeholder="搜索商品">
       <input type="submit" class="input_btn fr" value="搜索">
     </form>
   </div>
@@ -190,11 +190,7 @@
 <div class="breadcrumb">
   <a href="../index.jsp">全部分类</a>
   <span>&gt;</span>
-  <c:forEach items="${goodsType}" var="t">
-    <c:if test="${t.typeId==typeId}">
-      <span>${t.typeName}</span>
-    </c:if>
-  </c:forEach>
+  ${goodsName}
 </div>
 
 <div class="main_wrap clearfix">

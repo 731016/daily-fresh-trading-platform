@@ -117,7 +117,6 @@ public class GoodsController {
         List<GoodsType> goodsTypes = JSON.parseArray(s, GoodsType.class);
         model.addAttribute("goodsType", goodsTypes);
         model.addAttribute("hotGoods", hotGoods);
-        System.out.println(goodsName);
         model.addAttribute("goodsName", goodsName);
         return "/shop/selectgoods";
     }
@@ -131,7 +130,7 @@ public class GoodsController {
      */
     @PostMapping("/selectGoods/{goodsName}/{pageNum}")
     @ResponseBody
-    public Result<Goods> selectGoods(@PathVariable("pageNum") Integer pageNum, @PathVariable("goodsName") Integer goodsName) {
+    public Result<Goods> selectGoods(@PathVariable("pageNum") Integer pageNum, @PathVariable("goodsName") String goodsName) {
         Result<Goods> result = new Result<>();
         QueryWrapper<Goods> wrapper = new QueryWrapper<>();
         wrapper.like("goods_name", goodsName);
