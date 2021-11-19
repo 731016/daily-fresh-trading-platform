@@ -31,12 +31,12 @@ public class OrderController {
                            Model model,
                            @PathVariable Integer goodsId,
                            @PathVariable Integer goodsNumber) {
-//        String login = request.getSession().getAttribute("login").toString();
+        String login = request.getSession().getAttribute("login").toString();
         Date date = new Date();
         String orderId = UUID.randomUUID().toString().replace("-", "");
         Double price = goodsService.selectOne(goodsId).getPrice();
         Double totalPrice = price * goodsNumber;
-        GoodsOrder order = new GoodsOrder(orderId, "login", goodsId, goodsNumber, date, totalPrice);
+        GoodsOrder order = new GoodsOrder(orderId, login, goodsId, goodsNumber, date, totalPrice);
         boolean b = orderService.addOrder(order);
         if(b){
            return "/user/order";

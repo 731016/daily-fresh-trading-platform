@@ -89,10 +89,10 @@
               type: "post",
               url: "${pageContext.request.contextPath}/user/addShoppingCart/" + goodsId,
               success: function (cartCount) {
-                  if (cartCount != null) {
+                  if (cartCount!='-1') {
                       $("#show_count").html(cartCount);
-                  } else {
-                      $("#show_count").html("0");
+                  }else {
+                      location.href="${pageContext.request.contextPath}/user/login.jsp";
                   }
               },
               error: function (e) {
