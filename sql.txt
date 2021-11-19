@@ -25,7 +25,8 @@ drop table if exists history;
 create table history(
 	history_id int auto_increment primary key, #浏览记录编号
 	account varchar(50), #账号
-	goods_id int #商品编号
+	goods_id int, #商品编号
+	history_date, datetime  #浏览记录时间
 )default charset=utf8;
 
 -- 创建订单表
