@@ -12,7 +12,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ShippingAddressMapper extends BaseMapper<ShippingAddress> {
-//    @Insert("insert into shipping_address values (default ,#{shippingName},#{shippingAddress},#{zip},#{phone})")
-//    @Options(useGeneratedKeys = true,keyProperty = "shippingId",keyColumn = "shipping_id")
-    ShippingAddress insertAddress(ShippingAddress shippingAddress);
+
 }

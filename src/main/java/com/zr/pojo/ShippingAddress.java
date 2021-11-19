@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Options;
 public class ShippingAddress {
     @TableId
     private Integer shippingId;    //收货地址编号
+    private String account;        //账号名称
     private String shippingName;   //收件人姓名
     private String shippingAddress;//收货地址
     private Integer zip;           //邮政编码

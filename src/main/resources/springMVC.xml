@@ -50,10 +50,10 @@
             <mvc:mapping path="/user/toforgetpwd"/>
             <bean class="com.zr.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/user/toeditaddress"/>
-            <bean class="com.zr.interceptor.TokenInterceptor"/>
-        </mvc:interceptor>
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/user/toeditaddress"/>-->
+<!--            <bean class="com.zr.interceptor.TokenInterceptor"/>-->
+<!--        </mvc:interceptor>-->
 
 
         <!--        <mvc:interceptor>-->

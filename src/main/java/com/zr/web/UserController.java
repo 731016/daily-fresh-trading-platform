@@ -2,12 +2,17 @@ package com.zr.web;
 
 import com.alibaba.fastjson.JSON;
 import com.zr.enums.UserState;
+import com.zr.pojo.ShippingAddress;
 import com.zr.pojo.User;
 import com.zr.result.Result;
+import com.zr.service.ShippingAddressService;
 import com.zr.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HandlerAdapter;
@@ -23,6 +28,9 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private ShippingAddressService shippingAddressService;
 
     /**
      * 查询账户是否已注册
@@ -43,8 +51,21 @@ public class UserController {
         return result;
     }
 
+    /**
+     * 记住用户名操作,获取cookie信息，存在session
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("/user/toLogin")
-    public String toLogin() {
+    public String toLogin(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (StringUtils.equals(cookie.getName(), "rememberAccount")) {
+                System.out.println(cookie.getName());
+                request.getSession().setAttribute("rememberAccount", cookie.getValue());
+            }
+        }
         return "/user/login";
     }
 
@@ -72,7 +93,9 @@ public class UserController {
             User user = userService.queryUser(account);
             // 存储session
             request.getSession().setAttribute("user", user);
+
             // 记住密码复选项 被选中
+            System.out.println(rememberAccount);
             if (StringUtils.equals(rememberAccount, "remember")) {
                 Cookie cookie = new Cookie("rememberAccount", account);
                 response.addCookie(cookie);
@@ -123,9 +146,60 @@ public class UserController {
                 request.setAttribute("userState", UserState.getUserStateByValue(5));
             }
             //用户名对应的账号信息不存在
-        }else {
+        } else {
             request.setAttribute("userState", UserState.getUserStateByValue(7));
         }
         return "/user/forgetpwd";
+    }
+
+    private void showAddress(HttpServletRequest request) {
+        ShippingAddress address = shippingAddressService.selectOne(String.valueOf(request.getSession().getAttribute("login")));
+        request.getSession().setAttribute("address", address.getShippingAddress());
+    }
+
+    /**
+     * 进入修改收货地址页面，设置已经存在的收货地址session
+     *
+     * @return
+     */
+    @RequestMapping("/user/toeditaddress")
+    public String toEditAddress(HttpServletRequest request) {
+        // 获取已登录session的用户名查询收货地址
+        showAddress(request);
+        return "/user/address";
+    }
+
+    /**
+     * 收货地址修改
+     *
+     * @param request
+     * @param shippingAddress
+     * @return
+     */
+    @RequestMapping("/user/editaddress")
+    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
+    public String editAddress(HttpServletRequest request, @ModelAttribute("shippingAddress") ShippingAddress shippingAddress) {
+        System.out.println("进入地址提交");
+        // 用户名
+        String loginAccount = String.valueOf(request.getSession().getAttribute("login"));
+        shippingAddress.setAccount(loginAccount);
+        System.out.println(shippingAddress);
+        // 添加地址
+        boolean addressFlag = shippingAddressService.addAddress(shippingAddress);
+        if (addressFlag) {
+            // 收货地址id,自动生成的主键
+            ShippingAddress address = shippingAddressService.selectOne(loginAccount);
+            // 插入成功
+            if (address != null) {
+                // 用户名插入地址表的主键
+                userService.userUpdate(loginAccount, address.getShippingId());
+                // 设置地址session
+                showAddress(request);
+                request.setAttribute("userState", UserState.getUserStateByValue(9));
+            }
+        } else {
+            request.setAttribute("userState", UserState.getUserStateByValue(8));
+        }
+        return "/user/address";
     }
 }

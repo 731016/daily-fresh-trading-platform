@@ -24,11 +24,22 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
 
     @Override
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
-    public ShippingAddress addAddress(ShippingAddress shippingAddress) {
-        ShippingAddress address = mapper.insertAddress(shippingAddress);
-        System.out.println(address);
-        return address;
-
+    public boolean addAddress(ShippingAddress shippingAddress) {
+        int insertFlag = 0;
+        ShippingAddress address = selectOne(shippingAddress.getAccount());
+        // 不存在插入数据
+        if (address == null){
+            insertFlag = mapper.insert(shippingAddress);
+        }else{
+            // 存在update数据
+            QueryWrapper<ShippingAddress> qw = new QueryWrapper<>();
+            qw.eq("account",shippingAddress.getAccount());
+            insertFlag = mapper.update(shippingAddress,qw);
+        }
+        if (insertFlag > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -48,9 +59,10 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
-    public ShippingAddress selectOne(String shippingName) {
+    public ShippingAddress selectOne(String account) {
         QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
-        wrapper.eq("shipping_name", shippingName);
+        wrapper.eq("account", account);
         return mapper.selectOne(wrapper);
     }
+
 }

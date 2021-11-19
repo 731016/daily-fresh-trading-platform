@@ -79,26 +79,6 @@ public class UserRegisterTokenController {
         return "/user/register";
     }
 
-    @RequestMapping("/user/editaddress")
-    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
-    public String editAddress(HttpServletRequest request, @ModelAttribute("shippingAddress") ShippingAddress shippingAddress) {
-        System.out.println("进入地址提交");
-        ShippingAddress alterAddress = shippingAddressService.addAddress(shippingAddress);
-        // 先添加地址表
-        if (alterAddress != null) {
-            // 收货地址id
-            Integer shippingId = alterAddress.getShippingId();
-            // 用户名
-            String account = String.valueOf(request.getSession().getAttribute("login"));
-            Integer update = userService.userUpdate(account, shippingId);
-            if (update > 0) {
-                // 设置session
-                request.getSession().setAttribute("address", alterAddress.getShippingAddress());
-            }
-        } else {
-            request.setAttribute("userState", UserState.getUserStateByValue(8));
-        }
-        return "/user/address";
-    }
+
 
 }
