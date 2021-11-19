@@ -8,6 +8,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/slide.js"></script>
+
   <script>
       $(function () {
           $.ajax({

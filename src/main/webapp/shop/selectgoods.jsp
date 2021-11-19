@@ -6,6 +6,7 @@
   <title>天天生鲜－商品列表</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/coco-message.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script>
       let pageNum = 1;
@@ -86,7 +87,7 @@
           $.ajax({
               dataType: "json",
               type: "post",
-              url: "${pageContext.request.contextPath}/user/addShoppingCart/"+ goodsId,
+              url: "${pageContext.request.contextPath}/user/addShoppingCart/" + goodsId,
               success: function (cartCount) {
                   if (cartCount != null) {
                       $("#show_count").html(cartCount);
@@ -202,7 +203,9 @@
           <li>
             <a href="${pageContext.request.contextPath}/shop/goodsDetailed/${g.typeId}/${g.goodsId}"><img
                     src="${pageContext.request.contextPath}/images/allGoods/${g.picture}"></a>
-            <h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/${g.typeId}/${g.goodsId}"> ${g.goodsName} </a></h4>
+            <h4>
+              <a href="${pageContext.request.contextPath}/shop/goodsDetailed/${g.typeId}/${g.goodsId}"> ${g.goodsName} </a>
+            </h4>
             <div class="prize">￥${g.price}</div>
           </li>
         </c:forEach>

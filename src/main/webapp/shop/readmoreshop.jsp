@@ -7,7 +7,8 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-  <script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/coco-message.js"></script>
+  <script >
       let pageNum = 1;
 
       function selectPage() {
