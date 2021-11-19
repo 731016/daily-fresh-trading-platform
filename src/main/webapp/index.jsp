@@ -109,8 +109,8 @@
 <div class="search_bar clearfix">
   <a href="#" class="logo fl"><img src="images/logo.png"></a>
   <div class="search_con fl">
-    <form method="get" action="" target="_blank">
-      <input type="text" class="input_text fl" name="" placeholder="搜索商品">
+    <form method="post" action="${pageContext.request.contextPath}/shop/toSelectGoods" target="_blank">
+      <input type="text" class="input_text fl" name="goodsName" placeholder="搜索商品">
       <input type="submit" class="input_btn fr" value="搜索">
     </form>
   </div>

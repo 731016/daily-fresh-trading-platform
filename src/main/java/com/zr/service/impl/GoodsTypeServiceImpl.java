@@ -18,6 +18,12 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     @Resource
     RedisTemplate<String, String> redisTemplate;
 
+
+    /**
+     * 查询所有商品类型，存入缓存
+     *
+     * @return
+     */
     @Override
     public String selectAllRedis() {
         String strType = redisTemplate.opsForValue().get("goodsType");

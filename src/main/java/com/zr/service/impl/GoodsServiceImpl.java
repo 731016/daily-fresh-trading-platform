@@ -16,6 +16,14 @@ public class GoodsServiceImpl implements GoodsService {
     @Resource
     private GoodsMapper mapper;
 
+    /**
+     * 查询该类型所有商品(分页)
+     *
+     * @param num
+     * @param pageSize
+     * @param wrapper
+     * @return
+     */
     @Override
     public PageInfo<Goods> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
         PageHelper.startPage(num, pageSize);
@@ -24,6 +32,13 @@ public class GoodsServiceImpl implements GoodsService {
         return pageInfo;
     }
 
+    /**
+     * 查询该类型销量排名前多少的商品
+     *
+     * @param typeId
+     * @param goodsNum
+     * @return
+     */
     @Override
     public List<Goods> selectSortSalesByType(Integer typeId, Integer goodsNum) {
         QueryWrapper<Goods> wrapper = new QueryWrapper<>();
@@ -35,10 +50,30 @@ public class GoodsServiceImpl implements GoodsService {
         return goods.subList(0, goodsNum);
     }
 
+
+    /**
+     * 查询销量排名前多少的商品
+     *
+     * @param goodsNum
+     * @return
+     */
+    @Override
+    public List<Goods> selectSortSalesByType(Integer goodsNum) {
+        List<Goods> goods = mapper.selectList(null);
+        if (goods.size() <= goodsNum) {
+            return goods;
+        }
+        return goods.subList(0, goodsNum);
+    }
+
+    /**
+     * 查询单个商品
+     *
+     * @param goodsId
+     * @return
+     */
     @Override
     public Goods selectOne(Integer goodsId) {
         return mapper.selectById(goodsId);
     }
-
-
 }

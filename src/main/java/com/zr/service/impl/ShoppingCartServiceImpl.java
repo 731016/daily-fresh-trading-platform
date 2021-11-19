@@ -57,12 +57,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         } else {
             return false;
         }
-
     }
 
     @Override
     public ShoppingCart selectOne(ShoppingCart shoppingCart) {
-        shoppingCart.setAccount("admin");
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
         wrapper.eq("account", shoppingCart.getAccount()).eq("goods_id", shoppingCart.getGoodsId());
         return mapper.selectOne(wrapper);

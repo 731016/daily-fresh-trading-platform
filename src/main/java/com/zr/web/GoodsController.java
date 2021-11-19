@@ -103,4 +103,39 @@ public class GoodsController {
         model.addAttribute("hotGoods", hotGoods);
         return "/shop/shop_message";
     }
+
+    /**
+     * 商品查询界面中转页面
+     *
+     * @param goodsName
+     * @return
+     */
+    @PostMapping("/toSelectGoods")
+    public String toSelectGoods(String goodsName, Model model) {
+        List<Goods> hotGoods = service.selectSortSalesByType(2);
+        String s = typeService.selectAllRedis();
+        List<GoodsType> goodsTypes = JSON.parseArray(s, GoodsType.class);
+        model.addAttribute("goodsType", goodsTypes);
+        model.addAttribute("hotGoods", hotGoods);
+        System.out.println(goodsName);
+        model.addAttribute("goodsName", goodsName);
+        return "/shop/selectgoods";
+    }
+
+    /**
+     * 商品查询显示
+     *
+     * @param pageNum
+     * @param goodsName
+     * @return
+     */
+    @PostMapping("/selectGoods/{goodsName}/{pageNum}")
+    @ResponseBody
+    public Result<Goods> selectGoods(@PathVariable("pageNum") Integer pageNum, @PathVariable("goodsName") Integer goodsName) {
+        Result<Goods> result = new Result<>();
+        QueryWrapper<Goods> wrapper = new QueryWrapper<>();
+        wrapper.like("goods_name", goodsName);
+        result.setResultPageInfoObject(service.selectPage(pageNum, 2, wrapper));
+        return result;
+    }
 }

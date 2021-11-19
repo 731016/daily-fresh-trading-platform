@@ -30,9 +30,9 @@ create table history(
 
 -- 创建订单表
 
-drop table if EXISTS `order`;
-create table `order`(
-	`order` varchar(255), #订单编号
+drop table if EXISTS goods_order;
+create table goods_order(
+	order_id varchar(255), #订单编号
 	account varchar(50), #账号
 	goods_id int, #商品编号
 	goods_number int, #购物车商品数量
@@ -55,9 +55,9 @@ create table goods(
 	unit double(16,2) #单位
 )default charset=utf8;
 
--- 创建购物车表sopping_cart
-drop table if EXISTS sopping_cart;
-create table sopping_cart(
+-- 创建购物车表shopping_cart
+drop table if EXISTS shopping_cart;
+create table shopping_cart(
 cart_id int auto_increment primary key, #购物车编号
 account varchar(50), #账号
 goods_id int, #商品编号
