@@ -61,6 +61,47 @@ $(function () {
         return "rgb(" + r + "," + g + "," + b + ")";
     }
 
+    function example(n) {
+        let div = document.createElement("div");
+        switch (n) {
+            case 0:
+                cocoMessage.info(1000, "请输入验证码！", function () {
+
+                });
+                break;
+
+            case 1:
+                div.innerText = "验证码校验成功！";
+                cocoMessage.success(div);
+                break;
+
+            case 2:
+                cocoMessage.warning("每秒并发请求200次！,请求上限20w次！", 0);
+                break;
+
+            case 3:
+                // cocoMessage.error("验证码错误！请重新输入！", 1000);
+                cocoMessage.error("登陆失败！", 1000);
+                break;
+
+            case 4:
+                var closeMsg = cocoMessage.loading(true);
+                setTimeout(function () {
+                    closeMsg();
+                }, 1000);
+                break;
+
+            case 5:
+                cocoMessage.destroyAll();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+
     $("#canvas").on('click', function () {
         draw(show_num);
     });
@@ -138,6 +179,7 @@ $(function () {
         captcha();
         if (error_name || error_pwd || error_captcha) {
             console.log(' 验证失败-不提交')
+            example(3,"验证失败！")
             draw(show_num);
             return false;
         } else {
@@ -146,5 +188,11 @@ $(function () {
         }
     });
 
+
+    let msg = $('#msg').val();
+    if (msg == 3) {
+        console.log("登陆失败")
+        example(3);
+    }
 });
 
