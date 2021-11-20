@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/coco-message.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/customer.js"></script>
 </head>
 <body>
@@ -78,7 +78,7 @@
 
     <h3 class="common_title2">最近浏览</h3>
     <div class="has_view_list">
-      <ul class="goods_type_list clearfix">
+      <ul class="goods_type_list clearfix" id="history_ul">
 
 <%--        <li>--%>
 <%--          <a href="../good/shop_message.jsp"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>--%>

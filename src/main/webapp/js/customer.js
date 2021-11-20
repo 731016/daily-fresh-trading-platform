@@ -38,11 +38,45 @@ $(function () {
                 break;
         }
     }
-    axios.post({
-        url: '/user/historys',
+
+    $.ajax({
+        url: '/user/history',
+        data: {
+            flag: '成功'
+        },
+        method: 'post',
+        success: function (data) {
+            if (data.resultListObject != null) {
+                $.each(data.resultListObject, function (i, g) {
+                    let $li = $('li');
+                    $li.append('<a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' +
+                        '<img src="images/allGoods/' + g.picture + '"></a>' +
+                        '<h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">大兴大棚草莓</a></h4>' +
+                        '<div class="operate">' +
+                        '<span class="prize">' + g.price + '</span>' +
+                        '<span class="unit">' + g.price + '/' + g.unit + '</span>' +
+                        '<a href="#" class="add_goods" title="加入购物车"></a>' +
+                        '</div>');
+                    $('#history_ul').append($li);
+                });
+            }else{
+                $('#history_ul').append($('<li>暂无数据！</li>'));
+            }
+        },
+        error: function (response) {
+            $('body').html(response.responseText);
+        }
+    })
+    /*axios.request({
+        baseURI: '/localhost:8080',
+        url: '/user/history',
+        /!*data :{
+            flag:'成功'
+        },*!/
         method: 'post',
         timeout: 5000, // 超时时间
         responseType: 'json',
+        responseEncoding: 'utf8'
     }).then(function (response) {
         //响应信息
         // response.resultListObject
@@ -62,5 +96,5 @@ $(function () {
         // example(3, error.data)
         console.log(error)
         example(3, "请求失败！")
-    });
+    });*/
 });
