@@ -101,6 +101,18 @@
                   }
               })
           })
+
+          $('#jiahao').mousedown(function () {
+              var num = $('#shuliang').val();
+              if ($('#shuliang').val() < ${}) {
+                  $('#shuliang').val(num++);
+              }
+              var num1 = parseInt($('#shuliang').val());
+              var num2 = parseFloat($('#danjia').html());
+              $('#zongjia').html(function () {
+                  return ((num1 * 100) * (num2 * 100) / 10000).toFixed(2);
+              });
+          });
       })
   </script>
 </head>
@@ -129,7 +141,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>

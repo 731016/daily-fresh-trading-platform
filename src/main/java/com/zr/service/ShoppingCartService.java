@@ -1,5 +1,6 @@
 package com.zr.service;
 
+import com.zr.pojo.CartVo;
 import com.zr.pojo.ShoppingCart;
 
 import java.util.List;
@@ -45,4 +46,12 @@ public interface ShoppingCartService {
      * @return
      */
     ShoppingCart selectOne(ShoppingCart shoppingCart);
+
+    /**
+     * 查找购物车列表
+     *
+     * @param account
+     * @return
+     */
+    List<CartVo> showCart(String account);
 }

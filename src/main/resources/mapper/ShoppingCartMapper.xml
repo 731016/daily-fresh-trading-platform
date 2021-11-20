@@ -3,4 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zr.mapper.ShoppingCartMapper">
+    <resultMap id="cart_vo" type="CartVo">
+        <id column="cart_id" property="cartId"/>
+        <result column="account" property="account"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_number" property="goodsNumber"/>
+        <association property="goods" javaType="com.zr.pojo.Goods">
+            <id column="goods_id" property="goodsId"/>
+            <result column="goods_name" property="goodsName"/>
+            <result column="goods_describe" property="goodsDescribe"/>
+            <result column="inventory" property="inventory"/>
+            <result column="price" property="price"/>
+            <result column="type_id" property="typeId"/>
+            <result column="sales" property="sales"/>
+            <result column="picture" property="picture"/>
+            <result column="origin_place" property="originPlace"/>
+            <result column="unit" property="unit"/>
+        </association>
+    </resultMap>
+
+    <select id="showCart" resultMap="cart_vo" parameterType="java.lang.String">
+        select * from shopping_cart c inner join goods g on c.goods_id = g.goods_id
+        <where>
+            c.account = #{account}
+        </where>
+    </select>
 </mapper>

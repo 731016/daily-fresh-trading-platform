@@ -2,6 +2,7 @@ package com.zr.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zr.mapper.ShoppingCartMapper;
+import com.zr.pojo.CartVo;
 import com.zr.pojo.ShoppingCart;
 import com.zr.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public Integer selectCountByAccount(String account) {
-        QueryWrapper<ShoppingCart> wrapper=new QueryWrapper<>();
+        QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
         wrapper.eq("account", account);
         int i = Math.toIntExact(mapper.selectCount(wrapper));
         return i;
@@ -64,5 +65,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
         wrapper.eq("account", shoppingCart.getAccount()).eq("goods_id", shoppingCart.getGoodsId());
         return mapper.selectOne(wrapper);
+    }
+
+    /**
+     * 查找购物车列表
+     *
+     * @param account
+     * @return
+     */
+    @Override
+    public List<CartVo> showCart(String account) {
+        return mapper.showCart(account);
     }
 }

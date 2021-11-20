@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ShoppingCart {
     @TableId
-    private Integer cartId;    //购物车编号
-    private String account;    //账号
-    private Integer goodsId;     //商品id（用逗号隔开的字符串）
+    private Integer cartId;     //购物车编号
+    private String account;     //账号
+    private Integer goodsId;    //商品id
     private Integer goodsNumber;//商品数量
 }

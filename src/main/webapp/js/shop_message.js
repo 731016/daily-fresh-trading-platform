@@ -22,17 +22,7 @@ $('#add_cart').click(function () {
 /**add_jump  结束*/
 
 
-$('#jiahao').mousedown(function () {
-    var num = $('#shuliang').val();
-    if ($('#shuliang').val() < 994) {
-        $('#shuliang').val(num++);
-    }
-    var num1 = parseInt($('#shuliang').val());
-    var num2 = parseFloat($('#danjia').html());
-    $('#zongjia').html(function () {
-        return ((num1 * 100) * (num2 * 100) / 10000).toFixed(2);
-    });
-});
+
 
 $('#jianhao').mousedown(function () {
     var num = $('#shuliang').val();

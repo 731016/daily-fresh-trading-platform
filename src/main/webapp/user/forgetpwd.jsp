@@ -95,7 +95,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>

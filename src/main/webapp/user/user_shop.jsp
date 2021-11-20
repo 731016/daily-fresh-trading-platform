@@ -39,7 +39,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
@@ -68,25 +68,27 @@
   <li class="col06">操作</li>
 </ul>
 
+<c:forEach items="${cartVos}" var="c">
+  <ul class="cart_list_td clearfix" id="${c.goodsId}">
+    <li class="col01"><input type="checkbox" name="" checked=""></li>
+    <li class="col02"><img src="../images/allGoods/${c.goods.picture}}"></li>
+    <li class="col03">${c.goods.goodsName}<br><em>${c.goods.price}元/${}kg</em></li>
+    <li class="col04">1.0kg</li>
+    <li class="col05">98.00元</li>
+    <li class="col06">
+      <div class="num_add">
+        <a href="javascript:;" class="add fl">+</a>
+        <input type="text" class="num_show fl" value="1">
+        <a href="javascript:;" class="minus fl">-</a>
+        <span class="kucun" style="display: none">978</span>
+        <span class="goodsid" style="display: none">44</span>
+      </div>
+    </li>
+    <li class="col07">98.00元</li>
+    <li class="col08"><a href="#">删除</a></li>
+  </ul>
+</c:forEach>
 
-<ul class="cart_list_td clearfix" id="232">
-  <li class="col01"><input type="checkbox" name="" checked=""></li>
-  <li class="col02"><img src="../images/所有商品/5b4871e6N072f0d74.jpg"></li>
-  <li class="col03">寻天果蔬 泰国山竹水果 京东生鲜 5A级 热带水果 2.5k<br><em>98.00元/1.0kg</em></li>
-  <li class="col04">1.0kg</li>
-  <li class="col05">98.00元</li>
-  <li class="col06">
-    <div class="num_add">
-      <a href="javascript:;" class="add fl">+</a>
-      <input type="text" class="num_show fl" value="1">
-      <a href="javascript:;" class="minus fl">-</a>
-      <span class="kucun" style="display: none">978</span>
-      <span class="goodsid" style="display: none">44</span>
-    </div>
-  </li>
-  <li class="col07">98.00元</li>
-  <li class="col08"><a href="#">删除</a></li>
-</ul>
 
 <ul class="cart_list_td clearfix" id="233">
   <li class="col01"><input type="checkbox" name="" checked=""></li>
