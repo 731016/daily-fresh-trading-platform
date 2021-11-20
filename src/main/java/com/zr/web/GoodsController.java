@@ -4,15 +4,22 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsType;
+import com.zr.pojo.History;
 import com.zr.result.Result;
 import com.zr.service.GoodsService;
 import com.zr.service.GoodsTypeService;
+import com.zr.service.HistoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/shop")
@@ -23,6 +30,8 @@ public class GoodsController {
     @Resource
     private GoodsTypeService typeService;
 
+    @Resource
+    private HistoryService historyService;
     /**
      * 主页面异步获取商品类别
      *
@@ -99,7 +108,9 @@ public class GoodsController {
          * 更新浏览记录
          */
         //-------------------------------START------------------------
-
+        History history = historyService.queryOne(goodsId);
+        history.setHistoryDate(new Date());
+        historyService.addHistory(history);
         //-------------------------------END------------------------
         Goods goods = service.selectOne(goodsId);
         List<Goods> hotGoods = service.selectSortSalesByType(typeId, 2);
@@ -146,6 +157,35 @@ public class GoodsController {
             wrapper.like("goods_name", goodsName);
         }
         result.setResultPageInfoObject(service.selectPage(pageNum, 2, wrapper));
+        return result;
+    }
+
+    /**
+     * 查询符合条件的浏览记录后，根据id查询商品信息
+     * @param request
+     * @return
+     */
+    @PostMapping("/user/historys")
+    @ResponseBody
+    public Result<Goods> queayGoodsHistoryLimit5(HttpServletRequest request){
+        // 结果集合
+        Result<Goods> result = new Result<>();
+        // 查询已登录的用户的所有浏览记录
+        List<History> histories = historyService.selectPage(String.valueOf(request.getSession().getAttribute("login")));
+        List<Integer> goodsIdList = new ArrayList<>();
+        // 集合转流
+        // 对日期排序，降序排序
+        // 获取商品id
+        // 限制5个
+        // 收集所有的值
+        goodsIdList = histories.stream()
+                .sorted(Comparator.comparing(History ::getHistoryDate).reversed())
+                .map(History::getGoodsId)
+                .limit(5)
+                .collect(Collectors.toList());
+        // 为Integer类型的list集合
+        List<Goods> goods = service.selectlimit5ListGoods(goodsIdList);
+        result.setResultListObject(goods);
         return result;
     }
 }

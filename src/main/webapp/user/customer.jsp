@@ -6,6 +6,10 @@
   <title>天天生鲜－用户中心</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/coco-message.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/customer.js"></script>
 </head>
 <body>
 <!--头部 开始-->
@@ -75,15 +79,17 @@
     <h3 class="common_title2">最近浏览</h3>
     <div class="has_view_list">
       <ul class="goods_type_list clearfix">
-        <li>
-          <a href="../good/shop_message.jsp"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>
-          <h4><a href="../good/shop_message.jsp">大兴大棚草莓</a></h4>
-          <div class="operate">
-            <span class="prize">￥33.90</span>
-            <span class="unit">33.90/1.94kg</span>
-            <a href="#" class="add_goods" title="加入购物车"></a>
-          </div>
-        </li>
+
+<%--        <li>--%>
+<%--          <a href="../good/shop_message.jsp"><img src="../images/所有商品/57ab290aN34f76b37.jpg"></a>--%>
+<%--          <h4><a href="../good/shop_message.jsp">大兴大棚草莓</a></h4>--%>
+<%--          <div class="operate">--%>
+<%--            <span class="prize">￥33.90</span>--%>
+<%--            <span class="unit">33.90/1.94kg</span>--%>
+<%--            <a href="#" class="add_goods" title="加入购物车"></a>--%>
+<%--          </div>--%>
+<%--        </li>--%>
+
       </ul>
     </div>
   </div>

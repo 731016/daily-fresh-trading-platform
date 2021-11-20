@@ -42,4 +42,11 @@ public interface GoodsService {
      * @return
      */
     Goods selectOne(Integer goodsId);
+
+    /**
+     * 查询集合里面对应的商品
+     * @param list
+     * @return
+     */
+    List<Goods> selectlimit5ListGoods(List<Integer> list);
 }

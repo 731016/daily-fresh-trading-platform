@@ -95,7 +95,7 @@
 
       <div class="user_link fl">
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/toCustomer">用户中心</a>
+        <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
         <span>|</span>

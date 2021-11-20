@@ -76,4 +76,15 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods selectOne(Integer goodsId) {
         return mapper.selectById(goodsId);
     }
+
+    /**
+     * 查询集合里面对应的商品
+     *
+     * @param list
+     * @return
+     */
+    @Override
+    public List<Goods> selectlimit5ListGoods(List<Integer> list) {
+        return mapper.selectBatchIds(list);
+    }
 }
