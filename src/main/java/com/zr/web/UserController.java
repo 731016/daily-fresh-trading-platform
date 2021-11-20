@@ -58,14 +58,16 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user/toLogin")
-    public String toLogin(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (StringUtils.equals(cookie.getName(), "rememberAccount")) {
-                System.out.println(cookie.getName());
-                request.getSession().setAttribute("rememberAccount", cookie.getValue());
-            }
-        }
+    public String toLogin(HttpServletRequest request,@CookieValue(value = "rememberAccount",required = false) String rememberAccount) {
+//        Cookie[] cookies = request.getCookies();
+//        for (Cookie cookie : cookies) {
+//            if (StringUtils.equals(cookie.getName(), "rememberAccount")) {
+//                System.out.println(cookie.getName());
+//                request.getSession().setAttribute("rememberAccount", cookie.getValue());
+//            }
+//        }
+        System.out.println("cookie:"+rememberAccount);
+        request.getSession().setAttribute("rememberAccount", rememberAccount);
         return "/user/login";
     }
 
@@ -115,7 +117,7 @@ public class UserController {
     @RequestMapping("/user/exit")
     public String exit(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "/user/login";
+        return "redirect:/user/toLogin";
     }
 
     /**

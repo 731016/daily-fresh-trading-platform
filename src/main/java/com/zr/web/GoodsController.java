@@ -95,6 +95,12 @@ public class GoodsController {
      */
     @GetMapping("/goodsDetailed/{typeId}/{goodsId}")
     public String goodsDetailed(@PathVariable("typeId") Integer typeId, @PathVariable("goodsId") Integer goodsId, Model model) {
+        /**
+         * 更新浏览记录
+         */
+        //-------------------------------START------------------------
+
+        //-------------------------------END------------------------
         Goods goods = service.selectOne(goodsId);
         List<Goods> hotGoods = service.selectSortSalesByType(typeId, 2);
         GoodsType goodsType = typeService.selectOne(typeId);
