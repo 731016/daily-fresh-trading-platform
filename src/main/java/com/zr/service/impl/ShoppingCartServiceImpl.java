@@ -65,5 +65,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         wrapper.eq("account", shoppingCart.getAccount()).eq("goods_id", shoppingCart.getGoodsId());
         return mapper.selectOne(wrapper);
     }
-
 }

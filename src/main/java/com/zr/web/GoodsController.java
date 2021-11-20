@@ -104,7 +104,10 @@ public class GoodsController {
         Goods goods = service.selectOne(goodsId);
         List<Goods> hotGoods = service.selectSortSalesByType(typeId, 2);
         GoodsType goodsType = typeService.selectOne(typeId);
+        String s = typeService.selectAllRedis();
+        List<GoodsType> goodsTypes = JSON.parseArray(s, GoodsType.class);
         model.addAttribute("goodsType", goodsType);
+        model.addAttribute("goodsTypes", goodsTypes);
         model.addAttribute("goods", goods);
         model.addAttribute("hotGoods", hotGoods);
         return "/shop/shop_message";
@@ -134,12 +137,14 @@ public class GoodsController {
      * @param goodsName
      * @return
      */
-    @PostMapping("/selectGoods/{goodsName}/{pageNum}")
+    @RequestMapping(value = {"/selectGoods/{pageNum}/{goodsName}", "/selectGoods/{pageNum}"})
     @ResponseBody
-    public Result<Goods> selectGoods(@PathVariable("pageNum") Integer pageNum, @PathVariable("goodsName") String goodsName) {
+    public Result<Goods> selectGoods(@PathVariable(value = "pageNum", required = false) Integer pageNum, @PathVariable(value = "goodsName", required = false) String goodsName) {
         Result<Goods> result = new Result<>();
         QueryWrapper<Goods> wrapper = new QueryWrapper<>();
-        wrapper.like("goods_name", goodsName);
+        if (goodsName != null) {
+            wrapper.like("goods_name", goodsName);
+        }
         result.setResultPageInfoObject(service.selectPage(pageNum, 2, wrapper));
         return result;
     }

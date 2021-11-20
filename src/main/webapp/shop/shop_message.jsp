@@ -158,12 +158,12 @@
       <h1>全部商品分类</h1>
       <span></span>
       <ul class="subnav">
-        <li><a href="#" class="fruit">新鲜水果</a></li>
-        <li><a href="#" class="seafood">海鲜水产</a></li>
-        <li><a href="#" class="meet">猪牛羊肉</a></li>
-        <li><a href="#" class="egg">禽类蛋品</a></li>
-        <li><a href="#" class="vegetables">新鲜蔬菜</a></li>
-        <li><a href="#" class="ice">速冻食品</a></li>
+        <ul class="subnav">
+          <c:forEach items="${goodsTypes}" var="t">
+            <li><a href="${pageContext.request.contextPath}/shop/toAllGoods?typeId=${t.typeId}"
+                   class="${t.typeClass}">${t.typeName}</a></li>
+          </c:forEach>
+        </ul>
       </ul>
     </div>
     <ul class="navlist fl">

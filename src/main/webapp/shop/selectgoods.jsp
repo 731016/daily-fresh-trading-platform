@@ -15,7 +15,7 @@
           $.ajax({
               dataType: "json",
               type: "post",
-              url: "${pageContext.request.contextPath}/shop/selectGoods/${goodsName}/" + pageNum,
+              url: "${pageContext.request.contextPath}/shop/selectGoods/" + pageNum + "/${goodsName}",
               success: function (result) {
                   $("#ul_allGoods li").remove();
                   //遍历显示
@@ -89,10 +89,10 @@
               type: "post",
               url: "${pageContext.request.contextPath}/user/addShoppingCart/" + goodsId,
               success: function (cartCount) {
-                  if (cartCount!='-1') {
+                  if (cartCount != '-1') {
                       $("#show_count").html(cartCount);
-                  }else {
-                      location.href="${pageContext.request.contextPath}/user/login.jsp";
+                  } else {
+                      location.href = "${pageContext.request.contextPath}/user/login.jsp";
                   }
               },
               error: function (e) {
