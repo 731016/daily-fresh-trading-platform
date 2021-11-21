@@ -7,11 +7,14 @@ import com.zr.mapper.GoodsMapper;
 import com.zr.pojo.Goods;
 import com.zr.service.GoodsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class GoodsServiceImpl implements GoodsService {
     @Resource
     private GoodsMapper mapper;

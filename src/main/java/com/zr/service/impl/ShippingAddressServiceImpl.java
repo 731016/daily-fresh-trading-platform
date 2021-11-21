@@ -23,7 +23,7 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
+    @Transactional
     public boolean addAddress(ShippingAddress shippingAddress) {
         int insertFlag = 0;
         ShippingAddress address = selectOne(shippingAddress.getAccount());
@@ -43,6 +43,7 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
+    @Transactional
     public boolean delAddress(Integer shippingId) {
         int i = mapper.deleteById(shippingId);
         if (i > 0) {
@@ -54,11 +55,13 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
+    @Transactional
     public boolean updateAddress(ShippingAddress shippingAddress) {
         return false;
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public ShippingAddress selectOne(String account) {
         QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
         wrapper.eq("account", account);

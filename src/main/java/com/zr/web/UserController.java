@@ -10,6 +10,7 @@ import com.zr.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -179,7 +180,6 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user/editaddress")
-    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
     public String editAddress(HttpServletRequest request, @ModelAttribute("shippingAddress") ShippingAddress shippingAddress) {
         System.out.println("进入地址提交");
         // 用户名

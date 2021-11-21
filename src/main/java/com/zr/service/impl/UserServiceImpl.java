@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional
     public Boolean register(User user) {
 
         // 对密码进行 md5加密
@@ -45,6 +46,7 @@ public class UserServiceImpl implements UserService {
      * @param password
      */
     @Override
+    @Transactional
     public Boolean login(String account, String password) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         // 账户和密码查询，密码加密后比对
@@ -65,6 +67,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Boolean registerAccExist(String account) {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("account", account);
@@ -83,6 +86,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public User queryUser(String account) {
         User user = mapper.selectById(account);
         return user;
@@ -95,6 +99,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional
     public Boolean resetPwd(User user) {
         String newPwd = DigestUtils.md5Hex(user.getPwd());
         //重新设置密码
@@ -108,7 +113,7 @@ public class UserServiceImpl implements UserService {
      *
      */
     @Override
-    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
+    @Transactional
     public Integer userUpdate(String account,Integer shippingId) {
         User user = new User();
         user.setAccount(account);

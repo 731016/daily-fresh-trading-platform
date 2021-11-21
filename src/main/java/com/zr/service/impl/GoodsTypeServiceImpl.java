@@ -6,6 +6,8 @@ import com.zr.pojo.GoodsType;
 import com.zr.service.GoodsTypeService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,6 +27,7 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
      * @return
      */
     @Override
+    @Transactional
     public String selectAllRedis() {
         String strType = redisTemplate.opsForValue().get("goodsType");
         if (strType == null || strType.isBlank()) {
@@ -42,6 +45,7 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
      * @return
      */
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public GoodsType selectOne(Integer typeId) {
         return mapper.selectById(typeId);
     }

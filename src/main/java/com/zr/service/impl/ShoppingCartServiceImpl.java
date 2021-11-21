@@ -6,6 +6,8 @@ import com.zr.pojo.CartVo;
 import com.zr.pojo.ShoppingCart;
 import com.zr.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,6 +18,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartMapper mapper;
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<ShoppingCart> selectAllByAccount(String account) {
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
         wrapper.eq("account", account);
@@ -23,6 +26,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Integer selectCountByAccount(String account) {
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
         wrapper.eq("account", account);
@@ -31,6 +35,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    @Transactional
     public boolean addCart(ShoppingCart shoppingCart) {
         int i = 0;
         //根据传入的购物车对象的账号查找当前账号是否有该商品在购物车里
@@ -51,6 +56,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    @Transactional
     public boolean delCart(Integer shoppingId) {
         int i = mapper.deleteById(shoppingId);
         if (i > 0) {
@@ -61,6 +67,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public ShoppingCart selectOne(ShoppingCart shoppingCart) {
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
         wrapper.eq("account", shoppingCart.getAccount()).eq("goods_id", shoppingCart.getGoodsId());
@@ -74,6 +81,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @return
      */
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<CartVo> showCart(String account) {
         return mapper.showCart(account);
     }

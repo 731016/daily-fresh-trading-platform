@@ -8,6 +8,8 @@ import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
 import com.zr.service.OrderService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,6 +21,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public PageInfo<GoodsOrder> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
 
         PageHelper.startPage(num, pageSize);
@@ -28,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public boolean addOrder(GoodsOrder goodsOrder) {
         int i = mapper.insert(goodsOrder);
         if (i>0){
