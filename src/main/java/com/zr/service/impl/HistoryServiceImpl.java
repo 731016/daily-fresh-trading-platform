@@ -16,15 +16,46 @@ public class HistoryServiceImpl implements HistoryService {
     @Resource
     private HistoryMapper mapper;
 
+    /**
+     * 查询单个浏览记录
+     *
+     * @param goodsId
+     * @return
+     */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public List<History> selectPage() {
-        return mapper.selectList(null);
+    public History queryOne(Integer goodsId, String account) {
+        QueryWrapper<History> wrapper = new QueryWrapper<>();
+        wrapper.eq("goods_id", goodsId).eq("account", account);
+        return mapper.selectOne(wrapper);
     }
 
+    /**
+     * 添加浏览记录
+     *
+     * @param history
+     * @return
+     */
     @Override
     @Transactional
     public boolean addHistory(History history) {
+        int i = mapper.insert(history);
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 修改浏览记录
+     *
+     * @param history
+     * @return
+     */
+    @Override
+    @Transactional
+    public boolean updateHistory(History history) {
         int i = mapper.updateById(history);
         if (i > 0) {
             return true;
@@ -33,6 +64,12 @@ public class HistoryServiceImpl implements HistoryService {
         }
     }
 
+    /**
+     * 删除浏览记录
+     *
+     * @param historyId
+     * @return
+     */
     @Override
     @Transactional
     public boolean delHistory(Integer historyId) {
@@ -45,17 +82,14 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     /**
-     * 查询单个浏览记录
+     * 查询浏览记录
      *
-     * @param goodsId
      * @return
      */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public History queryOne(Integer goodsId) {
-        QueryWrapper<History> wrapper = new QueryWrapper<>();
-        wrapper.eq("goodsId", goodsId);
-        return mapper.selectOne(wrapper);
+    public List<History> selectPage() {
+        return mapper.selectList(null);
     }
 
     /**

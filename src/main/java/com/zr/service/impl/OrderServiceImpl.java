@@ -20,25 +20,37 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper mapper;
 
 
+    /**
+     * 查询订单信息(分页)
+     *
+     * @param num
+     * @param pageSize
+     * @param wrapper
+     * @return
+     */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public PageInfo<GoodsOrder> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
-
         PageHelper.startPage(num, pageSize);
         List<GoodsOrder> productList = mapper.selectList(null);
         PageInfo<GoodsOrder> pageInfo = new PageInfo<>(productList, 3);
         return pageInfo;
     }
 
+    /**
+     * 增加订单
+     *
+     * @param goodsOrder
+     * @return
+     */
     @Override
     @Transactional
     public boolean addOrder(GoodsOrder goodsOrder) {
         int i = mapper.insert(goodsOrder);
-        if (i>0){
+        if (i > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
-
     }
 }

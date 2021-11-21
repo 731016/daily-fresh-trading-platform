@@ -16,6 +16,15 @@ public interface ShoppingCartService {
     List<ShoppingCart> selectAllByAccount(String account);
 
     /**
+     * 查询购物车单个商品
+     *
+     * @param account
+     * @param goodsId
+     * @return
+     */
+    ShoppingCart selectOne(String account, Integer goodsId);
+
+    /**
      * 查询购物车商品数量
      *
      * @param account
@@ -38,14 +47,6 @@ public interface ShoppingCartService {
      * @return
      */
     boolean delCart(Integer shoppingId);
-
-    /**
-     * 查询购物车单个商品
-     *
-     * @param shoppingCart
-     * @return
-     */
-    ShoppingCart selectOne(ShoppingCart shoppingCart);
 
     /**
      * 查找购物车列表

@@ -79,7 +79,7 @@ $(function () {
         // response.resultListObject
         console.log(data)
         if (data.status === 200) {
-            if (data.resultListObject != null && response.resultListObject.size > 0) {
+            if (data.resultListObject != null && data.resultListObject.size > 0) {
                 $.each(data.resultListObject, function (i, g) {
                     let $li = $('li');
                     $li.append('<a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' +

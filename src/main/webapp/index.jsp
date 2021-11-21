@@ -116,7 +116,7 @@
     </form>
   </div>
   <div class="guest_cart fr">
-    <a href="user/user_shop.jsp" class="cart_name fl">我的购物车</a>
+    <a href="${pageContext.request.contextPath}/user/toShoppingCart" class="cart_name fl">我的购物车</a>
     <div class="goods_count fl" id="show_count">3</div>
   </div>
 </div>

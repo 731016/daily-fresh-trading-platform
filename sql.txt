@@ -100,7 +100,7 @@ insert into goods values(default,"Ωmega 原装进口熟冻新西兰全壳青口
 insert into goods values(default,"领券199减100【周黑鸭_锁鲜】卤鸭脖","320g鸭锁骨240 ",500,1234,3,1000,"roulei1.jpg","武汉","320kg");
 
 insert into goods values(default,"如意三宝  澳洲进口原切牛排套餐 菲力4片  "," 10片/1540g",500,1234,3,1000,"roulei4.jpg","澳洲","1.54kg");
-"kg"
+
 insert into goods values(default,"恒都 羔羊排    ","1.2kg/袋 烧烤食材",500,1234,3,1000,"roulei3.jpg","阿根廷 ","1.2kg");
 
 insert into goods values(default,"精气神 猪肉馅  ","(70%瘦肉) 400g",500,1234,3,1000,"shuiguo2.jpg","新西兰","0.4kg");

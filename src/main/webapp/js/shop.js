@@ -8,7 +8,6 @@ if($("input[type='checkbox']:checked").not($("#check_all")).length <= 0){
 $(".add").click(function () {
     var num = parseInt($(this).next().val());
     if(num < parseInt($(this).nextAll().filter(".kucun").html())){
-        $.get("/cart/updatecart/add/1/"+parseInt($(this).nextAll().filter(".goodsid").html())+"/1");
         $(this).next().val(function () {
 		return num * 1 + 1;
     	});
@@ -25,7 +24,6 @@ $(".add").click(function () {
 $(".minus").click(function () {
 	var num = parseInt($(this).prev().val());
 	if(num > 1){
-    	$.get("/cart/updatecart/add/1/"+parseInt($(this).nextAll().filter(".goodsid").html())+"/-1");
     	$(this).prev().val(function () {
     	return num * 1 - 1;
     	});
@@ -57,7 +55,6 @@ $(".num_show").change(function(){
     	return num;
     	});
 	}
-    $.get("/cart/updatecart/update/1/"+parseInt($(this).nextAll().filter(".goodsid").html())+"/"+parseInt($(this).val()));
 	xiaoji();
     zongji();
 });
@@ -111,20 +108,20 @@ function zongji(){
 }
 
 
-$("#jiesuan").click(function () {
-    if($("input[type='checkbox']:checked").not($("#check_all")).length <= 0){
-	    return false;
-	}
-	else{
-        $(this).attr("href",cart());
-	}
-
-});
-
-function cart() {
-	var url="/order/orderinfo?";
-	$("input[type='checkbox']:checked").not($("#check_all")).each(function (i) {
-		url += "cart" + i + "=" + $(this).parents(".cart_list_td").attr("id") +"&";
-	});
-	return url;
-}
+// $("#jiesuan").click(function () {
+//     if($("input[type='checkbox']:checked").not($("#check_all")).length <= 0){
+// 	    return false;
+// 	}
+// 	else{
+//         $(this).attr("href",cart());
+// 	}
+//
+// });
+//
+// function cart() {
+// 	var url="/order/orderinfo?";
+// 	$("input[type='checkbox']:checked").not($("#check_all")).each(function (i) {
+// 		url += "cart" + i + "=" + $(this).parents(".cart_list_td").attr("id") +"&";
+// 	});
+// 	return url;
+// }

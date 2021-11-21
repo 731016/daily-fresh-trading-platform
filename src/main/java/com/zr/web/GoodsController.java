@@ -104,14 +104,22 @@ public class GoodsController {
      * @return
      */
     @GetMapping("/goodsDetailed/{typeId}/{goodsId}")
-    public String goodsDetailed(@PathVariable("typeId") Integer typeId, @PathVariable("goodsId") Integer goodsId, Model model) {
+    public String goodsDetailed(@PathVariable("typeId") Integer typeId, @PathVariable("goodsId") Integer goodsId, Model model, HttpServletRequest request) {
         /**
          * 更新浏览记录
          */
         //-------------------------------START------------------------
-        History history = historyService.queryOne(goodsId);
-        history.setHistoryDate(new Date());
-        historyService.addHistory(history);
+        String account = request.getSession().getAttribute("login") == null ? "" : request.getSession().getAttribute("login").toString();
+        if (!account.equals("")) {
+            History history = historyService.queryOne(goodsId, account);
+            if (history != null) {
+                history.setHistoryDate(new Date());
+                historyService.updateHistory(history);
+            } else {
+                history = new History(null, account, goodsId, new Date());
+                historyService.addHistory(history);
+            }
+        }
         //-------------------------------END------------------------
         Goods goods = service.selectOne(goodsId);
         List<Goods> hotGoods = service.selectSortSalesByType(typeId, 2);

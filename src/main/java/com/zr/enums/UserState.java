@@ -12,9 +12,11 @@ public enum UserState {
     USER_RESET_FAIL("密码修改失败",5),
     USER_PWD_REPEAT("要修改的密码与原密码相同",6),
     USER_ACCOUNT_NOEXIST("用户名或密码错误",7),
-    ORDER_ADD_FAIL("下单失败",9),
     ADD_ADDRESS_FAIL("收货地址添加失败",8),
-    ADD_ADDRESS_SUCCESS("收货地址修改成功",9);
+    ADD_ADDRESS_SUCCESS("收货地址修改成功",9),
+    ORDER_ADD_FAIL("下单失败",10),
+    CART_DEL_FAIL("购物车删除失败",11),
+    ADD_ORDER_SUCCESS("订单添加成功",12);
 
     private String name;
     private int value;

@@ -17,6 +17,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Resource
     private ShoppingCartMapper mapper;
 
+    /**
+     * 查询购物车
+     *
+     * @param account
+     * @return
+     */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<ShoppingCart> selectAllByAccount(String account) {
@@ -25,6 +31,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return mapper.selectList(wrapper);
     }
 
+    /**
+     * 查询购物车商品数量
+     *
+     * @param account
+     * @return
+     */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Integer selectCountByAccount(String account) {
@@ -34,12 +46,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return i;
     }
 
+    /**
+     * 添加购物车
+     *
+     * @param shoppingCart
+     * @return
+     */
     @Override
     @Transactional
     public boolean addCart(ShoppingCart shoppingCart) {
         int i = 0;
         //根据传入的购物车对象的账号查找当前账号是否有该商品在购物车里
-        ShoppingCart shoppingCart1 = selectOne(shoppingCart);
+        ShoppingCart shoppingCart1 = selectOne(shoppingCart.getAccount(), shoppingCart.getGoodsId());
         //如果查找不为空，则进行修改操作；为空则进行添加操作
         if (shoppingCart1 != null) {
             shoppingCart.setGoodsNumber(shoppingCart1.getGoodsNumber() + shoppingCart.getGoodsNumber());
@@ -55,8 +73,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
     }
 
+    /**
+     * 删除购物车
+     *
+     * @param shoppingId
+     * @return
+     */
     @Override
-    @Transactional
     public boolean delCart(Integer shoppingId) {
         int i = mapper.deleteById(shoppingId);
         if (i > 0) {
@@ -66,13 +89,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
     }
 
+    /**
+     * 查询购物车单个商品
+     *
+     * @param account
+     * @param goodsId
+     * @return
+     */
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ShoppingCart selectOne(ShoppingCart shoppingCart) {
+    public ShoppingCart selectOne(String account, Integer goodsId) {
         QueryWrapper<ShoppingCart> wrapper = new QueryWrapper<>();
-        wrapper.eq("account", shoppingCart.getAccount()).eq("goods_id", shoppingCart.getGoodsId());
+        wrapper.eq("account", account).eq("goods_id", goodsId);
         return mapper.selectOne(wrapper);
     }
+
 
     /**
      * 查找购物车列表

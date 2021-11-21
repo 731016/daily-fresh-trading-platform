@@ -19,5 +19,5 @@ public class Goods {
     private Integer sales;     //商品销量
     private String picture;    //商品图片
     private String originPlace;//商品出产地
-    private Double unit;       //商品单位
+    private String unit;       //商品单位
 }

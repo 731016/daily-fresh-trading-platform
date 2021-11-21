@@ -6,6 +6,8 @@ var $add_y = $('#add_cart').offset().left;
 var $to_x = $('#show_count').offset().top;
 var $to_y = $('#show_count').offset().left;
 
+let sales = parseInt($("#sales").val());
+
 $(".add_jump").css({'left': $add_y + 80, 'top': $add_x + 10, 'display': 'block'})
 $('#add_cart').click(function () {
     $(".add_jump").stop().animate({
@@ -22,7 +24,19 @@ $('#add_cart').click(function () {
 /**add_jump  结束*/
 
 
-
+$('#jiahao').mousedown(function () {
+    var num = $('#shuliang').val();
+    if ($('#shuliang').val() < sales) {
+        $('#shuliang').val(function () {
+            return num * 1 + 1;
+        });
+    }
+    var num1 = parseInt($('#shuliang').val());
+    var num2 = parseFloat($('#danjia').html());
+    $('#zongjia').html(function () {
+        return ((num1 * 100) * (num2 * 100) / 10000).toFixed(2);
+    });
+});
 
 $('#jianhao').mousedown(function () {
     var num = $('#shuliang').val();
@@ -46,8 +60,8 @@ $('#shuliang').change(function () {
     if ($('#shuliang').val() < 1) {
         $('#shuliang').val(1);
         jieguo();
-    } else if ($('#shuliang').val() > 994) {
-        $('#shuliang').val(994);
+    } else if ($('#shuliang').val() > sales) {
+        $('#shuliang').val(sales);
         jieguo();
     }
 });
@@ -60,6 +74,15 @@ function jieguo() {
     });
 }
 
+$('#add_cart').mousedown(function () {
+
+    $.get("/cart/updatecart/add/1/37/" + $('#shuliang').val(), function (data) {
+        if (data.data != 0) {
+            $("#show_count").html(data.data)
+        }
+    });
+
+});
 
 $("#buy_btn").click(function () {
     $(this).attr("href", function () {
