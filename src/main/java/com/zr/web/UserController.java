@@ -105,7 +105,7 @@ public class UserController {
             }
             return "/index";
         }
-        request.setAttribute("userState", UserState.getUserStateByValue(3));
+        request.setAttribute("userState", UserState.getUserStateByValue(7));
         return "/user/login";
     }
 

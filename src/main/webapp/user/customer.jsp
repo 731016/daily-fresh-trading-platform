@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/coco-message.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/axios.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/customer.js"></script>
 </head>
 <body>

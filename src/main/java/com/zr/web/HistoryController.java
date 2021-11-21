@@ -7,9 +7,7 @@ import com.zr.service.GoodsService;
 import com.zr.service.GoodsTypeService;
 import com.zr.service.HistoryService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +37,7 @@ public class HistoryController {
      */
     @RequestMapping("/user/history")
     @ResponseBody
-    public Result<Goods> queayGoodsHistoryLimit5(HttpServletRequest request, @RequestParam("flag") String flag) {
+    public Result<Goods> queayGoodsHistoryLimit5(HttpServletRequest request, @RequestParam String flag) {
         System.out.println("axios请求：" + flag);
         // 结果集合
         Result<Goods> result = new Result<>();

@@ -61,12 +61,11 @@ $(function () {
         return "rgb(" + r + "," + g + "," + b + ")";
     }
 
-    function example(n) {
+    function example(n, msg) {
         let div = document.createElement("div");
         switch (n) {
             case 0:
                 cocoMessage.info(1000, "请输入验证码！", function () {
-
                 });
                 break;
 
@@ -81,7 +80,7 @@ $(function () {
 
             case 3:
                 // cocoMessage.error("验证码错误！请重新输入！", 1000);
-                cocoMessage.error("登陆失败！", 1000);
+                cocoMessage.error(msg, 1000);
                 break;
 
             case 4:
@@ -99,7 +98,6 @@ $(function () {
                 break;
         }
     }
-
 
 
     $("#canvas").on('click', function () {
@@ -144,7 +142,7 @@ $(function () {
             $('#password').next().show();
         } else if (len < 6) {
             error_pwd = true;
-            $('#password').next().html("密码错误");
+            $('#password').next().html("密码格式错误");
             $('#password').next().show();
         } else {
             console.log('密码正确')
@@ -173,13 +171,19 @@ $(function () {
         }
     }
 
+    let msg = $('#msg').val();
+    if (msg == 7) {
+        console.log("登陆失败");
+        example(3, "用户名或密码错误");
+    }
+
     $('#commit').click(function () {
         username();
         userpwd();
         captcha();
         if (error_name || error_pwd || error_captcha) {
             console.log(' 验证失败-不提交')
-            example(3,"验证失败！")
+            example(3, "验证失败！")
             draw(show_num);
             return false;
         } else {
@@ -189,10 +193,5 @@ $(function () {
     });
 
 
-    let msg = $('#msg').val();
-    if (msg == 3) {
-        console.log("登陆失败")
-        example(3);
-    }
 });
 

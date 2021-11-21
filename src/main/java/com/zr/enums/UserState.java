@@ -11,7 +11,7 @@ public enum UserState {
     REGISTER_FAIL_ACCOUNT_EXIST("用户已注册",4),
     USER_RESET_FAIL("密码修改失败",5),
     USER_PWD_REPEAT("要修改的密码与原密码相同",6),
-    USER_ACCOUNT_NOEXIST("用户名不存在",7),
+    USER_ACCOUNT_NOEXIST("用户名或密码错误",7),
     ORDER_ADD_FAIL("下单失败",9),
     ADD_ADDRESS_FAIL("收货地址添加失败",8),
     ADD_ADDRESS_SUCCESS("收货地址修改成功",9);
