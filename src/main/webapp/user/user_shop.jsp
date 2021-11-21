@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../css/reset.css">
   <link rel="stylesheet" type="text/css" href="../css/main.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.js"></script>
 </head>
 <body>
 
@@ -152,4 +152,3 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../js/shop.js"></script>
