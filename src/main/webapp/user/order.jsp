@@ -65,14 +65,34 @@
 
                                 $('#orders').append($li);
                             });
+
+                            $('.pagenation').empty();
+
                             $('#orders').append('<div class="pagenation" style="position: relative;bottom: 10px">' +
-                                '<a class="active">首页</a>' +
-                                '<a class="active">2</a>' +
-                                '<a class="active">末页</a>' +
+                                '<a class="active" id="first">首页</a>' +
+                                '<a class="active" id="last">末页</a>' +
                                 '</div>');
+                            console.log(response.data.navigatepageNums);
+                            $.each(response.data.navigatepageNums, function (i, num) {
+                                let n = 1;
+                                if (num == response.data.pageNum) {
+                                    $("#first").after('<a class="active" style="color: red">' + num + '</a>');
+                                } else {
+                                    $("#first").after('<a class="active">' + num + '</a>');
+                                }
+                                n++;
+                            });
                         } else {
                             $('#history_ul').append($('<li style="color: red">暂无数据！</li>'));
                         }
+                        $('#first').click(function () {
+                            currentPageNum = 1;
+                            selectPage();
+                        });
+                        $('#last').click(function () {
+                            currentPageNum = response.data.pages;
+                            selectPage();
+                        });
                     }
                 }).catch(function (error) {
                     if (error.response) {
