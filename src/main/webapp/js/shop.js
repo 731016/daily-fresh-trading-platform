@@ -4,19 +4,39 @@ if($("input[type='checkbox']:checked").not($("#check_all")).length <= 0){
 	$("#jiesuan").css("background-color",'#fff4e8');
 }
 
+//实时更新购物车数据的ajax
+function changeCart(goodsId,goodsNumber){
+	$.ajax({
+		dataType: "json",
+		type: "post",
+		url: "/user/changeCart/" + goodsId + "/" + goodsNumber,
+		success: function (result) {
+			if (result) {
+				console.log('修改成功');
+			} else {
+				console.log('修改失败');
+			}
+		},
+		error: function (e) {
+			$('body').html(e.responseText);
+		}
+	})
+}
 
 $(".add").click(function () {
     var num = parseInt($(this).next().val());
     if(num < parseInt($(this).nextAll().filter(".kucun").html())){
-        $(this).next().val(function () {
-		return num * 1 + 1;
-    	});
+        $(this).next().val(num + 1);
 	}
 	else{
         $(this).next().val(function () {
 		return parseInt($(this).nextAll().filter(".kucun").html());
     	});
 	}
+	//获取商品ID以及商品数量进行修改
+	let goodsNum=$(this).next().val();
+	let goodsId=$(this).parent().children(':last-child').html();
+	changeCart(goodsId,goodsNum);
 	xiaoji();
     zongji();
 });
@@ -24,15 +44,15 @@ $(".add").click(function () {
 $(".minus").click(function () {
 	var num = parseInt($(this).prev().val());
 	if(num > 1){
-    	$(this).prev().val(function () {
-    	return num * 1 - 1;
-    	});
+    	$(this).prev().val(num - 1);
 	}
 	else{
-    	$(this).prev().val(function () {
-    	return 1;
-    });
+    	$(this).prev().val(1);
 	}
+	//获取商品ID以及商品数量进行修改
+	let goodsNum=$(this).prev().val();
+	let goodsId=$(this).parent().children(':last-child').html();
+	changeCart(goodsId,goodsNum);
 	xiaoji();
     zongji();
 });
@@ -55,6 +75,10 @@ $(".num_show").change(function(){
     	return num;
     	});
 	}
+	//获取商品ID以及商品数量进行修改
+	let goodsNum=$(this).val();
+	let goodsId=$(this).parent().children(':last-child').html();
+	changeCart(goodsId,goodsNum);
 	xiaoji();
     zongji();
 });

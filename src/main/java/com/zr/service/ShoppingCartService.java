@@ -55,4 +55,12 @@ public interface ShoppingCartService {
      * @return
      */
     List<CartVo> showCart(String account);
+
+    /**
+     * 修改购物车
+     *
+     * @param shoppingCart
+     * @return
+     */
+    Boolean updateCart(ShoppingCart shoppingCart);
 }

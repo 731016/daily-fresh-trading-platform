@@ -175,9 +175,14 @@ public class ShoppingCartController {
         }
     }
 
-    @PostMapping("/changeCart")
+    @PostMapping("/changeCart/{goodsId}/{goodsNumber}")
     @ResponseBody
-    public void changeCart(Integer goodsId){
-
+    public Boolean changeCart(@PathVariable Integer goodsNumber, @PathVariable Integer goodsId, HttpServletRequest request) {
+        //获取账号
+        String login = request.getSession().getAttribute("login").toString();
+        ShoppingCart shoppingCart = cartService.selectOne(login, goodsId);
+        shoppingCart.setGoodsNumber(goodsNumber);
+        boolean b = cartService.updateCart(shoppingCart);
+        return b;
     }
 }

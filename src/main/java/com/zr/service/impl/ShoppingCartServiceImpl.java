@@ -115,4 +115,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public List<CartVo> showCart(String account) {
         return mapper.showCart(account);
     }
+
+    /**
+     * 修改购物车
+     *
+     * @param shoppingCart
+     * @return
+     */
+    @Override
+    public Boolean updateCart(ShoppingCart shoppingCart) {
+        int i = mapper.updateById(shoppingCart);
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
