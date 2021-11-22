@@ -100,7 +100,7 @@
                 </div>
                 <div class="form_group form_group2">
                     <label>详细地址：</label>
-                    <textarea class="site_area" name="shippingAddress" id="shippingAddress"></textarea>
+                    <textarea class="site_area" name="shippingAddress" id="shippingAddress" style="resize: none"></textarea>
                 </div>
                 <div class="form_group">
                     <label>邮编：</label>
