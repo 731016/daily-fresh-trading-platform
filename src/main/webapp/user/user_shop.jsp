@@ -175,6 +175,7 @@
   <li class="col06">操作</li>
 </ul>
 
+<%--同步方法el表达式循环生成购物车列表--%>
 <c:forEach items="${cartVos}" var="c">
   <ul class="cart_list_td clearfix" id="${c.goodsId}">
     <li class="col01"><input type="checkbox" name="goodsIds" checked value="${c.goodsId}"></li>
@@ -198,6 +199,7 @@
   </ul>
 </c:forEach>
 
+<%--初次进入页面时给商品件数以及总价赋值，给结算绑定下单方法--%>
 <ul class="settlements">
   <li class="col01"><input type="checkbox" id="check_all" name="" checked=""></li>
   <li class="col02">全选</li>
