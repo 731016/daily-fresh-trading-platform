@@ -108,7 +108,6 @@ public class UserController {
         request.setAttribute("userState", UserState.getUserStateByValue(7));
         return "/user/login";
     }
-
     /**
      * 用户注销
      *

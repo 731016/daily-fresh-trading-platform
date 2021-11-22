@@ -56,6 +56,7 @@ public class HistoryController {
                     .limit(5)
                     .collect(Collectors.toList());
             // 为Integer类型的list集合
+            System.out.println("浏览记录排序：" + goodsIdList);
             List<Goods> goods = goodsService.selectlimit5ListGoods(goodsIdList);
             result.setResultListObject(goods);
         }

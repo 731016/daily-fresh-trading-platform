@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <title>天天生鲜－我的订单</title>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+    <meta charset="utf-8"/>
+    <title>天天生鲜－我的订单</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 </head>
 <body>
 
@@ -64,31 +64,31 @@
       <li><a href="${pageContext.request.contextPath}/user/order.jsp" class="active">· 全部订单</a></li>
       <li><a href="${pageContext.request.contextPath}/user/address.jsp">· 收货地址</a></li>
 
-    </ul>
-  </div>
-
-  <div class="right_content clearfix">
-    <h3 class="common_title2">全部订单</h3>
-
-    <div class="pagenation">
-      <a class="active">1</a>
+        </ul>
     </div>
-  </div>
+
+    <div class="right_content clearfix">
+        <h3 class="common_title2">全部订单</h3>
+
+        <div class="pagenation">
+            <a class="active">1</a>
+        </div>
+    </div>
 </div>
 <!--内容  结束-->
 
 <!--底部  开始-->
 <div class="footer login_footer">
-  <div class="links">
-    <a href="">关于软帝</a>
-    <span>|</span>
-    <a href="">热门培训</a>
-    <span>|</span>
-    <a href="">联系我们</a>
-    <span>|</span>
-    <a href="">在线报名</a>
-  </div>
-  <p>CopyRight © 2019 武汉软帝信息科技有限责任公司</p>
+    <div class="links">
+        <a href="">关于软帝</a>
+        <span>|</span>
+        <a href="">热门培训</a>
+        <span>|</span>
+        <a href="">联系我们</a>
+        <span>|</span>
+        <a href="">在线报名</a>
+    </div>
+    <p>CopyRight © 2019 武汉软帝信息科技有限责任公司</p>
 </div>
 <!--内容  结束-->
 </body>

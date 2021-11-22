@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -88,6 +90,11 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public List<Goods> selectlimit5ListGoods(List<Integer> list) {
-        return mapper.selectBatchIds(list);
+        List<Goods> goodsList = new ArrayList<>();
+        for (Integer id : list) {
+            Goods goods = mapper.selectById(id);
+            goodsList.add(goods);
+        }
+        return goodsList;
     }
 }
