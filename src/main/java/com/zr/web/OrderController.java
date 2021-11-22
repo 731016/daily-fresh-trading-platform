@@ -1,8 +1,11 @@
 package com.zr.web;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.pagehelper.PageInfo;
 import com.zr.enums.UserState;
 import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
+import com.zr.pojo.GoodsOrderVo;
 import com.zr.pojo.ShoppingCart;
 import com.zr.service.GoodsService;
 import com.zr.service.OrderService;
@@ -15,10 +18,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("/user")
 public class OrderController {
     @Resource
     private OrderService orderService;
@@ -92,4 +96,20 @@ public class OrderController {
         return b;
     }
 
+    /**
+     * 分页查询订单信息
+     *
+     * @param request
+     * @param currentPageNum
+     * @return
+     */
+    @PostMapping("/order")
+    @ResponseBody
+    public PageInfo<GoodsOrderVo> selectOrderPage(HttpServletRequest request, @RequestParam Integer currentPageNum) {
+        QueryWrapper<GoodsOrder> wrapper = new QueryWrapper<>();
+        String account = request.getSession().getAttribute("login").toString();
+        wrapper.eq("account", account);
+        PageInfo<GoodsOrderVo> orderPageInfo = orderService.selectPage(account, currentPageNum, 5);
+        return orderPageInfo;
+    }
 }

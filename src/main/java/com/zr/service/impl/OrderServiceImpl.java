@@ -6,12 +6,14 @@ import com.github.pagehelper.PageInfo;
 import com.zr.mapper.OrderMapper;
 import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
+import com.zr.pojo.GoodsOrderVo;
 import com.zr.service.OrderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -30,10 +32,10 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public PageInfo<GoodsOrder> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
+    public PageInfo<GoodsOrderVo> selectPage(String account, Integer num, Integer pageSize) {
         PageHelper.startPage(num, pageSize);
-        List<GoodsOrder> productList = mapper.selectList(null);
-        PageInfo<GoodsOrder> pageInfo = new PageInfo<>(productList, 3);
+        List<GoodsOrderVo> goodsOrderVo = mapper.queryOrderAndGoods(account);
+        PageInfo<GoodsOrderVo> pageInfo = new PageInfo<>(goodsOrderVo, 3);
         return pageInfo;
     }
 

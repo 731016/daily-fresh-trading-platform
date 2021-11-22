@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
 import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
+import com.zr.pojo.GoodsOrderVo;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface OrderService {
     /**
@@ -14,8 +18,13 @@ public interface OrderService {
      * @param wrapper
      * @return
      */
-    PageInfo<GoodsOrder> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper);
+    PageInfo<GoodsOrderVo> selectPage(String account, Integer num, Integer pageSize);
 
+//    /**
+//     * 查询指定用户的订单信息(分页)
+//     * @return
+//     */
+//    PageInfo<GoodsOrderVo> queryOrderAndGoods(String account);
     /**
      * 增加订单
      *
