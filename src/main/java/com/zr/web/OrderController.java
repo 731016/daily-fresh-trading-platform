@@ -1,15 +1,16 @@
 package com.zr.web;
 
 import com.zr.enums.UserState;
+import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
+import com.zr.pojo.ShoppingCart;
 import com.zr.service.GoodsService;
 import com.zr.service.OrderService;
+import com.zr.service.ShoppingCartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,23 @@ import java.util.UUID;
 @RequestMapping("/order")
 public class OrderController {
     @Resource
-    OrderService orderService;
+    private OrderService orderService;
 
     @Resource
-    GoodsService goodsService;
+    private GoodsService goodsService;
 
+    @Resource
+    private ShoppingCartService cartService;
+
+    /**
+     * 商品详情界面直接购买添加订单
+     *
+     * @param request
+     * @param model
+     * @param goodsId
+     * @param goodsNumber
+     * @return
+     */
     @GetMapping("/addOrder/{goodsId}/{goodsNumber}")
     @Transactional
     public String addOrder(HttpServletRequest request,
@@ -38,11 +51,44 @@ public class OrderController {
         Double totalPrice = price * goodsNumber;
         GoodsOrder order = new GoodsOrder(orderId, login, goodsId, goodsNumber, date, totalPrice);
         boolean b = orderService.addOrder(order);
-        if(b){
-           return "/user/order";
-        }else {
+        if (b) {
+            return "/user/order";
+        } else {
             request.setAttribute("userState", UserState.getUserStateByValue(8));
         }
         return "/user/order";
+    }
+
+    /**
+     * 购物车结算生成订单
+     *
+     * @param goodsIds
+     * @param request
+     * @return
+     */
+    @PostMapping("/addOrder")
+    @ResponseBody
+    public Boolean addOrder(@RequestParam Integer[] goodsIds, HttpServletRequest request) {
+        String login = request.getSession().getAttribute("login").toString();
+        boolean b = false;
+        for (Integer goodsId : goodsIds) {
+            //查询当前购物车商品
+            ShoppingCart shoppingCart = cartService.selectOne(login, goodsId);
+            //查询当前商品
+            Goods goods = goodsService.selectOne(goodsId);
+            //生成订单编号
+            String orderId = UUID.randomUUID().toString().replace("-", "");
+            //计算总价格
+            Double totalPrice = goods.getPrice() * shoppingCart.getGoodsNumber();
+            //创建订单对象
+            GoodsOrder order = new GoodsOrder(orderId, login, goodsId, shoppingCart.getGoodsNumber(), new Date(), totalPrice);
+            //添加订单
+            b = orderService.addOrder(order);
+            //判断是否添加成功，不成功则跳出循环
+            if (!b) {
+                break;
+            }
+        }
+        return b;
     }
 }

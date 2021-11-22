@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/coco-message.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.js"></script>
+
     <script>
         function example(n, msg) {
             let div = document.createElement("div");
@@ -19,7 +19,7 @@
                     break;
 
                 case 1:
-                    div.innerText = "验证码校验成功！";
+                    div.innerText = msg;
                     cocoMessage.success(div);
                     break;
 
@@ -55,8 +55,10 @@
                 url: "${pageContext.request.contextPath}/user/delShoppingCart/" + goodsId,
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    if (result != -1) {
-                        $('#' + result).remove();
+                    if (result.result) {
+                        $('#' + result.goodsId).remove();
+                        $('.goodsCount').html(result.cartCount);
+                        $('#zong').html(result.totalPrice);
                     } else {
                         let msg = $('#msg').val();
                         if (msg == 11) {
@@ -77,19 +79,17 @@
             $.each(check, function () {
                 goodsIds.push($(this).val());
             })
-            goodsIds = goodsIds.toString();
             $.ajax({
-                data: {"goodsIds": goodsIds},
+                data: {"goodsIds": goodsIds.toString()},
                 dataType: "json",
                 type: "post",
                 url: "${pageContext.request.contextPath}/user/addOrder",
                 success: function (result) {
-                    let goodsIds = new Array();
                     if (result) {
-                        $.each(check, function () {
-                            delCart(goodsIds.push($(this).val()));
-                        })
-                        console.log("下单成功")
+                        $.each(goodsIds, function (i,gId) {
+                            delCart(gId);
+                        });
+                        console.log("下单成功");
                         example(1, "下单成功");
                     } else {
                         console.log("下单失败")
@@ -140,7 +140,7 @@
                 <span>|</span>
                 <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
                 <span>|</span>
-                <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
+                <a href="${pageContext.request.contextPath}/user/toShoppingCart">我的购物车</a>
                 <span>|</span>
                 <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
             </div>
@@ -152,15 +152,15 @@
     <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img
             src="${pageContext.request.contextPath}/images/logo.png"></a>
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
-    <div class="search_con fr">
-        <form method="get" action="" target="_blank">
-            <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+    <div class="search_con fl">
+        <form method="post" action="${pageContext.request.contextPath}/shop/toSelectGoods" target="_blank">
+            <input type="text" class="input_text fl" name="goodsName" placeholder="搜索商品">
             <input type="submit" class="input_btn fr" value="搜索">
         </form>
     </div>
 </div>
 
-<div class="total_count">全部商品<em>3</em>件</div>
+<div class="total_count">全部商品<em class="goodsCount">${count}</em>件</div>
 <ul class="cart_list_th clearfix">
     <li class="col01">商品名称</li>
     <li class="col02">商品单位</li>
@@ -173,7 +173,7 @@
 <c:forEach items="${cartVos}" var="c">
     <ul class="cart_list_td clearfix" id="${c.goodsId}">
         <li class="col01"><input type="checkbox" name="goodsIds" checked value="${c.goodsId}"></li>
-        <li class="col02"><img src="${pageContext.request.contextPath}/images/allGoods/${c.goods.picture}}"></li>
+        <li class="col02"><img src="${pageContext.request.contextPath}/images/allGoods/${c.goods.picture}"></li>
         <li class="col03">${c.goods.goodsName}<br><em>${c.goods.price}元/${c.goods.unit}</em></li>
         <li class="col04">${c.goods.unit}</li>
         <li class="col05">${c.goods.price}元</li>
@@ -196,7 +196,8 @@
 <ul class="settlements">
     <li class="col01"><input type="checkbox" id="check_all" name="" checked=""></li>
     <li class="col02">全选</li>
-    <li class="col03">合计(不含运费)：<span>¥</span><em id="zong">365.90</em><br>共计<b id="zongshu">3</b>件商品</li>
+    <li class="col03">合计(不含运费)：<span>¥</span><em id="zong">${totalPrice
+            }</em><br>共计<b class="goodsCount">${count}</b>件商品</li>
     <li class="col04"><a id="jiesuan" style="background-color: rgb(255, 61, 61);"
                          onclick="addOrder()">去结算</a></li>
 </ul>
@@ -214,4 +215,5 @@
     <p>CopyRight © 2019 武汉软帝信息科技有限责任公司</p>
 </div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.js"></script>
 </html>

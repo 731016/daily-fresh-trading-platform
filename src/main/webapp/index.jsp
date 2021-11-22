@@ -14,6 +14,18 @@
           $.ajax({
               dataType: "json",
               type: "post",
+              url: "${pageContext.request.contextPath}/user/cartCountShow",
+              contentType: "application/json; charset=utf-8",
+              success: function (count) {
+                  $('#show_count').html(count);
+              },
+              error: function (e) {
+                  $("body").html(e.responseText);
+              }
+          })
+          $.ajax({
+              dataType: "json",
+              type: "post",
               url: "${pageContext.request.contextPath}/shop/goodsTypeRedis",
               success: function (result) {
                   let goodsType = JSON.parse(result.resultListJson);
@@ -28,7 +40,7 @@
                           "    </div>");
 
                       $div.append("<div name=\"goods_list\" class=\"goods_con clearfix\">\n" +
-                          "      <div class=\"goods_banner fl\"><img src=\"images/allGoods/" + t.typeImg + "\"></div>\n" +
+                          "      <div class=\"goods_banner fl\"><img src=\"${pageContext.request.contextPath}/images/allGoods/" + t.typeImg + "\"></div>\n" +
                           "      <ul class=\"goods_list fl\">\n" +
                           "      </ul>\n" +
                           "    </div>");
@@ -56,7 +68,7 @@
                           $div.append('<a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' + g.goodsName + '</a>');
                           $('#goods_list' + index + ' ul').append('<li>\n' +
                               '          <h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' + g.goodsName + '</a></h4>\n' +
-                              '          <a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"><img src="images/allGoods/' + g.picture + '"></a>\n' +
+                              '          <a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"><img src="${pageContext.request.contextPath}/images/allGoods/' + g.picture + '"></a>\n' +
                               '          <div class="prize">¥ ' + g.price + '</div>\n' +
                               '        </li>');
                       })
@@ -97,7 +109,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/toShoppingCart">我的购物车</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
@@ -117,7 +129,7 @@
   </div>
   <div class="guest_cart fr">
     <a href="${pageContext.request.contextPath}/user/toShoppingCart" class="cart_name fl">我的购物车</a>
-    <div class="goods_count fl" id="show_count">3</div>
+    <div class="goods_count fl" id="show_count"></div>
   </div>
 </div>
 
@@ -139,7 +151,7 @@
   </ul>
   <div class="slide fl">
     <ul class="slide_pics">
-      <li><img src="${pageContext.request.contextPath}//images/allGoods/slide.jpg" alt="幻灯片"></li>
+      <li><img src="${pageContext.request.contextPath}/images/allGoods/slide.jpg" alt="幻灯片"></li>
       <li><img src="${pageContext.request.contextPath}/images/allGoods/slide02.jpg" alt="幻灯片"></li>
       <li><img src="${pageContext.request.contextPath}/images/allGoods/slide03.jpg" alt="幻灯片"></li>
       <li><img src="${pageContext.request.contextPath}/images/allGoods/slide04.jpg" alt="幻灯片"></li>

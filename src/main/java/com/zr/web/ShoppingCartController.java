@@ -1,22 +1,19 @@
 package com.zr.web;
 
 import com.zr.pojo.CartVo;
+import com.zr.pojo.DelCartResult;
 import com.zr.pojo.Goods;
-import com.zr.pojo.GoodsOrder;
 import com.zr.pojo.ShoppingCart;
 import com.zr.service.GoodsService;
 import com.zr.service.OrderService;
 import com.zr.service.ShoppingCartService;
-import org.springframework.data.redis.connection.SortParameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -103,7 +100,19 @@ public class ShoppingCartController {
     public String toShoppingCart(HttpServletRequest request, Model model) {
         String login = request.getSession().getAttribute("login").toString();
         List<CartVo> cartVos = cartService.showCart(login);
+        Integer count = cartService.selectCountByAccount(login);
+        //根据账号查询所有剩余购物车对象
+        List<ShoppingCart> shoppingCarts = cartService.selectAllByAccount(login);
+        //计算剩余购物车商品总价
+        Double totalPrice = 0.00;
+        Goods goods = null;
+        for (ShoppingCart cart : shoppingCarts) {
+            goods = service.selectOne(cart.getGoodsId());
+            totalPrice += goods.getPrice() * cart.getGoodsNumber();
+        }
         model.addAttribute("cartVos", cartVos);
+        model.addAttribute("count", count);
+        model.addAttribute("totalPrice", totalPrice);
         return "/user/user_shop";
     }
 
@@ -116,47 +125,59 @@ public class ShoppingCartController {
      */
     @PostMapping("/delShoppingCart/{goodsId}")
     @ResponseBody
-    public Integer delShoppingCart(@PathVariable("goodsId") Integer goodsId, HttpServletRequest request) {
+    public DelCartResult delShoppingCart(@PathVariable("goodsId") Integer goodsId, HttpServletRequest request) {
+        //创建删除购物车返回值对象
+        DelCartResult result = new DelCartResult();
+        //获取账号
         String login = request.getSession().getAttribute("login").toString();
+        //根据账号和商品id查询单个购物车对象
         ShoppingCart shoppingCart = cartService.selectOne(login, goodsId);
+        //删除此购物车对象
         boolean b = cartService.delCart(shoppingCart.getCartId());
-        if (b) {
-            return goodsId;
-        } else {
-            return -1;
+        //将是否删除成功的值传入返回对象
+        result.setResult(b);
+        result.setGoodsId(goodsId);
+        //获取剩余购物车数量
+        Integer count = cartService.selectCountByAccount(login);
+        //传入返回值对象
+        result.setCartCount(count);
+        //根据账号查询所有剩余购物车对象
+        List<ShoppingCart> shoppingCarts = cartService.selectAllByAccount(login);
+        //计算剩余购物车商品总价
+        Double totalPrice = 0.00;
+        Goods goods = null;
+        for (ShoppingCart cart : shoppingCarts) {
+            goods = service.selectOne(cart.getGoodsId());
+            totalPrice += goods.getPrice() * cart.getGoodsNumber();
         }
+        //传入返回值
+        result.setTotalPrice(totalPrice);
+        return result;
     }
 
     /**
-     * 购物车结算生成订单
+     * 所有商品页面购物车数量显示
      *
-     * @param goodsIds
      * @param request
      * @return
      */
-    @PostMapping("/addOrder")
+    @PostMapping("/cartCountShow")
     @ResponseBody
-    public Boolean addOrder(@RequestParam Integer[] goodsIds, HttpServletRequest request) {
-        String login = request.getSession().getAttribute("login").toString();
-        boolean b = false;
-        for (Integer goodsId : goodsIds) {
-            //查询当前购物车商品
-            ShoppingCart shoppingCart = cartService.selectOne(login, goodsId);
-            //查询当前商品
-            Goods goods = service.selectOne(goodsId);
-            //生成订单编号
-            String orderId = UUID.randomUUID().toString().replace("-", "");
-            //计算总价格
-            Double totalPrice = goods.getPrice() * shoppingCart.getGoodsNumber();
-            //创建订单对象
-            GoodsOrder order = new GoodsOrder(orderId, login, goodsId, shoppingCart.getGoodsNumber(), new Date(), totalPrice);
-            //添加订单
-            b = orderService.addOrder(order);
-            //判断是否添加成功，不成功则跳出循环
-            if (b == false) {
-                break;
-            }
+    public Integer cartCountShow(HttpServletRequest request) {
+        //获取账号
+        Object login = request.getSession().getAttribute("login");
+        //判断是否登录，登录则获取购物车数量
+        if (login != null) {
+            String s = login.toString();
+            return cartService.selectCountByAccount(s);
+        } else {
+            return 0;
         }
-        return b;
+    }
+
+    @PostMapping("/changeCart")
+    @ResponseBody
+    public void changeCart(Integer goodsId){
+
     }
 }

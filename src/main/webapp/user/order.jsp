@@ -35,7 +35,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/toShoppingCart">我的购物车</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
@@ -48,9 +48,9 @@
 <div class="search_bar clearfix">
   <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
   <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
-  <div class="search_con fr">
-    <form method="get" action="http://ttsx.newzn.cn/search/" target="_blank">
-      <input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+  <div class="search_con fl">
+    <form method="post" action="${pageContext.request.contextPath}/shop/toSelectGoods" target="_blank">
+      <input type="text" class="input_text fl" name="goodsName" placeholder="搜索商品">
       <input type="submit" class="input_btn fr" value="搜索">
     </form>
   </div>

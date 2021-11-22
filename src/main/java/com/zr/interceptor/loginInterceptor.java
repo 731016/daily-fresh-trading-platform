@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * 查看是否登录
  */
 public class loginInterceptor implements HandlerInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         for (Cookie cookie : request.getCookies()) {
@@ -20,6 +21,7 @@ public class loginInterceptor implements HandlerInterceptor {
         }
 //        Object login = request.getSession().getAttribute("login");
 //        if (login != null) {
+//
 //            response.sendRedirect("/index.jsp");
 //            return false;
 //        } else {

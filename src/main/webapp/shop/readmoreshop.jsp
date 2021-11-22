@@ -101,6 +101,18 @@
       }
 
       $(function () {
+          $.ajax({
+              dataType: "json",
+              type: "post",
+              url: "${pageContext.request.contextPath}/user/cartCountShow",
+              contentType: "application/json; charset=utf-8",
+              success: function (count) {
+                  $('#show_count').html(count);
+              },
+              error: function (e) {
+                  $("body").html(e.responseText);
+              }
+          })
           selectPage();
 
           $(".add_goods").click(function () {
@@ -142,7 +154,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/customer.jsp">用户中心</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/user_shop.jsp">我的购物车</a>
+        <a href="${pageContext.request.contextPath}/user/toShoppingCart">我的购物车</a>
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
       </div>
@@ -160,8 +172,8 @@
     </form>
   </div>
   <div class="guest_cart fr">
-    <a href="${pageContext.request.contextPath}/user/user_shop.jsp" class="cart_name fl">我的购物车</a>
-    <div class="goods_count fl" id="show_count">0</div>
+    <a href="${pageContext.request.contextPath}/user/toShoppingCart" class="cart_name fl">我的购物车</a>
+    <div class="goods_count fl" id="show_count"></div>
   </div>
 </div>
 
