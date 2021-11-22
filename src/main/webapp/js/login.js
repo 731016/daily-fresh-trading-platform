@@ -59,6 +59,7 @@ $(function () {
         var g = Math.floor(Math.random() * 256);
         var b = Math.floor(Math.random() * 256);
         return "rgb(" + r + "," + g + "," + b + ")";
+        console.log("rgb(" + r + "," + g + "," + b + ")");
     }
 
     function example(n, msg) {
@@ -153,6 +154,7 @@ $(function () {
 
     function captcha() {
         let val = $("#id_captcha_1").val().toLowerCase();
+        console.log(val)
         let num = show_num.join("");
         let len = $('#id_captcha_1').val().length;
         if (len == 0 || val == '') {

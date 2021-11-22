@@ -11,8 +11,8 @@
     <title>天天生鲜－注册</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/user_register.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/user_register.js"></script>
     <script src="${pageContext.request.contextPath}/js/coco-message.js"></script>
     <script>
         $(function () {
@@ -68,7 +68,7 @@
 
 <div class="register_con">
     <div class="l_con fl">
-        <a href="${pageContext.request.contextPath}/index.jsp" class="reg_logo"><img src="../images/logo.png"></a>
+        <a href="${pageContext.request.contextPath}/index.jsp" class="reg_logo"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
         <div class="reg_slogan">足不出户 · 新鲜每一天</div>
         <div class="reg_banner"></div>
     </div>

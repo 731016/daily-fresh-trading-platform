@@ -7,6 +7,16 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--    拦截器 解除对静态资源的拦截-->
+        <servlet-mapping>
+            <servlet-name>default</servlet-name>
+            <url-pattern>/bootstrap-4.6.0-dist/**</url-pattern>
+            <url-pattern>/css/**</url-pattern>
+            <url-pattern>/images/**</url-pattern>
+            <url-pattern>/js/**</url-pattern>
+        </servlet-mapping>
+
+
     <!--  配置监听器：监视被spring管理的对象的状态改变  -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

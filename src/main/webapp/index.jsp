@@ -108,7 +108,7 @@
 
 <!--导航和轮播部分 开始-->
 <div class="search_bar clearfix">
-  <a href="#" class="logo fl"><img src="images/logo.png"></a>
+  <a href="#" class="logo fl"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
   <div class="search_con fl">
     <form method="post" action="${pageContext.request.contextPath}/shop/toSelectGoods" target="_blank">
       <input type="text" class="input_text fl" name="goodsName" placeholder="搜索商品">
@@ -139,10 +139,10 @@
   </ul>
   <div class="slide fl">
     <ul class="slide_pics">
-      <li><img src="images/allGoods/slide.jpg" alt="幻灯片"></li>
-      <li><img src="images/allGoods/slide02.jpg" alt="幻灯片"></li>
-      <li><img src="images/allGoods/slide03.jpg" alt="幻灯片"></li>
-      <li><img src="images/allGoods/slide04.jpg" alt="幻灯片"></li>
+      <li><img src="${pageContext.request.contextPath}//images/allGoods/slide.jpg" alt="幻灯片"></li>
+      <li><img src="${pageContext.request.contextPath}/images/allGoods/slide02.jpg" alt="幻灯片"></li>
+      <li><img src="${pageContext.request.contextPath}/images/allGoods/slide03.jpg" alt="幻灯片"></li>
+      <li><img src="${pageContext.request.contextPath}/images/allGoods/slide04.jpg" alt="幻灯片"></li>
     </ul>
     <div class="prev"></div>
     <div class="next"></div>
@@ -150,8 +150,8 @@
   </div>
 
   <div class="adv fl">
-    <a href="#"><img src="images/allGoods/adv01.jpg"></a>
-    <a href="#"><img src="images/allGoods/adv02.jpg"></a>
+    <a href="#"><img src="${pageContext.request.contextPath}/images/allGoods/adv01.jpg"></a>
+    <a href="#"><img src="${pageContext.request.contextPath}/images/allGoods/adv02.jpg"></a>
   </div>
 </div>
 <!--导航和轮播部分 结束-->

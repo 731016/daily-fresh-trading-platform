@@ -26,7 +26,7 @@
 <body>
 
 <div class="login_top clearfix">
-    <a href="${pageContext.request.contextPath}/index.jsp" class="login_logo"><img src="../images/logo.png"></a>
+    <a href="${pageContext.request.contextPath}/index.jsp" class="login_logo"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
 </div>
 
 <div class="login_form_bg">

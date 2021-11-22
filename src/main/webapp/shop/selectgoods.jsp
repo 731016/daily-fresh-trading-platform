@@ -21,7 +21,7 @@
                   //遍历显示
                   $.each(result.resultPageInfoObject.list, function (i, g) {
                       $("#ul_allGoods").append('<li>\n' +
-                          '        <a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"><img src="../images/allGoods/' + g.picture + '"></a>\n' +
+                          '        <a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"><img src="${pageContext.request.contextPath}/images/allGoods/' + g.picture + '"></a>\n' +
                           '        <h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '"> ' + g.goodsName + ' </a></h4>\n' +
                           '        <div class="operate">\n' +
                           '          <span class="prize">￥' + g.price + '</span>\n' +
@@ -153,7 +153,7 @@
 <!--头部结束-->
 
 <div class="search_bar clearfix">
-  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="../images/logo.png"></a>
+  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
   <div class="search_con fl">
     <form method="post" action="${pageContext.request.contextPath}/shop/toSelectGoods" target="_blank">
       <input type="text" class="input_text fl" name="goodsName" placeholder="搜索商品">

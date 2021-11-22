@@ -46,7 +46,7 @@
 
 <!--内容  开始-->
 <div class="search_bar clearfix">
-  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="../images/logo.png"></a>
+  <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
   <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
   <div class="search_con fr">
     <form method="get" action="http://ttsx.newzn.cn/search/" target="_blank">
