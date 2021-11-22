@@ -8,13 +8,13 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/coco-message.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.js"></script>
     <script>
         function example(n, msg) {
             let div = document.createElement("div");
             switch (n) {
                 case 0:
                     cocoMessage.info(1000, "请输入验证码！", function () {
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.js"></script>
                     });
                     break;
 
