@@ -28,13 +28,13 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
         int insertFlag = 0;
         ShippingAddress address = selectOne(shippingAddress.getAccount());
         // 不存在插入数据
-        if (address == null){
+        if (address == null) {
             insertFlag = mapper.insert(shippingAddress);
-        }else{
+        } else {
             // 存在update数据
             QueryWrapper<ShippingAddress> qw = new QueryWrapper<>();
-            qw.eq("account",shippingAddress.getAccount());
-            insertFlag = mapper.update(shippingAddress,qw);
+            qw.eq("account", shippingAddress.getAccount());
+            insertFlag = mapper.update(shippingAddress, qw);
         }
         if (insertFlag > 0) {
             return true;
@@ -63,6 +63,7 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public ShippingAddress selectOne(String account) {
+        System.out.println("account:" + account);
         QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
         wrapper.eq("account", account);
         return mapper.selectOne(wrapper);

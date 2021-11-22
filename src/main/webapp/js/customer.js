@@ -73,18 +73,20 @@ $(function () {
         method: 'post',
         timeout: 5000, // 超时时间
         responseType: 'json',
-        responseEncoding: 'utf8'
-    }).then(function (data) {
+        responseEncoding: 'utf8',
+    }).then(function (response) {
         //响应信息
-        // response.resultListObject
-        console.log(data)
-        if (data.status === 200) {
-            if (data.resultListObject != null && data.resultListObject.size > 0) {
-                $.each(data.resultListObject, function (i, g) {
-                    let $li = $('li');
+        if (response.status == 200) {
+            if (response.data.resultListObject != null) {
+                // $('#history_ul').empty();
+                // $('#history_ul').children().html("");
+                console.log(response.data);
+                $('#history_ul').empty();
+                $.each(response.data.resultListObject, function (i, g) {
+                    let $li = $('<li></li>');
                     $li.append('<a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' +
                         '<img src="images/allGoods/' + g.picture + '"></a>' +
-                        '<h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">大兴大棚草莓</a></h4>' +
+                        '<h4><a href="${pageContext.request.contextPath}/shop/goodsDetailed/' + g.typeId + '/' + g.goodsId + '">' + g.goodsName + '</a></h4>' +
                         '<div class="operate">' +
                         '<span class="prize">' + g.price + '</span>' +
                         '<span class="unit">' + g.price + '/' + g.unit + '</span>' +
@@ -92,21 +94,21 @@ $(function () {
                         '</div>');
                     $('#history_ul').append($li);
                 });
-            }else{
+            } else {
                 $('#history_ul').append($('<li>暂无数据！</li>'));
             }
         }
     }).catch(function (error) {
         if (error.response) {
             // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-            console.log( error.response.data );
-            console.log( error.response.status );
-            console.log( error.response.headers );
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
         } else {
             // Something happened in setting up the request that triggered an Error
-            console.log( "Error", error.message );
+            console.log("Error", error.message);
         }
-        console.log( error.config );
+        console.log(error.config);
         //错误处理
         example(3, "请求失败！")
     });

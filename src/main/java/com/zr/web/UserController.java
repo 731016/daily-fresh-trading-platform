@@ -59,7 +59,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user/toLogin")
-    public String toLogin(HttpServletRequest request,@CookieValue(value = "rememberAccount",required = false) String rememberAccount) {
+    public String toLogin(HttpServletRequest request, @CookieValue(value = "rememberAccount", required = false) String rememberAccount) {
 //        Cookie[] cookies = request.getCookies();
 //        for (Cookie cookie : cookies) {
 //            if (StringUtils.equals(cookie.getName(), "rememberAccount")) {
@@ -67,7 +67,7 @@ public class UserController {
 //                request.getSession().setAttribute("rememberAccount", cookie.getValue());
 //            }
 //        }
-        System.out.println("cookie:"+rememberAccount);
+        System.out.println("cookie:" + rememberAccount);
         request.getSession().setAttribute("rememberAccount", rememberAccount);
         return "/user/login";
     }
@@ -156,8 +156,13 @@ public class UserController {
     }
 
     private void showAddress(HttpServletRequest request) {
-        ShippingAddress address = shippingAddressService.selectOne(String.valueOf(request.getSession().getAttribute("login")));
-        request.getSession().setAttribute("address", address.getShippingAddress());
+        String login = String.valueOf(request.getSession().getAttribute("login"));
+        if (login != null) {
+            ShippingAddress address = shippingAddressService.selectOne(login);
+            if (address != null) {
+                request.getSession().setAttribute("address", address.getShippingAddress());
+            }
+        }
     }
 
     /**
