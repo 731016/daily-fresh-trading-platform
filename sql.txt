@@ -14,6 +14,7 @@ CREATE TABLE user(
 drop table if exists shipping_address;
 create table shipping_address(
 	shipping_id int auto_increment primary key, #收货地址编号
+	account varchar(50), #账号
 	shipping_name varchar(50), #收件人
 	shipping_address varchar(50), #收货地址
 	zip int, #邮编
