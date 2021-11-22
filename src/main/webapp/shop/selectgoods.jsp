@@ -66,14 +66,14 @@
 
                   //设置隐藏点击按钮
                   if (result.resultPageInfoObject.hasPreviousPage) {
-                      $("#previousPage").css("visibility", "visible");
+                      $("#previousPage").removeAttr("disabled");
                   } else {
-                      $("#previousPage").css("visibility", "hidden");
+                      $("#previousPage").attr("disabled", "true");
                   }
                   if (result.resultPageInfoObject.hasNextPage) {
-                      $("#nextPage").css("visibility", "visible");
+                      $("#nextPage").removeAttr("disabled");
                   } else {
-                      $("#nextPage").css("visibility", "hidden");
+                      $("#nextPage").attr("disabled", "true");
                   }
               },
               error: function (e) {

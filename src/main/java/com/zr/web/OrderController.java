@@ -11,7 +11,6 @@ import com.zr.service.GoodsService;
 import com.zr.service.OrderService;
 import com.zr.service.ShoppingCartService;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,6 @@ public class OrderController {
      * @return
      */
     @GetMapping("/addOrder/{goodsId}/{goodsNumber}")
-    @Transactional
     public String addOrder(HttpServletRequest request,
                            Model model,
                            @PathVariable Integer goodsId,
