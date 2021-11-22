@@ -91,7 +91,7 @@ insert into goods values(default,"泰国山竹水果 ","6个装 大果 单果约
 
 insert into goods values(default,"阳澄湖大闸蟹","1988型公4.0两 母3.0两 ",500,1234,2,1000,"shuichan1.jpg","阳澄湖","3kg");
 
-insert into goods values(default,"冷冻阿拉斯加黄金鲽鱼  "," 1kg 2-3条",500,1234,2,1000,"shuicahn2.jpg","阿拉斯加","2kg");
+insert into goods values(default,"冷冻阿拉斯加黄金鲽鱼  "," 1kg 2-3条",500,1234,2,1000,"shuichan2.jpg","阿拉斯加","2kg");
 
 insert into goods values(default,"大洋世家 原装进口冷冻阿根廷红虾   ","12个",500,1234,2,1000,"shuichan3.jpg","阿根廷 ","3kg");
 
