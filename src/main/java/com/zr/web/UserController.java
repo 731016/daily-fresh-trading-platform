@@ -103,6 +103,7 @@ public class UserController {
                 Cookie cookie = new Cookie("rememberAccount", account);
                 response.addCookie(cookie);
             }
+            request.setAttribute("userState", UserState.getUserStateByValue(1));
             return "/index";
         }
         request.setAttribute("userState", UserState.getUserStateByValue(7));

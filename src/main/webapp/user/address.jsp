@@ -90,7 +90,7 @@
             <form action="${pageContext.request.contextPath}/user/editaddress" method="post" id="userinfo_form">
 
                 <%--        <input type="hidden" name="token" value="${sessionScope.token}">--%>
-                <input type="hidden" value="${userState.value}" id="msg">
+                <input type="hidden" value="${requestScope.userState.value}" id="msg">
 
                 <div class="form_group">
                     <label>收件人：</label>

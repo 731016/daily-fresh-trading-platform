@@ -178,6 +178,10 @@ $(function () {
         console.log("登陆失败");
         example(3, "用户名或密码错误");
     }
+    if (msg == 1){
+        console.log("登录成功");
+        history.back();
+    }
 
     $('#commit').click(function () {
         username();

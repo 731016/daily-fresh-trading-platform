@@ -127,7 +127,7 @@
           <div class="n_reg_form clearfix">
             <form id="reg_form" method="post" action="/user/forgetpwd">
               <input type="hidden" name="token" value="${sessionScope.token}">
-              <input type="hidden" value="${userState.value}" id="msg">
+              <input type="hidden" value="${requestScope.userState.value}" id="msg">
               <ul>
                 <li>
                   <label>用户名:</label>

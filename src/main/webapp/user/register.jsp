@@ -81,7 +81,7 @@
         <div class="reg_form clearfix">
             <form action="${pageContext.request.contextPath}/user/register" method="post" id="reg_form">
 
-                <input type="hidden" value="${userState.value}" id="msg">
+                <input type="hidden" value="${requestScope.userState.value}" id="msg">
                 <input type="hidden" name="token" value="${sessionScope.token}">
 
 <%--                <input type="hidden" name="" value="e">--%>

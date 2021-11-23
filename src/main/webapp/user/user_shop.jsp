@@ -116,7 +116,7 @@
   </script>
 </head>
 <body>
-<input type="hidden" value="${userState.value}" id="msg">
+<input type="hidden" value="${requestScope.userState.value}" id="msg">
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>

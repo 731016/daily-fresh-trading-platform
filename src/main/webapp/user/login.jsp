@@ -41,7 +41,7 @@
             <div class="form_input">
 
                 <form action="${pageContext.request.contextPath}/user/login" method="post" id="from_login">
-                    <input type="hidden" value="${userState.value}" id="msg">
+                    <input type="hidden" value="${requestScope.userState.value}" id="msg">
 <%--                    <input type="hidden" name="token" value="${sessionScope.token}">--%>
 
                     <input type="text" name="account" id="username" class="name_input" placeholder="请输入用户" value="${sessionScope.rememberAccount}">
