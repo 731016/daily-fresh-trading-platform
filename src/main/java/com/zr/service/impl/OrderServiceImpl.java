@@ -50,6 +50,8 @@ public class OrderServiceImpl implements OrderService {
         if (goods.getInventory() >= goodsOrder.getGoodsNumber()) {
             //修改商品库存
             goods.setInventory(goods.getInventory() - goodsOrder.getGoodsNumber());
+            //修改商品销量
+            goods.setSales(goods.getSales() + goodsOrder.getGoodsNumber());
             goodsMapper.updateById(goods);
             //添加订单
             int i = mapper.insert(goodsOrder);
