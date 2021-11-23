@@ -68,13 +68,13 @@ public class HistoryServiceImpl implements HistoryService {
     /**
      * 删除浏览记录
      *
-     * @param historyId
+     * @param historyIds
      * @return
      */
     @Override
     @Transactional
-    public boolean delHistory(Integer historyId) {
-        int i = mapper.deleteById(historyId);
+    public boolean delHistory(List<Integer> historyIds) {
+        int i = mapper.deleteBatchIds(historyIds);
         if (i > 0) {
             return true;
         } else {

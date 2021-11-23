@@ -41,8 +41,8 @@ public interface HistoryService {
     /**
      * 删除浏览记录
      *
-     * @param historyId
+     * @param historyIds
      * @return
      */
-    boolean delHistory(Integer historyId);
+    boolean delHistory(List<Integer> historyIds);
 }

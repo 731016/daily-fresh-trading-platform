@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class HistoryController {
@@ -41,8 +42,9 @@ public class HistoryController {
         System.out.println("axios请求：" + flag);
         // 结果集合
         Result<Goods> result = new Result<>();
+        String account = String.valueOf(request.getSession().getAttribute("login"));
         // 查询已登录的用户的所有浏览记录
-        List<History> histories = historyService.selectPage(String.valueOf(request.getSession().getAttribute("login")));
+        List<History> histories = historyService.selectPage(account);
         List<Integer> goodsIdList = new ArrayList<>();
         if (histories != null && histories.size() > 0) {
             // 集合转流
@@ -57,7 +59,18 @@ public class HistoryController {
                     .collect(Collectors.toList());
             // 为Integer类型的list集合
             System.out.println("浏览记录排序：" + goodsIdList);
+            //查询属于此集合的数据
             List<Goods> goods = goodsService.selectlimit5ListGoods(goodsIdList);
+            // 删除不属于此集合的数据
+            List<Integer> delGoodsIdList = new ArrayList<>();
+            // 收集所有的浏览记录商品id
+            delGoodsIdList = histories.stream().map(History::getGoodsId).collect(Collectors.toList());
+            //筛选出要删除的浏览记录商品id
+            for (Integer del : goodsIdList) {
+                delGoodsIdList.remove(del);
+            }
+            //删除
+            historyService.delHistory(delGoodsIdList);
             result.setResultListObject(goods);
         }
         return result;
