@@ -104,9 +104,10 @@ public class UserController {
                 response.addCookie(cookie);
             }
             request.setAttribute("userState", UserState.getUserStateByValue(1));
-            return "/index";
+//            return "/index";
+        }else{
+            request.setAttribute("userState", UserState.getUserStateByValue(7));
         }
-        request.setAttribute("userState", UserState.getUserStateByValue(7));
         return "/user/login";
     }
     /**
