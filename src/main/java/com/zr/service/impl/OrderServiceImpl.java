@@ -24,11 +24,6 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 查询订单信息(分页)
-     *
-     * @param num
-     * @param pageSize
-     * @param wrapper
-     * @return
      */
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -54,5 +49,21 @@ public class OrderServiceImpl implements OrderService {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 删除订单
+     *
+     * @param orderId
+     * @return
+     */
+    @Override
+    @Transactional
+    public boolean delOrder(String orderId) {
+        int delFlag = mapper.deleteById(orderId);
+        if (delFlag > 0) {
+            return true;
+        }
+        return false;
     }
 }

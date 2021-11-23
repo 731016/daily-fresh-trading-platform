@@ -13,10 +13,6 @@ public interface OrderService {
     /**
      * 查询订单信息(分页)
      *
-     * @param num
-     * @param pageSize
-     * @param wrapper
-     * @return
      */
     PageInfo<GoodsOrderVo> selectPage(String account, Integer num, Integer pageSize);
 
@@ -32,4 +28,11 @@ public interface OrderService {
      * @return
      */
     boolean addOrder(GoodsOrder goodsOrder);
+
+    /**
+     * 删除订单
+     * @param orderId
+     * @return
+     */
+    boolean delOrder(String orderId);
 }

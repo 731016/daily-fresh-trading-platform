@@ -13,9 +13,6 @@
             var currentPageNum = 1;
             selectPage();
 
-            function dateTransform(orderdate) {
-
-            }
 
             function selectPage() {
                 axios.request({
@@ -57,7 +54,7 @@
                                     '</li>' +
                                     '<li class="col07">' + g.totalPrice + '元</li>' +
                                     '<li class="col08">\n' +
-                                    '     <button type="button">删除</button>\n' +
+                                    '     <a href="/user/delOrder/' + g.orderId + '" name="del">删除</a>\n' +
                                     '</li>');
 
                                 $li.append($ul_child1);
@@ -76,9 +73,9 @@
                             $.each(response.data.navigatepageNums, function (i, num) {
                                 let n = 1;
                                 if (num == response.data.pageNum) {
-                                    $("#first").after('<a class="active" style="color: red">' + num + '</a>');
+                                    $("#first").after('<a class="active" name="pages" style="color: red">' + num + '</a>');
                                 } else {
-                                    $("#first").after('<a class="active">' + num + '</a>');
+                                    $("#first").after('<a class="active" name="pages">' + num + '</a>');
                                 }
                                 n++;
                             });
@@ -93,6 +90,16 @@
                             currentPageNum = response.data.pages;
                             selectPage();
                         });
+                        $('a[name="pages"]').click(function () {
+                            currentPageNum = $(this).text();
+                            selectPage();
+                        });
+                        $('a[name="del"]').mouseover(function () {
+                            $(this).css("color", "red");
+                        })
+                        $('a[name="del"]').mouseleave(function () {
+                            $(this).css("color", "black");
+                        })
                     }
                 }).catch(function (error) {
                     if (error.response) {

@@ -110,4 +110,10 @@ public class OrderController {
         PageInfo<GoodsOrderVo> orderPageInfo = orderService.selectPage(account, currentPageNum, 5);
         return orderPageInfo;
     }
+
+    @GetMapping(value = {"/delOrder/{orderId}","/user/delOrder"})
+    public String delOrder(@PathVariable(value = "orderId",required = false)String orderId){
+        boolean delFlag = orderService.delOrder(orderId);
+        return "/user/order";
+    }
 }
