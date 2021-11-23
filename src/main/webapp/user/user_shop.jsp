@@ -186,7 +186,7 @@
         <a href="javascript:;" class="add fl">+</a>
         <input type="text" class="num_show fl" value="${c.goodsNumber}">
         <a href="javascript:;" class="minus fl">-</a>
-        <span class="kucun" style="display: none">${c.goods.sales}</span>
+        <span class="kucun" style="display: none">${c.goods.inventory}</span>
         <span class="goodsid" style="display: none">${c.goodsId}</span>
       </div>
     </li>

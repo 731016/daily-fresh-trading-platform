@@ -49,4 +49,6 @@ public interface GoodsService {
      * @return
      */
     List<Goods> selectlimit5ListGoods(List<Integer> list);
+
+
 }

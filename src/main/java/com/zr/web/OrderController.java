@@ -10,6 +10,7 @@ import com.zr.pojo.ShoppingCart;
 import com.zr.service.GoodsService;
 import com.zr.service.OrderService;
 import com.zr.service.ShoppingCartService;
+import com.zr.service.impl.SynOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,36 +32,9 @@ public class OrderController {
     @Resource
     private ShoppingCartService cartService;
 
-    /**
-     * 处理token 对比，在所有handle方法之前执行
-     *
-     * @param request
-     */
-    @ModelAttribute
-    private void isRepeatSubmit(HttpServletRequest request) {
-        boolean flag = false;
-        String client_token = request.getParameter("token");
-        //如果用户提交的表单数据中没有token，则是重复提交
-        if (client_token == null) {
-            flag = true;
-        }
-        //取出存储在Session中的token
-        String server_token = (String) request.getSession().getAttribute("token");
-        //如果当前用户的Session中不存在Token，则是重复提交
-        if (server_token == null) {
-            flag = true;
-        }
-        //存储在Session中的Token)与表单提交的Token不同，则是重复提交
-        if (!client_token.equals(server_token)) {
-            flag = true;
-        }
+    @Resource
+    private SynOrder synOrder;
 
-        if (flag) {
-            System.out.println("请不要重复提交!!!");
-            return;
-        }
-        request.getSession().removeAttribute("token");//移除session中的token
-    }
 
     /**
      * 商品详情界面直接购买添加订单
@@ -75,7 +49,7 @@ public class OrderController {
     public String addOrder(HttpServletRequest request,
                            Model model,
                            @PathVariable Integer goodsId,
-                           @PathVariable Integer goodsNumber) {
+                           @PathVariable Integer goodsNumber) throws Exception {
         //获取账号
         String login = request.getSession().getAttribute("login").toString();
         //定义当前时间对象
@@ -89,7 +63,7 @@ public class OrderController {
         //创建订单对象
         GoodsOrder order = new GoodsOrder(orderId, login, goodsId, goodsNumber, date, totalPrice);
         //生成订单
-        boolean b = orderService.addOrder(order);
+        boolean b = synOrder.synAddOrder(order);
         if (b) {
             return "/user/order";
         } else {
@@ -107,7 +81,7 @@ public class OrderController {
      */
     @PostMapping("/addOrder")
     @ResponseBody
-    public Boolean addOrder(@RequestParam Integer[] goodsIds, HttpServletRequest request) {
+    public Boolean addOrder(@RequestParam Integer[] goodsIds, HttpServletRequest request) throws Exception {
         String login = request.getSession().getAttribute("login").toString();
         boolean b = false;
         for (Integer goodsId : goodsIds) {
@@ -122,7 +96,7 @@ public class OrderController {
             //创建订单对象
             GoodsOrder order = new GoodsOrder(orderId, login, goodsId, shoppingCart.getGoodsNumber(), new Date(), totalPrice);
             //添加订单
-            b = orderService.addOrder(order);
+            b = synOrder.synAddOrder(order);
             //判断是否添加成功，不成功则跳出循环
             if (!b) {
                 break;
@@ -148,8 +122,13 @@ public class OrderController {
         return orderPageInfo;
     }
 
-    @GetMapping(value = {"/delOrder/{orderId}","/user/delOrder"})
-    public String delOrder(@PathVariable(value = "orderId",required = false)String orderId){
+    /**
+     * 删除订单
+     * @param orderId
+     * @return
+     */
+    @GetMapping(value = {"/delOrder/{orderId}", "/user/delOrder"})
+    public String delOrder(@PathVariable(value = "orderId", required = false) String orderId) {
         boolean delFlag = orderService.delOrder(orderId);
         return "/user/order";
     }

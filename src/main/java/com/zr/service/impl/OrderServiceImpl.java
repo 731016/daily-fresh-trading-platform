@@ -1,8 +1,8 @@
 package com.zr.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zr.mapper.GoodsMapper;
 import com.zr.mapper.OrderMapper;
 import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -21,6 +20,8 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderMapper mapper;
 
+    @Resource
+    private GoodsMapper goodsMapper;
 
     /**
      * 查询订单信息(分页)
@@ -43,9 +44,20 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public boolean addOrder(GoodsOrder goodsOrder) {
-        int i = mapper.insert(goodsOrder);
-        if (i > 0) {
-            return true;
+        //根据传入订单里的商品id查找该商品
+        Goods goods = goodsMapper.selectById(goodsOrder.getGoodsId());
+        //判断订单购买数量是否小于商品库存
+        if (goods.getInventory() >= goodsOrder.getGoodsNumber()) {
+            //修改商品库存
+            goods.setInventory(goods.getInventory() - goodsOrder.getGoodsNumber());
+            goodsMapper.updateById(goods);
+            //添加订单
+            int i = mapper.insert(goodsOrder);
+            if (i > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }

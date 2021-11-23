@@ -1,13 +1,8 @@
 package com.zr.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
-import com.zr.pojo.Goods;
 import com.zr.pojo.GoodsOrder;
 import com.zr.pojo.GoodsOrderVo;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 public interface OrderService {
     /**

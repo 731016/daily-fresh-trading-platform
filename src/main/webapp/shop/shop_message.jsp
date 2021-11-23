@@ -85,13 +85,8 @@
                   $("body").html(e.responseText);
               }
           })
-          let goodsNumber = $("#shuliang").val();
-          let msg = $('#msg').val();
-          if (msg == 10) {
-              console.log("下单失败")
-              example(10, "下单失败");
-          }
           $("#buy_btn").click(function () {
+              let goodsNumber = $("#shuliang").val();
               location.href = "${pageContext.request.contextPath}/user/addOrder/${goodsId}/" + goodsNumber;
           })
           $("#add_cart").click(function () {
@@ -208,14 +203,14 @@
     <p>${goods.goodsDescribe}</p>
     <div class="prize_bar">
       <span class="show_pirze">¥<em id="danjia">${goods.price}</em></span>
-      <span class="show_unit">单  位：${goods.unit}kg</span>
+      <span class="show_unit">单  位：${goods.unit}</span>
     </div>
     <div class="goods_num clearfix">
       <div class="num_name fl">数 量：</div>
       <div class="num_add fl">
         <input type="text" class="num_show fl" id="shuliang" value="1">
         <a href="javascript:;" class="add fr" id="jiahao">+</a>
-        <input type="text" value="${goods.sales}" id="sales" style="display: none">
+        <input type="text" value="${goods.inventory}" id="inventory" style="display: none">
         <a href="javascript:;" class="minus fr" id="jianhao">-</a>
       </div>
     </div>
@@ -259,7 +254,7 @@
           <ul class="parameter2 p-parameter-list">
             <li title="${goods.goodsName}">商品名称：${goods.goodsName}</li>
             <li title="${goods.goodsId}">商品编号：${goods.goodsId}</li>
-            <li title="${goods.unit}kg">商品毛重：${goods.unit}kg</li>
+            <li title="${goods.unit}kg">商品毛重：${goods.unit}</li>
             <li title="${goods.originPlace}">商品产地：${goods.originPlace}</li>
             <li title="${goodsType.typeName}">分类：${goodsType.typeName}</li>
           </ul>
