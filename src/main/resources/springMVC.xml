@@ -48,6 +48,7 @@
             <!--     拦截指定范围的请求path="/文件名/**" 拦截所有请求path="/**"       -->
             <mvc:mapping path="/user/**"/>
             <mvc:exclude-mapping path="/user/cartCountShow"/>
+            <mvc:exclude-mapping path="/user/login"/>
             <!--     指定范围内的请求不被拦截       -->
             <!--                    <mvc:exclude-mapping path="/index.jsp"/>-->
             <!--                    <mvc:exclude-mapping path="/goodsShow/**"/>-->
