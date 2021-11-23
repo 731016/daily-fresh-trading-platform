@@ -54,7 +54,7 @@
                                 let $ul_child1 = $('<ul class="cart_list_th clearfix"></ul>');
                                 $ul_child1.append(
                                     '<li class="col01" style="width:18%;font-weight: 700">' + transformDate(g.orderDate ) + '</li>' +
-                                    '<li class="col02" style="white-space:nowrap;width:23%">订单号：' + g.orderId + '</li>' +
+                                    '<li class="col02" style="white-space:nowrap;width:23%;">订单号：' + g.orderId + '</li>' +
                                     '<li class="col03">商品单价</li>' +
                                     '<li class="col04">数量</li>' +
                                     '<li class="col05">小计</li>' +
