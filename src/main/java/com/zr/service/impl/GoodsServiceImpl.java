@@ -30,8 +30,11 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public PageInfo<Goods> selectPage(Integer num, Integer pageSize, QueryWrapper<Goods> wrapper) {
+        //定义页号以及页面大小
         PageHelper.startPage(num, pageSize);
+        //根据传入条件查询返回商品集合
         List<Goods> productList = mapper.selectList(wrapper);
+        //创建pageInfo对象并设置显示的页号
         PageInfo<Goods> pageInfo = new PageInfo<>(productList, 3);
         return pageInfo;
     }
@@ -45,9 +48,12 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public List<Goods> selectSortSalesByType(Integer typeId, Integer goodsNum) {
+        //定义商品类型查询条件（查询对应商品类型，根据销量倒序排序）
         QueryWrapper<Goods> wrapper = new QueryWrapper<>();
         wrapper.eq("type_id", typeId).orderByDesc("sales");
+        //查询商品装入集合
         List<Goods> goods = mapper.selectList(wrapper);
+        //判断集合长度小于需要显示的数量则直接返回集合，否则截取对应长度的集合
         if (goods.size() <= goodsNum) {
             return goods;
         }
@@ -63,7 +69,11 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public List<Goods> selectSortSalesByType(Integer goodsNum) {
+        //根据商品销量倒序排序
+        QueryWrapper<Goods> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("sales");
         List<Goods> goods = mapper.selectList(null);
+        //判断集合长度小于需要显示的数量则直接返回集合，否则截取对应长度的集合
         if (goods.size() <= goodsNum) {
             return goods;
         }
@@ -89,6 +99,7 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public List<Goods> selectlimit5ListGoods(List<Integer> list) {
+        //传入已排序商品id集合，根据集合查询对应商品对象
         List<Goods> goodsList = new ArrayList<>();
         for (Integer id : list) {
             Goods goods = mapper.selectById(id);

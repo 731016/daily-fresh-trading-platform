@@ -6,5 +6,5 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartVo extends ShoppingCart {
-    private Goods goods;
+    private Goods goods;  //商品对象
 }

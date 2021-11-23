@@ -18,7 +18,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartMapper mapper;
 
     /**
-     * 查询购物车
+     * 查询对应账号的购物车
      *
      * @param account
      * @return
@@ -32,7 +32,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     /**
-     * 查询购物车商品数量
+     * 查询对应账号的购物车商品数量
      *
      * @param account
      * @return
@@ -90,7 +90,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     /**
-     * 查询购物车单个商品
+     * 查询对应账号购物车单个商品
      *
      * @param account
      * @param goodsId

@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/shop")
@@ -41,6 +38,7 @@ public class GoodsController {
     @PostMapping("/goodsTypeRedis")
     @ResponseBody
     public Result<Goods> goodsTypeRedis() {
+        //
         Result<Goods> result = new Result<>();
         result.setResultListJson(typeService.selectAllRedis());
         return result;

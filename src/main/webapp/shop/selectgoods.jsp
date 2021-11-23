@@ -245,15 +245,17 @@
 <!--底部 开始-->
 <div class="footer login_footer">
   <div class="links">
-    <a href="">关于软帝</a>
+    <a href="">涂鏊飞</a>
     <span>|</span>
-    <a href="">热门培训</a>
+    <a href="">杜铮</a>
     <span>|</span>
-    <a href="">联系我们</a>
+    <a href="">郝雪鹏</a>
     <span>|</span>
-    <a href="">在线报名</a>
+    <a href="">覃红海</a>
+    <span>|</span>
+    <a href="">肖家伟</a>
   </div>
-  <p>CopyRight © 2019 武汉软帝信息科技有限责任公司</p>
+  <p>中软国际J0705班 5人小组</p>
 </div>
 <!--底部 结束-->
 </body>

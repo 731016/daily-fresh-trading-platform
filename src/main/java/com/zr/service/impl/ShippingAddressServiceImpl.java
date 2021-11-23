@@ -5,23 +5,38 @@ import com.zr.mapper.ShippingAddressMapper;
 import com.zr.pojo.ShippingAddress;
 import com.zr.service.ShippingAddressService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class ShippingAddressServiceImpl implements ShippingAddressService {
     @Resource
     private ShippingAddressMapper mapper;
 
+
+    /**
+     * 查询单个收货地址
+     *
+     * @param account
+     * @return
+     */
     @Override
-    public List<ShippingAddress> selectAll() {
-        return mapper.selectList(null);
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public ShippingAddress selectOne(String account) {
+        QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
+        wrapper.eq("account", account);
+        return mapper.selectOne(wrapper);
     }
 
+
+    /**
+     * 添加收货地址
+     *
+     * @param shippingAddress
+     * @return
+     */
     @Override
     @Transactional
     public boolean addAddress(ShippingAddress shippingAddress) {
@@ -42,8 +57,13 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
         return false;
     }
 
+    /**
+     * 删除收货地址
+     *
+     * @param shippingId
+     * @return
+     */
     @Override
-    @Transactional
     public boolean delAddress(Integer shippingId) {
         int i = mapper.deleteById(shippingId);
         if (i > 0) {
@@ -51,22 +71,6 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
         } else {
             return false;
         }
-
-    }
-
-    @Override
-    @Transactional
-    public boolean updateAddress(ShippingAddress shippingAddress) {
-        return false;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public ShippingAddress selectOne(String account) {
-        System.out.println("account:" + account);
-        QueryWrapper<ShippingAddress> wrapper = new QueryWrapper<>();
-        wrapper.eq("account", account);
-        return mapper.selectOne(wrapper);
     }
 
 }

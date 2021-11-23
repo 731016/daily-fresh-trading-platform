@@ -25,6 +25,7 @@ public class HistoryServiceImpl implements HistoryService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public History queryOne(Integer goodsId, String account) {
+        //根据账号以及商品查询对应浏览记录数据
         QueryWrapper<History> wrapper = new QueryWrapper<>();
         wrapper.eq("goods_id", goodsId).eq("account", account);
         return mapper.selectOne(wrapper);

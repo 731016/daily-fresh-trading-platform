@@ -27,6 +27,4 @@ public class Result<T> {
      * 返回对象类型pageInfo集合
      */
     private PageInfo<T> resultPageInfoObject;
-
-    
 }

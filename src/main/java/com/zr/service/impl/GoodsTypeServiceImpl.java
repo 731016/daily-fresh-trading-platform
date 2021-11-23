@@ -29,7 +29,9 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     @Override
     @Transactional
     public String selectAllRedis() {
+        //获取存入redis的商品类型数据
         String strType = redisTemplate.opsForValue().get("goodsType");
+        //判断如果为空，则从mysql获取数据存入redis
         if (strType == null || strType.isBlank()) {
             List<GoodsType> goodsTypes = mapper.selectList(null);
             strType = JSON.toJSONString(goodsTypes);

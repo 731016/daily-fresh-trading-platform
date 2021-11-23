@@ -37,7 +37,9 @@ public class ShoppingCartController {
     @PostMapping("/addShoppingCart/{goodsId}")
     @ResponseBody
     public String addShoppingCart(HttpServletRequest request, @PathVariable("goodsId") Integer goodsId) {
+        //获取账号
         String login = request.getSession().getAttribute("login").toString();
+        //判断如果账号为空则添加购物车，默认数量加1
         if (login != null) {
             ShoppingCart shoppingCart = new ShoppingCart(null, login, goodsId, 1);
             boolean b = cartService.addCart(shoppingCart);
@@ -61,12 +63,15 @@ public class ShoppingCartController {
     @PostMapping("/addShoppingCart/{goodsId}/{goodsNumber}")
     @ResponseBody
     public String addShoppingCart(HttpServletRequest request, @PathVariable("goodsId") Integer goodsId, @PathVariable("goodsNumber") Integer goodsNumber) {
+        //获取账号
         Object login1 = request.getSession().getAttribute("login");
+        //判断如果有账号则添加购物车，根据获取的商品数量添加
         if (login1 != null) {
             String login = login1.toString();
             ShoppingCart shoppingCart = new ShoppingCart(null, login, goodsId, goodsNumber);
             boolean b = cartService.addCart(shoppingCart);
             if (b) {
+                //返回当前购物车数量
                 Integer cartCount = cartService.selectCountByAccount(login);
                 return cartCount.toString();
             }
@@ -81,13 +86,13 @@ public class ShoppingCartController {
      * @param model
      * @return
      */
-    @GetMapping("/toIndex")
-    public String toIndex(HttpServletRequest request, Model model) {
-        String login = request.getSession().getAttribute("login").toString();
-        Integer cartCount = cartService.selectCountByAccount(login);
-        model.addAttribute("cartCount", cartCount);
-        return "/index";
-    }
+//    @GetMapping("/toIndex")
+//    public String toIndex(HttpServletRequest request, Model model) {
+//        String login = request.getSession().getAttribute("login").toString();
+//        Integer cartCount = cartService.selectCountByAccount(login);
+//        model.addAttribute("cartCount", cartCount);
+//        return "/index";
+//    }
 
     /**
      * 进入购物车页面
@@ -98,8 +103,11 @@ public class ShoppingCartController {
      */
     @GetMapping("/toShoppingCart")
     public String toShoppingCart(HttpServletRequest request, Model model) {
+        //获取账号
         String login = request.getSession().getAttribute("login").toString();
+        //查询购物车以及对应的商品信息
         List<CartVo> cartVos = cartService.showCart(login);
+        //查询购物车商品数量
         Integer count = cartService.selectCountByAccount(login);
         //根据账号查询所有剩余购物车对象
         List<ShoppingCart> shoppingCarts = cartService.selectAllByAccount(login);
@@ -110,6 +118,7 @@ public class ShoppingCartController {
             goods = service.selectOne(cart.getGoodsId());
             totalPrice += goods.getPrice() * cart.getGoodsNumber();
         }
+        //存入数据
         model.addAttribute("cartVos", cartVos);
         model.addAttribute("count", count);
         model.addAttribute("totalPrice", totalPrice);
@@ -175,13 +184,24 @@ public class ShoppingCartController {
         }
     }
 
+    /**
+     * 实时修改购物车对应商品数量
+     *
+     * @param goodsNumber
+     * @param goodsId
+     * @param request
+     * @return
+     */
     @PostMapping("/changeCart/{goodsId}/{goodsNumber}")
     @ResponseBody
     public Boolean changeCart(@PathVariable Integer goodsNumber, @PathVariable Integer goodsId, HttpServletRequest request) {
         //获取账号
         String login = request.getSession().getAttribute("login").toString();
+        //根据账号和商品id查询对应购物车数据
         ShoppingCart shoppingCart = cartService.selectOne(login, goodsId);
+        //修改商品数量
         shoppingCart.setGoodsNumber(goodsNumber);
+        //修改购物车数据
         boolean b = cartService.updateCart(shoppingCart);
         return b;
     }

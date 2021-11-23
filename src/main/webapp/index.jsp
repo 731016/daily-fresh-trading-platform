@@ -11,6 +11,7 @@
 
   <script>
       $(function () {
+          //异步获取购物车数量
           $.ajax({
               dataType: "json",
               type: "post",
@@ -23,6 +24,7 @@
                   $("body").html(e.responseText);
               }
           })
+          //异步生成商品类型以及各商品类型模块
           $.ajax({
               dataType: "json",
               type: "post",
@@ -47,7 +49,7 @@
                       $("#goods_info").append($div);
                       //导航栏设置
                       $("#title_goodsType").append('<li><a href="#model' + i + '" class="' + t.typeClass + '">' + t.typeName + '</a></li>');
-
+                      //调用生成商品模块的方法
                       goodsList(t.typeId, i);
                   })
               },
@@ -56,6 +58,7 @@
               }
           })
 
+          //异步生成商品模块
           function goodsList(typeId, index) {
               $.ajax({
                   dataType: "json",
@@ -86,9 +89,9 @@
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
-    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a>
     </div>
     <div class="fr">
+<%--   头部   --%>
       <c:choose>
         <c:when test="${sessionScope.login != null}">
           <div class="login_info fl" style="display: block">
@@ -177,15 +180,17 @@
 <!--底部 开始-->
 <div class="footer login_footer">
   <div class="links">
-    <a href="">关于软帝</a>
+    <a href="">涂鏊飞</a>
     <span>|</span>
-    <a href="">热门培训</a>
+    <a href="">杜铮</a>
     <span>|</span>
-    <a href="">联系我们</a>
+    <a href="">郝雪鹏</a>
     <span>|</span>
-    <a href="">在线报名</a>
+    <a href="">覃红海</a>
+    <span>|</span>
+    <a href="">肖家伟</a>
   </div>
-  <p>CopyRight &copy; 2019 武汉软帝信息科技有限责任公司</p>
+  <p>中软国际J0705班 5人小组</p>
 </div>
 <!--底部 结束-->
 </body>
