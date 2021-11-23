@@ -67,6 +67,7 @@ public class UserRegisterTokenController {
      */
     @RequestMapping("/user/register")
     public String register(HttpServletRequest request, @ModelAttribute("user") User user) {
+        System.out.println("进入注册controller");
         Boolean register = userService.register(user);
         if (register) {
             // 设置 用户状态 - 注册成功

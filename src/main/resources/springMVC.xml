@@ -51,8 +51,10 @@
             <mvc:exclude-mapping path="/user/cartCountShow"/>
 <!--            登录-->
             <mvc:exclude-mapping path="/user/login"/>
-<!--            注册-->
+<!--            注册 查询用户名是否存在-->
             <mvc:exclude-mapping path="/user/register_accountExist"/>
+<!--            注册-->
+            <mvc:exclude-mapping path="/user/register"/>
             <!--     指定范围内的请求不被拦截       -->
             <!--                    <mvc:exclude-mapping path="/index.jsp"/>-->
             <!--                    <mvc:exclude-mapping path="/goodsShow/**"/>-->
