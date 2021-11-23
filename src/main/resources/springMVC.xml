@@ -47,8 +47,12 @@
         <mvc:interceptor>
             <!--     拦截指定范围的请求path="/文件名/**" 拦截所有请求path="/**"       -->
             <mvc:mapping path="/user/**"/>
+<!--            首页展示购物车数量-->
             <mvc:exclude-mapping path="/user/cartCountShow"/>
+<!--            登录-->
             <mvc:exclude-mapping path="/user/login"/>
+<!--            注册-->
+            <mvc:exclude-mapping path="/user/register_accountExist"/>
             <!--     指定范围内的请求不被拦截       -->
             <!--                    <mvc:exclude-mapping path="/index.jsp"/>-->
             <!--                    <mvc:exclude-mapping path="/goodsShow/**"/>-->
