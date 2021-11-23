@@ -16,7 +16,7 @@ public class loginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().equals("rememberAccount")) {
-                request.getSession().setAttribute("rememberAccount", cookie.getName());
+                request.getSession().setAttribute("rememberAccount", cookie.getValue());
             }
         }
         Object login = request.getSession().getAttribute("login");

@@ -92,7 +92,7 @@
               example(10, "下单失败");
           }
           $("#buy_btn").click(function () {
-              location.href = "${pageContext.request.contextPath}/order/addOrder/${goodsId}/" + goodsNumber;
+              location.href = "${pageContext.request.contextPath}/user/addOrder/${goodsId}/" + goodsNumber;
           })
           $("#add_cart").click(function () {
               let goodsNumber = $("#shuliang").val();
@@ -120,9 +120,7 @@
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
-    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px"
-                                 target="_blank">软帝项目</a>
-    </div>
+
     <div class="fr">
 
       <c:choose>
@@ -164,7 +162,7 @@
     </form>
   </div>
   <div class="guest_cart fr">
-    <a href="shop.html" class="cart_name fl">我的购物车</a>
+    <a href="${pageContext.request.contextPath}/user/toShoppingCart" class="cart_name fl">我的购物车</a>
     <div class="goods_count fl" id="show_count">0</div>
   </div>
 </div>

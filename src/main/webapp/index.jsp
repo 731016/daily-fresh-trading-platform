@@ -89,7 +89,6 @@
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
-    </div>
     <div class="fr">
 <%--   头部   --%>
       <c:choose>
