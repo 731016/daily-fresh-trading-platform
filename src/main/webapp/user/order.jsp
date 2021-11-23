@@ -13,6 +13,25 @@
             var currentPageNum = 1;
             selectPage();
 
+            function transformDate(time) {
+
+                let date = new Date();
+
+                let year = date.getFullYear();
+
+                let month = date.getMonth() + 1; // [0-11]
+
+                let day = date.getDate();
+
+                let hour = date.getHours();
+
+                let minutes = date.getMinutes();
+
+                let senconds = date.getSeconds();
+
+                return year + '年' + month + '月' + day + '日' + hour + '时' + minutes + '分' + senconds + '秒';
+
+            }
 
             function selectPage() {
                 axios.request({
@@ -34,7 +53,7 @@
                                 let $li = $('<li></li>');
                                 let $ul_child1 = $('<ul class="cart_list_th clearfix"></ul>');
                                 $ul_child1.append(
-                                    '<li class="col01" style="width:18%">' + g.orderDate + '</li>' +
+                                    '<li class="col01" style="width:18%;font-weight: 700">' + transformDate(g.orderDate ) + '</li>' +
                                     '<li class="col02" style="white-space:nowrap;width:23%">订单号：' + g.orderId + '</li>' +
                                     '<li class="col03">商品单价</li>' +
                                     '<li class="col04">数量</li>' +
@@ -67,18 +86,18 @@
 
                             $('#orders').append('<div class="pagenation" style="position: relative;bottom: 10px">' +
                                 '<a class="active" id="first">首页</a>' +
-                                '<a class="active" id="last">末页</a>' +
                                 '</div>');
                             console.log(response.data.navigatepageNums);
                             $.each(response.data.navigatepageNums, function (i, num) {
                                 let n = 1;
                                 if (num == response.data.pageNum) {
-                                    $("#first").after('<a class="active" name="pages" style="color: red">' + num + '</a>');
+                                    $(".pagenation").append('<a class="active" name="pages" style="color: red">' + num + '</a>');
                                 } else {
-                                    $("#first").after('<a class="active" name="pages">' + num + '</a>');
+                                    $(".pagenation").append('<a class="active" name="pages">' + num + '</a>');
                                 }
                                 n++;
                             });
+                            $('.pagenation').append('<a class="active" id="last">末页</a>');
                         } else {
                             $('#history_ul').append($('<li style="color: red">暂无数据！</li>'));
                         }

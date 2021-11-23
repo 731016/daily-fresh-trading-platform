@@ -104,7 +104,7 @@ public class UserController {
                 response.addCookie(cookie);
             }
             return "/index";
-        }else{
+        } else {
             request.setAttribute("userState", UserState.getUserStateByValue(7));
         }
         return "/user/login";
@@ -209,5 +209,14 @@ public class UserController {
             request.setAttribute("userState", UserState.getUserStateByValue(8));
         }
         return "/user/address";
+    }
+
+    /**
+     * 进入用户中心
+     * @return
+     */
+    @GetMapping("/user/toCustomer")
+    public String toCustomer() {
+        return "/user/customer";
     }
 }

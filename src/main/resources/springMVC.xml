@@ -55,12 +55,6 @@
             <mvc:exclude-mapping path="/user/register_accountExist"/>
 <!--            注册-->
             <mvc:exclude-mapping path="/user/register"/>
-            <!--     指定范围内的请求不被拦截       -->
-            <!--                    <mvc:exclude-mapping path="/index.jsp"/>-->
-            <!--                    <mvc:exclude-mapping path="/goodsShow/**"/>-->
-            <!--                    <mvc:exclude-mapping path="/goodsTypeRedis/**"/>-->
-            <!--                    <mvc:exclude-mapping path="/user/login"/>-->
-            <!--                    <mvc:exclude-mapping path="/user/login"/>-->
             <bean class="com.zr.interceptor.loginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
