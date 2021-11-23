@@ -79,7 +79,4 @@ public class UserRegisterTokenController {
         request.setAttribute("userState", UserState.getUserStateByValue(2));
         return "/user/register";
     }
-
-
-
 }

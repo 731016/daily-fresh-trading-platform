@@ -98,7 +98,7 @@ public class UserController {
             request.getSession().setAttribute("user", user);
 
             // 记住密码复选项 被选中
-            System.out.println(rememberAccount);
+            System.out.println("rememberAccount(value=remember):"+rememberAccount);
             if (StringUtils.equals(rememberAccount, "remember")) {
                 Cookie cookie = new Cookie("rememberAccount", account);
                 response.addCookie(cookie);
@@ -131,6 +131,7 @@ public class UserController {
     @RequestMapping(value = "/user/forgetpwd")
     public String forgetpwd(HttpServletRequest request, @ModelAttribute User user) throws IOException {
         System.out.println("进入修改密码");
+        System.out.println("忘记密码（上传的user对象）：");
         System.out.println(user);
         // 查询用户
         User queryUser = userService.queryUser(user.getAccount());
@@ -191,6 +192,7 @@ public class UserController {
         // 用户名
         String loginAccount = String.valueOf(request.getSession().getAttribute("login"));
         shippingAddress.setAccount(loginAccount);
+        System.out.println("上传的地址信息：");
         System.out.println(shippingAddress);
         // 添加地址
         boolean addressFlag = shippingAddressService.addAddress(shippingAddress);
@@ -218,5 +220,10 @@ public class UserController {
     @GetMapping("/user/toCustomer")
     public String toCustomer() {
         return "/user/customer";
+    }
+
+    @GetMapping("/user/toOrder")
+    public String toOrder() {
+        return "/user/order";
     }
 }

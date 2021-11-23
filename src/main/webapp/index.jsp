@@ -113,7 +113,7 @@
         <span>|</span>
         <a href="${pageContext.request.contextPath}/user/toShoppingCart">我的购物车</a>
         <span>|</span>
-        <a href="${pageContext.request.contextPath}/user/order.jsp">我的订单</a>
+        <a href="${pageContext.request.contextPath}/user/toOrder">我的订单</a>
       </div>
     </div>
   </div>
