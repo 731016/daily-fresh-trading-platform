@@ -132,7 +132,6 @@
 <div class="header_con">
   <div class="header">
     <div class="welcome fl">欢迎来到天天生鲜!</div>
-    <div class="login_btn fl"><a href="http://www.softeem.com/web1/index.php" style="margin-left:30px" target="_blank">软帝项目</a></div>
     <div class="fr">
       <c:choose>
         <c:when test="${sessionScope.login != null}">

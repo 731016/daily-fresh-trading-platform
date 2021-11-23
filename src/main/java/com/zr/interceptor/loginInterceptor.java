@@ -14,7 +14,6 @@ public class loginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("进入登录拦截器");
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().equals("rememberAccount")) {
                 request.getSession().setAttribute("rememberAccount", cookie.getName());
