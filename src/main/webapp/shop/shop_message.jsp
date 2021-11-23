@@ -177,7 +177,7 @@
       </ul>
     </div>
     <ul class="navlist fl">
-      <li><a href="../index.jsp">首页</a></li>
+      <li><a href="${pageContext.request.contextPath}/index.jsp">首页</a></li>
       <li class="interval">|</li>
       <li><a href="#">手机生鲜</a></li>
       <li class="interval">|</li>
@@ -208,7 +208,7 @@
     <div class="goods_num clearfix">
       <div class="num_name fl">数 量：</div>
       <div class="num_add fl">
-        <input type="text" class="num_show fl" id="shuliang" value="1">
+        <input type="text" class="num_show fl" id="shuliang" value="1" oninput="value=value.replace(/[^\d]/g,'')">
         <a href="javascript:;" class="add fr" id="jiahao">+</a>
         <input type="text" value="${goods.inventory}" id="inventory" style="display: none">
         <a href="javascript:;" class="minus fr" id="jianhao">-</a>
@@ -225,7 +225,7 @@
 <div class="main_wrap clearfix">
   <div class="l_wrap fl clearfix">
     <div class="new_goods">
-      <h3>新品推荐</h3>
+      <h3>热销推荐</h3>
       <ul>
         <c:forEach items="${hotGoods}" var="g">
           <li>
@@ -257,6 +257,7 @@
             <li title="${goods.unit}kg">商品毛重：${goods.unit}</li>
             <li title="${goods.originPlace}">商品产地：${goods.originPlace}</li>
             <li title="${goodsType.typeName}">分类：${goodsType.typeName}</li>
+            <li title="${goods.inventory}">库存：${goods.inventory}</li>
           </ul>
         </dd>
       </dl>

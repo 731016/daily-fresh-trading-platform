@@ -7,7 +7,7 @@ var $to_x = $('#show_count').offset().top;
 var $to_y = $('#show_count').offset().left;
 
 let inventory = parseInt($("#inventory").val());
-console.log(inventory);
+
 
 $(".add_jump").css({'left': $add_y + 80, 'top': $add_x + 10, 'display': 'block'})
 $('#add_cart').click(function () {
@@ -54,15 +54,17 @@ $('#jianhao').mousedown(function () {
 });
 
 $('#shuliang').change(function () {
-    $('#shuliang').val(function () {
-        return parseInt($('#shuliang').val());
-    });
+    let num =parseInt($.trim($(this).val()));
+    if(isNaN(num)){
+        num=1;
+    }
+    $(this).val(num);
     jieguo();
-    if ($('#shuliang').val() < 1) {
-        $('#shuliang').val(1);
+    if ($(this).val() < 1) {
+        $(this).val(1);
         jieguo();
-    } else if ($('#shuliang').val() > inventory) {
-        $('#shuliang').val(inventory);
+    } else if ($(this).val() > inventory) {
+        $(this).val(inventory);
         jieguo();
     }
 });

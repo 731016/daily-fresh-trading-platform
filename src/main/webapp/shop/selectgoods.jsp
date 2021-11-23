@@ -35,13 +35,11 @@
                   $("#pageNum").append('<button class="active" id="firstPage">首页</button>');
                   $("#pageNum").append('<button class="active" id="previousPage">上一页</button>');
                   $.each(result.resultPageInfoObject.navigatepageNums, function (i, num) {
-                      let n = 1;
                       if (num == result.resultPageInfoObject.pageNum) {
                           $("#pageNum").append('<button class="active" style="color: red">' + num + '</button>');
                       } else {
                           $("#pageNum").append('<button class="active">' + num + '</button>');
                       }
-                      n++;
                   });
                   $("#pageNum").append('<button class="active" id="nextPage">下一页</button>');
                   $("#pageNum").append('<button class="active" id="lastPage">尾页</button>');
@@ -205,7 +203,7 @@
 <div class="main_wrap clearfix">
   <div class="l_wrap fl clearfix">
     <div class="new_goods">
-      <h3>新品推荐</h3>
+      <h3>热销推荐</h3>
       <ul>
         <c:forEach items="${hotGoods}" var="g">
           <li>

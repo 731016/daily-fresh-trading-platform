@@ -82,6 +82,7 @@
           })
       }
 
+      //添加购物车的方法
       function addShoppingCart(goodsId) {
           $.ajax({
               dataType: "json",
@@ -100,6 +101,7 @@
           })
       }
 
+      //显示购物车数量
       $(function () {
           $.ajax({
               dataType: "json",
@@ -114,14 +116,6 @@
               }
           })
           selectPage();
-
-          $(".add_goods").click(function () {
-              $.get("/cart/updatecart/add/1/" + $(this).next().html() + "/1", function (data) {
-                  if (data.data != 0) {
-                      $("#show_count").html(data.data);
-                  }
-              });
-          });
       })
   </script>
 </head>
@@ -210,7 +204,7 @@
 <div class="main_wrap clearfix">
   <div class="l_wrap fl clearfix">
     <div class="new_goods">
-      <h3>新品推荐</h3>
+      <h3>热销推荐</h3>
       <ul>
         <c:forEach items="${hotGoods}" var="g">
           <li>

@@ -184,7 +184,7 @@
     <li class="col06">
       <div class="num_add">
         <a href="javascript:;" class="add fl">+</a>
-        <input type="text" class="num_show fl" value="${c.goodsNumber}">
+        <input type="text" class="num_show fl" value="${c.goodsNumber}" oninput="value=value.replace(/[^\d]/g,'')">
         <a href="javascript:;" class="minus fl">-</a>
         <span class="kucun" style="display: none">${c.goods.inventory}</span>
         <span class="goodsid" style="display: none">${c.goodsId}</span>
