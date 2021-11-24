@@ -11,6 +11,7 @@
   <script >
       let pageNum = 1;
 
+      //商品分类界面查询分页
       function selectPage() {
           $.ajax({
               dataType: "json",
@@ -101,8 +102,9 @@
           })
       }
 
-      //显示购物车数量
+
       $(function () {
+          //显示购物车数量
           $.ajax({
               dataType: "json",
               type: "post",

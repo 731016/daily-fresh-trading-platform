@@ -38,8 +38,9 @@ public class GoodsController {
     @PostMapping("/goodsTypeRedis")
     @ResponseBody
     public Result<Goods> goodsTypeRedis() {
-        //
+        //创建返回结果对象
         Result<Goods> result = new Result<>();
+        //调用redis
         result.setResultListJson(typeService.selectAllRedis());
         return result;
     }

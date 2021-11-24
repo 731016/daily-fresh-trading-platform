@@ -24,6 +24,7 @@
                   $("body").html(e.responseText);
               }
           })
+
           //异步生成商品类型以及各商品类型模块
           $.ajax({
               dataType: "json",

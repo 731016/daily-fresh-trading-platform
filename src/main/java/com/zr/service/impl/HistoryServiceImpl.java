@@ -74,7 +74,10 @@ public class HistoryServiceImpl implements HistoryService {
     @Override
     @Transactional
     public boolean delHistory(List<Integer> historyIds) {
-        int i = mapper.deleteBatchIds(historyIds);
+        int i = 0;
+        if (historyIds.size() > 0) {
+            i = mapper.deleteBatchIds(historyIds);
+        }
         if (i > 0) {
             return true;
         } else {

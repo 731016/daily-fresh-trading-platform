@@ -73,6 +73,7 @@
       }
 
       $(function () {
+          //登录后获取购物车数量
           $.ajax({
               dataType: "json",
               type: "post",
@@ -85,10 +86,12 @@
                   $("body").html(e.responseText);
               }
           })
+          //购买按钮点击事件，购买成功跳转到订单界面
           $("#buy_btn").click(function () {
               let goodsNumber = $("#shuliang").val();
               location.href = "${pageContext.request.contextPath}/user/addOrder/${goodsId}/" + goodsNumber;
           })
+          //添加购物车点击事件
           $("#add_cart").click(function () {
               let goodsNumber = $("#shuliang").val();
               $.ajax({

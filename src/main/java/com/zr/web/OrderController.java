@@ -127,7 +127,7 @@ public class OrderController {
      * @param orderId
      * @return
      */
-    @GetMapping(value = {"/delOrder/{orderId}", "/user/delOrder"})
+    @GetMapping(value = {"/delOrder/{orderId}", "/delOrder"})
     public String delOrder(@PathVariable(value = "orderId", required = false) String orderId) {
         boolean delFlag = orderService.delOrder(orderId);
         return "/user/order";

@@ -11,6 +11,7 @@
   <script>
       let pageNum = 1;
 
+      //全部商品界面查询分页
       function selectPage() {
           $.ajax({
               dataType: "json",
@@ -80,6 +81,7 @@
           })
       }
 
+      //添加购物车方法
       function addShoppingCart(goodsId) {
 
           $.ajax({
@@ -101,6 +103,7 @@
 
       $(function () {
           selectPage();
+          //登录后获取购物车数量
           $.ajax({
               dataType: "json",
               type: "post",
@@ -113,13 +116,6 @@
                   $("body").html(e.responseText);
               }
           })
-          $(".add_goods").click(function () {
-              $.get("/cart/updatecart/add/1/" + $(this).next().html() + "/1", function (data) {
-                  if (data.data != 0) {
-                      $("#show_count").html(data.data);
-                  }
-              });
-          });
       })
   </script>
 </head>

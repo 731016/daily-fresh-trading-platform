@@ -55,7 +55,11 @@ $(".minus").click(function () {
     zongji();
 });
 
-let goodsNumber = parseInt($(".num_show").val());
+let goodsNumber=1;
+$(".num_show").focus(function () {
+    goodsNumber = parseInt($(this).val());
+});
+
 $(".num_show").change(function () {
     let num = parseInt($(this).val());
     if (isNaN(num)) {
