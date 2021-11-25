@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class GoodsController {
      */
     @PostMapping("/goodsTypeRedis")
     @ResponseBody
-    public Result<Goods> goodsTypeRedis() {
+    public Result<Goods> goodsTypeRedis(HttpSession session) {
         //创建返回结果对象
         Result<Goods> result = new Result<>();
         //调用redis
