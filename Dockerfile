@@ -1,12 +1,22 @@
-FROM maven:3.5-jdk-8-alpine as builder
+# 使用官方 maven/Java 8 镜像作为构建环境
+# https://hub.docker.com/_/maven
+FROM maven:3.6-jdk-11 as builder
 
-# Copy local code to the container image.
+# 将代码复制到容器内
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Build a release artifact.
+# 构建项目
 RUN mvn package -DskipTests
 
-# Run the web service on container startup.
-CMD ["java","-jar","/app/target/father-backend-0.0.1-SNAPSHOT.jar"]
+# 使用 AdoptOpenJDK 作为基础镜像
+# https://hub.docker.com/r/adoptopenjdk/openjdk8
+# https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
+FROM adoptopenjdk/openjdk11:alpine-slim
+
+# 将 jar 放入容器内
+COPY --from=builder /app/target/helloworld-*.jar /helloworld.jar
+
+# 启动服务
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/helloworld.jar"]
