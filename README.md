@@ -1,8 +1,5 @@
 ## 天天生鲜-交易平台
 
-## 项目演示地址
-[项目演示](http://119.3.104.52:8081/)
-
 ## 任务计划
 [https://docs.qq.com/sheet/DWXRZSXRtbmpOSkpr?tab=BB08J2](https://docs.qq.com/sheet/DWXRZSXRtbmpOSkpr?tab=BB08J2)
 
